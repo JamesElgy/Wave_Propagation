@@ -178,7 +178,7 @@
 }
 \lstset{style=mystyle}
 
-
+\DeclarePairedDelimiter\set\{\}
 
 \begin{document}
 % !TeX spellcheck = en_GB
@@ -213,21 +213,41 @@ country={UK}}
 \section{Introduction}\label{sect:intro}
 
 \subsection{Model Problem}
-\begin{align}
+\begin{equation}
 \begin{alignedat}{2}
-\curl \curl \boldsymbol{E} - k^2\boldsymbol{E} &= \boldsymbol{0} &&\quad \text{in } \Omega \\
+\curl \curl \boldsymbol{E} - k^2\boldsymbol{E} &= \boldsymbol{0} &&\quad \text{in } \Omega \in \mathbb{R}^3 \\
 \boldsymbol{n} \times \boldsymbol{E} &= \boldsymbol{n} \times \boldsymbol{E}^{(exact)} &&\quad \text{on } \Gamma = \partial \Omega
 \end{alignedat}
-\end{align}
-with $\boldsymbol{E}^{(exact)} = e^{\rm{i} \vec{k} \cdot \vec{x}}$ being the known solution for the electric field at position $\boldsymbol{x}$ for perpendicular wavenumber $\boldsymbol{k} = \left[k_x, k_y, k_z\right]$. For the standard $\boldsymbol{H}(\rm{curl})$ conforming finite element space \cite{Monk2017} the weak form of this problem is: Find $\boldsymbol{u} \in \boldsymbol{H}_D(\rm{curl})$ such that
-\begin{equation}
-\int_\Omega
 \end{equation}
+
+with $\boldsymbol{E}^{(exact)} = \vec{p}e^{\rm{i} \vec{k} \cdot \vec{x}}$ being the known solution for the electric field at position $\boldsymbol{x}$ for wavenumber $\boldsymbol{k} = \left[k_x, k_y, k_z\right]$ and perpendicular amplitude $\boldsymbol{p} = \left[p_x, p_y, p_z\right]$. For the standard $\boldsymbol{H}(\rm{curl})$ conforming finite element space \cite{Monk2017} the weak form of this problem is: Find $\boldsymbol{u} \in \boldsymbol{H}_D(\rm{curl})$ such that
+\begin{equation}\label{eqn:weak_form}
+\int_\Omega \curl \vec{u} \, \curl \vec{v} \,\mathrm{d}\Omega - \int_\Omega k^2 \vec{u}\vec{v} \,\mathrm{d}\Omega = \vec{0},
+\end{equation}
+for all $\vec{v} \in \boldsymbol{H}_0(\rm{curl})$ and $k^2 = |\vec{k}|^2 > 0$ being homogeneous and isotropic in $\Omega$. Here, $\boldsymbol{H}(\rm{curl})$ is the high order space defined by
+\begin{equation*}
+\boldsymbol{H}(\rm{curl}) := \left\{ \vec{a} \in L^2(\Omega)^3 | \curl \vec{a} \in L^2(\Omega)^3\right\},
+\end{equation*}
+where $L^2(\Omega)$ denotes the space of square integrable functions. Considering Dirichlet boundary conditions and setting $\vec{v}$ to vanish on the boundary, the appropriate subspaces for this problem are
+\begin{equation*}
+\begin{alignedat}{2}
+\boldsymbol{H}_D(\rm{curl}) &:= \left\{ \vec{a} \in \vec{H}(\rm{curl}) | \vec{n}\times \vec{a} = \vec{n} \times \vec{E}^{(exact)} \text{ on } \Gamma\right\}\\
+\boldsymbol{H}_0(\rm{curl}) &:= \left\{ \vec{a} \in \vec{H}(\rm{curl}) | \vec{n}\times \vec{a} = \vec{0} \text{ on } \Gamma\right\}.
+\end{alignedat}
+\end{equation*}
+
+The Galerkin finite element discretisation of the variational statement (\ref{eqn:weak_form}) is the large linear system
+\begin{equation}
+\mathbf{A}\mathbf{q} = \mathbf{r}
+\end{equation}
+where $\mathbf{A}$ is a large sparse matrix of size $N_d$.
 \section{Software}
 \texttt{NGSolve} (version 6.2.2302) and \texttt{Netgen} (version 6.2.2302)~\cite{NGSolve,zaglmayrphd,netgendet}, 
 
 \section{Conversion to Scipy Iterative Solvers} \label{sect:scipy}
 The iterative solvers available in \texttt{NGSolve}, notably \texttt{CGSolver} and \texttt{GMRESSolver} do not allow for the execution of arbitrary callback functions in the same way as many other solvers from other established python libraries. For this reason, it is difficult to retain the residual at each iteration of the \texttt{NGSolve} solvers. Furthermore, the \texttt{GMRESSolver} does not appear to have a restart option available to the API and is in general poorly documented. For this reason, the solving of the linear system used in static condensation is instead implemented using \texttt{SciPy} (version 1.10.1) and \texttt{NumPy} (version 1.24.2).
+
+\textcolor{cyan}{The NGSolve implementation of GMRES also gives noticeably different results to the CGSolver, even when using the same direct preconditioner, so I don't really trust it.}
 
 The following two code snippets are equivalent.
 \clearpage
@@ -282,8 +302,25 @@ u.vec.data += a.inner_solve * r
 
 
 \section{Numerical Results}
+In this section, we consider a range of numerical examples to illustrate the performance of the different preconditioners.
 
 \subsection{Non-Magnetic Sphere}
+
+We first consider the case of a sphere of radius 1 centered at $\vec{x}=\vec{0}$, discretised using $h=0.04$, resulting in $\Omega$ being discretised by 14989 unstructured tetrahedral elements. The amplitude and wavenumber are chosen as $\vec{p} = [0,1,0]$ and $\vec{k}=[1,0,0]$, respectively. We therefore expect the exact solution to have unit magnitude and a wavelength of $2\pi$. 
+Using $TOL=1\times 10^{-12}$ and a direct inverse preconditioner we compare the performance of the \texttt{NGSolve} conjugate gradient solver (which is valid given the applied preconditioner) with the \texttt{SciPy} GMRES solver. Figure~\ref{fig:sphere_solver_comparison} shows the error between the approximate and exact solutions in the $L_2$ norm,
+\begin{equation}
+\|e\|_{L_2} = \frac{\left(\int_\Omega \left(\vec{E}^{(hp)} - \vec{E}^{(exact)}\right) \cdot \overline{\left(\vec{E}^{(hp)} - \vec{E}^{(exact)}\right)} \, \mathrm{d}\Omega\right)^{1/2}}{\left(\int_\Omega \left(\vec{E}^{(exact)}\right) \cdot \overline{\left(\vec{E}^{(exact)}\right)} \, \mathrm{d}\Omega\right)^{1/2}},
+\end{equation}
+for the aforementioned discretisation and $p=0,1,2,3$ for both the GMRES and conjugate gradient solvers. The figure shows rapid decay of the error as $p$ is increased. Similar agreement between the two solvers is also observed for other configurations. Due to the application of the direct inverse preconditioner, the solvers converge in 1 or 2 iterations.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{Sphere_convergence_scipy_ngsolve_comp.pdf}
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Figure a comparison between GMRES and conjugate gradient solvers, where differences are indistinguishable on this scale.}
+\label{fig:sphere_solver_comparison}
+\end{figure}
+
+Having established that the \texttt{SciPy} GMRES solver and the \texttt{NGSolve} CG Solver are in agreement, we now consider the case of the BDDC preconditioner, when used in conjunction with the \texttt{SciPy} GMRES solver. 
 
 \bibliographystyle{acm}
 \bibliography{paperbib}

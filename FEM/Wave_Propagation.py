@@ -6,8 +6,12 @@ from ngsolve import *
 from netgen.occ import *
 import netgen.meshing as ngmeshing
 import scipy as sp
+import scipy.sparse.linalg
 import inspect
-from FEM.gmres_counter import *
+from FEM.iterative_solver_counter import *
+import cupyx
+# import scipy.sparse.linalg
+
 
 class wave_propagation:
 
@@ -17,20 +21,23 @@ class wave_propagation:
         ky = -0.5
         kz = 2.5
         self.wavenumber = np.asarray([kx, ky, kz]) * 0.1
-        self.amp = np.asarray([1, 1, 1])
+        self.amp = np.asarray([0, 1, 0])
 
         # FEM parameters
         self.h = 2
         self.p = 2
         self.preconditioner = 'bddc' # 'local', 'direct', 'multigrid', 'bddc'
         self.solver = 'scipy' # 'CG' or 'GMRES'
+        self.tol = 1e-10
+        self.max_iter = 2500
+        self.use_GPU = False
 
         # Geometry parameters
-        self.box_size = 20
+        self.box_size = 1
 
     def generate_mesh(self):
         half_length = self.box_size / 2
-        box = Box(Pnt(-half_length, -half_length, -half_length), Pnt(half_length, half_length, half_length))
+        # box = Box(Pnt(-half_length, -half_length, -half_length), Pnt(half_length, half_length, half_length))
         box = Sphere(Pnt(0,0,0), r=half_length)
         box.maxh = self.h
         box.bc('outer')
@@ -38,7 +45,6 @@ class wave_propagation:
         nmesh = OCCGeometry(box).GenerateMesh()
         self.mesh = Mesh(nmesh)
         self.mesh.Curve(5)
-        # print(self.mesh.GetBoundaries())
 
         curve = 5
         self.mesh.Curve(curve)  # This can be used to set the degree of curved elements
@@ -80,10 +86,6 @@ class wave_propagation:
         self.sol.Set(self.e_exact, BND)
 
     def solve(self):
-        # r = self.F.vec.CreateVector()
-        # r.data =  self.F.vec -self.A.mat * self.sol.vec
-        # self.sol.vec.data += self.A.mat.Inverse(freedofs=self.fes.FreeDofs()) * r
-
 
         # Solve the problem (including static condensation)
         self.F.vec.data += self.A.harmonic_extension_trans * self.F.vec
@@ -92,11 +94,11 @@ class wave_propagation:
 
         if self.solver == 'CG':
             print('Solving using NGSolve CG')
-            inverse = CGSolver(self.A.mat, self.P.mat, precision=1e-10, maxsteps=2500, printrates=True)
+            inverse = CGSolver(self.A.mat, self.P.mat, precision=self.tol, maxsteps=self.max_iter, printrates=True)
             self.sol.vec.data += inverse * res
         elif self.solver == 'GMRES':
             print('Solving using NGSolve GMRES')
-            inverse = GMRESSolver(self.A.mat, self.P.mat, precision=1e-10, maxsteps=2500, printrates=True)
+            inverse = GMRESSolver(self.A.mat, self.P.mat, precision=self.tol, maxsteps=self.max_iter, printrates=True)
             self.sol.vec.data += inverse * res
         elif self.solver == 'scipy':
             u = self.scipy_solve(res)
@@ -119,20 +121,26 @@ class wave_propagation:
             tmp2.data = pre * tmp2
             return tmp2.FV().NumPy()
 
-        counter = gmres_counter()
+        counter = iterative_solver_counter()
 
         r2 = res.CreateVector()
         r2.data = pre * res
-        A = sp.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
         u = self.sol.vec.CreateVector()
-        u.FV().NumPy()[:], succ = sp.sparse.linalg.gmres(A, r2.FV().NumPy(), tol=1e-10, M=self.P.mat, callback=counter)
+        if self.use_GPU is True:
+            A = cupyx.scipy.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
+            u.FV().NumPy()[:], succ = cupyx.scipy.sparse.linalg.gmres(A, r2.FV().NumPy(), tol=self.tol, maxiter=self.max_iter,
+                                                             M=self.P.mat, callback=counter)
+        else:
+            A = sp.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
+            u.FV().NumPy()[:], succ = sp.sparse.linalg.gmres(A, r2.FV().NumPy(), tol=self.tol, maxiter=self.max_iter, M=self.P.mat, callback=counter)
+
         print(succ)
-        print(np.allclose(A.dot(u.FV().NumPy()[:]), res.FV().NumPy()[:]))
+        print(f'Passed forward solve check: {np.allclose(A @ (u.FV().NumPy()[:]), r2.FV().NumPy()[:])}')
 
         plot = True
         if plot is True:
-            plt.figure()
-            counter.plot()
+            plt.figure(2)
+            counter.plot(label=f'{int(2*np.pi/self.h)} elements per $\lambda$')
 
         return u
 
@@ -152,16 +160,8 @@ class wave_propagation:
 
         return self.sol
 
-
-
-# def report(xk):
-#     frame = inspect.currentframe().f_back
-#     print(frame.f_locals['resid'])
-
 if __name__ == '__main__':
     W = wave_propagation()
     W.run(p=2)
 
-    # Draw(W.sol, W.mesh, 'sol')
-    # Draw(W.e_exact, W.mesh, 'exact')
 
