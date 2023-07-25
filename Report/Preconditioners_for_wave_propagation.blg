@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Preconditioners_for_wave_propagation.aux
+Reallocating 'name_of_file' (item size: 1) to 4 items.
+The style file: acm.bst
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+Database file #1: paperbib.bib
+You've used 4 entries,
+            2253 wiz_defined-function locations,
+            551 strings with 4538 characters,
+and the built_in function-call counts, 980 in all, are:
+= -- 99
+> -- 33
+< -- 0
++ -- 14
+- -- 10
+* -- 64
+:= -- 181
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 17
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 37
+empty$ -- 81
+format.name$ -- 10
+if$ -- 196
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 2
+newline$ -- 23
+num.names$ -- 8
+pop$ -- 11
+preamble$ -- 1
+purify$ -- 13
+quote$ -- 0
+skip$ -- 22
+stack$ -- 0
+substring$ -- 51
+swap$ -- 7
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 16
+warning$ -- 0
+while$ -- 11
+width$ -- 5
+write$ -- 44

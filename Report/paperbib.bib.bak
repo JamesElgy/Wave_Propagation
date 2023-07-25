@@ -1,0 +1,1463 @@
+ @article{ammaribuffa2000,
+ author = {H. Ammari and A. Buffa and J.-C. {N\'ed\'elec}},
+ journal = {SIAM Journal on Applied Mathematics},
+ number = {5},
+ pages = {1805--1823},
+ publisher = {Society for Industrial and Applied Mathematics},
+ title = {A Justification of Eddy Currents Model for the {M}axwell Equations},
+ volume = {60},
+ year = {2000}
+}
+
+@book{landaubook,
+author="L.D. Landau and E.M. Lifshitz and L.P.Pitaevskii",
+title="Electrodynamics of Continuous Media",
+year="1984"
+}
+
+@book{cairlet,
+author="P.G. Ciarlet",
+title="Finite Element Method for Elliptic Equations",
+year="2002",
+publisher="SIAM (2nd edition)",
+}
+
+
+
+@article{ledgerzaglmayr2010,
+	author="P.~D. Ledger and S. Zaglmayr",
+	journal="Computer Methods in Applied Mechanics and Engineering",
+	title="{$hp$}-Finite element simulation of three-dimensional eddy current problems on multiply connected domains",
+	volume="199",
+	year="2010",
+	pages="3386-3401",
+}
+
+
+@article{Chatterjee2000,
+	author="A. Chatterjee",
+	title="An introduction to the proper orthogonal decomposition",
+	journal="Current Science",
+	volume="78(7)",
+	year="2000",
+	page="808-817"
+}
+
+@book{HolmesLumleyBerkooz1996,
+	author="P. Holmes and J.~L. Lumley and G. Berkooz",
+	title="Turbulence, Coherent Structures, Dynamical Systems and Symmetry",
+	publisher="Cambridge University Press, Cambridge",
+	year="1996"
+}
+
+@article{LedgerLionheart2018g,
+	author="P.~D. Ledger and W.~R.~B. Lionheart",
+	title="Generalised magnetic polarizability tensors",
+	journal="Mathematical Methods in the Applied Sciences",
+	year="2018",
+	volume="41",
+	pages=" 3175-3196"
+}
+
+
+@article{LedgerLionheart2019,
+	author="P.~D. Ledger and W.~R.~B. Lionheart",
+	title="The spectral properties of the magnetic polarizability tensor for metallic object characterisation",
+	journal="Mathematical Methods in the Applied Sciences",
+	year="2020",
+	volume="43",
+	pages="78-113"
+}
+
+@article{LedgerLionheart2016,
+	author="P.~D. Ledger and W.~R.~B. Lionheart",
+	title="Understanding the magnetic polarizability tensor",
+	journal="IEEE Transactions on Magnetics",
+	volume="52(5)",
+	pages="6201216",
+	year="2016"
+}
+
+@article{LedgerLionheart2018,
+	author="P.~D. Ledger and W.~R.~B. Lionheart",
+	 title="An explicit formula for the magnetic polarizability tensor for object characterization",
+	journal="{IEEE} Transactions on Geoscience and Remote Sensing",
+	volume="56(6)",
+	pages="3520-3533",
+	year="2018"
+}
+
+
+@article{LedgerLionheartamad2019,
+	author="P. ~D. Ledger and W.~R.~B. Lionheart and A.~A.~S. Amad",
+	 title="Characterisation of multiple conducting permeable objects in metal detection by polarizability tensors",
+	journal="Mathematical Methods Applied Sciences",
+	volume="42(3)",
+	pages="830-860",
+	year="2019"
+}
+
+@article{LedgerLionheart2015,
+	author="P.~D. Ledger and W.~R.~B. Lionheart",
+	title="Characterising the shape and material properties of hidden targets from magnetic induction data",
+	journal="IMA Journal of Applied Mathematics",
+	volume="80(6)",
+	pages="1776-1798",
+	year="2015"
+}
+
+@article{norton2001,
+author="S.~J. Norton and I.~J. Won",
+title="Identification of buried unexploded ordnance from broadband induction
+data",
+journal="IEEE Transactions Geoscience Remote Sensing",
+volume="39",
+year="2001",
+pages="2253-2261"}
+
+@article{marsh2013,
+author="L.~A. Marsh and C. Ktisis and A. J{\"a}rvi and D.~W. Armitage and A.~J. Peyton",
+title="Three-dimensional object location and inversion of the magnetic polarisability tensor at a single frequency using a walk-through metal detector",
+journal="Measurement Science and Technology",
+volume="24",
+year="2013",
+pages="045102"
+}
+
+@article{marsh2014b,
+author="J. Makkonen and L.~A. Marsh and J. Vihonen and A. {J\"arvi} and D. W. Armitage and A. Visa and A.~J. Peyton",
+title="{KNN} classification of metallic targets using the magnetic polarizability tensor",
+journal="Measurement Science and Technology",
+volume="25",
+pages="055105",
+year="2014"}
+
+@article{marsh2015,
+author="J. Makkonen and L.~A. Marsh and J. Vihonen and A. {J\"arvi} and D.~W. Armitage and A. Visa and A.~J. Peyton",
+title="Improving reliability for classification of metallic objects using a {WTMD} portal",
+journal="Measurement Science and Technology",
+volume="26",
+pages="105103",
+year="2015"}
+
+
+@article{Makkonen2015,
+	author="J. Makkonen and L.~A. Marsh and J. Vihonen and  A. {J\"arvi} and  D.~W.  Armitage and  A. Visa and A.~J. Peyton",
+	title="Improving the reliability for classification of metallic targets using a {WTMD} portal",
+	journal="Measurement Science and Technology",
+	volume="26",
+	pages="105103",
+	year="2015"
+}
+
+
+@article{dekdouk,
+author="B. Dekdouk and C. Ktistis and L.~A. Marsh and D.~W. Armitage and A.~J. Peyton",
+title="Towards metal detection and identification for humanitarian demining using magnetic polarizability tensor spectroscopy",
+journal="Measurement Science and Technology",
+volume="26",
+pages="115501",
+year="2015"}
+
+
+@article{abdel, 
+author="O.~A. Abdel-Rehim and  J. ~L. Davidson and L. ~A. Marsh and M. ~D. O'Toole and A.~J. Peyton",
+title="Magnetic polarizability tensor spectroscopy for low metal anti-personnel mine surrogates",
+journal="IEEE Sensors",
+volume="16",
+pages="3775-3783",
+year="2016"}
+
+@article{ambrus,
+author="D. {Ambru\v{s}} and D. {Vasi\'c} and V. Bilas",
+title="Robust Estimation of Metal Target Shape Using Time-Domain Electromagnetic Induction Data",
+journal="IEEE Transactions Instrumentation and Measurement",
+volume="65",
+pages="795-807",
+year="2016"}
+
+@techreport{baum,
+author="C. E. Baum",
+title="Low frequency near field magnetic scattering from highly, but not perfectly", 
+institute="Univ. New Mexico, Albuquerque, NM, USA",
+series="Interaction Notes" ,
+number="499",
+year="1993"}
+
+
+@incollection{WoutervanVerre2019,
+	author="W. van Verre and T. {\"Ozde\"ger} and A. Gupta  and F. ~J.~W. Podd and A.~J. Peyton",
+	title="Threat identification in humanitarian demining using machine learning and spectroscopic metal detection",
+	booktitle="International Conference on Intelligent Data Engineering and Automated Learning (IDEAL)",
+	year="2019",
+	pages="542-549",
+	publisher="Springer"
+}
+
+@article{davidsoncoins,
+	author="J.~L. Davidson and O.~A. Abdel-Rehim and P.  Hu and L.~A. Marsh and M.~D. O'Toole and A.~J. Peyton",
+	title="On the magnetic polarizability tensor of {US} coinage",
+	journal="Measurement Science and Technology",
+	volume="29",
+	pages="035501",
+	year="2018"
+}
+
+
+
+@article{Seoane2019,
+	author="M. Seoane and P.~D. Ledger and A.~J. Gil and S. Zlotnik and M. Mallett",
+	title="A combined reduced order-full order methodology for the solution of {3D} Magneto-mechanical problems with application to {MRI} scanners",
+	journal="International Journal for Numerical Methods in Engineering",
+	year="2020",
+	volume="121",
+	pages="3529-3559"
+} 
+
+@article{Ammari2014,
+	author="H. Ammari and J. Chen and Z. Chen and J. Garnier and D. Volkov",
+	title="Target detection and characterization from electromagnetic induction data",
+	journal="Journal de Math{\'e}matiques Pures et Appliqu{\'e}es",
+	volume="101(1)",
+	pages="54-75",
+	year="2014"
+}
+
+@article{Ammari2015,
+	author="H. Ammari and J. Chen and Z. Chen and D. Volkov and H. Wang",
+	title="Detection and classification from electromagnetic induction data",
+	journal="Journal of Computational Physics",
+	volume="301",
+	pages="201-217",
+	year="2015"
+}
+
+
+
+@article{Wait1951,
+	author="J.~R. Wait",
+	title="A conducting sphere in a time varying magnetic field",
+	journal="Geophysics",
+	volume="16(4)",
+	pages="666-672",
+	year="1951"
+}
+
+@article{Wait1960,
+	author="J.~R. Wait",
+	title="On the electromagnetic response of a conducting sphere to a dipole field",
+	journal="Geophysics",
+	volume="25",
+	pages="569-687",
+	year="1960"
+}
+
+
+
+@article{SchoberlZaglmayr2005,
+	author="J. {Sch\"{o}berl} and S. Zaglmayr",
+	title="High order {N\'{e}d\'{e}lec} elements with local complete sequence properties",
+ 	journal="COMPEL-The International Journal for Computation and Mathematics in Electrical and Electronic Engineering",
+	Volume="24(2)",
+	pages="374-384",
+	year="2005"
+}
+
+@misc{NGSolvecode,
+	title="{NGSolve}",
+	howpublished="\url{https://ngsolve.org}",
+	note="Accessed 12/10/2021"
+}
+
+@article{AbdiWilliams2010,
+  title={Principal component analysis},
+  author={Abdi, H. and Williams, L.~J},
+  journal={Wiley Interdisciplinary Reviews: Computational Statistics},
+  volume={2},
+  number={4},
+  pages={433--459},
+  year={2010},
+  publisher={Wiley Online Library}
+}
+@book{hesthaven2016,
+  title={Certified Reduced Basis Methods for Parametrized Partial Differential Equations},
+  author={Hesthaven, J.~S. and Rozza, G. and Stamm, B.},
+  year={2016},
+  publisher={Springer}
+}
+
+@techreport{NGSolve,
+author="J. {Sch\"oberl}",
+	title="C++11 Implementation of Finite Elements in {NGSolve}",
+	institution="ASC Report 30/2014, Institute for Analysis and Scientific Computing, Vienna University of Technology",
+	year="2014"
+}
+	
+@phdthesis{zaglmayrphd,
+	author="S. Zaglmayr",
+	title="High Order Finite Elements for Electromagnetic Field Computation", 
+	school="Johannes Kepler University Linz",
+	year="2006" 
+}
+
+@article{netgendet,
+	author="J. {Sch\"oberl}",
+	 title="{NETGEN} - An advancing front {2D/3D}-mesh generator based on abstract rules",
+	 journal="Computing and Visualization in Science",
+	 volume="1(1)",
+	 pages="41-52",
+	 year="1997"
+	}
+	
+@Article{niroomandi2010model,
+  author    = {Niroomandi, S. and Alfaro, I. and Cueto, E. and Chinesta, F.},
+  title     = {Model order reduction for hyperelastic materials},
+  journal   = {International Journal for Numerical Methods in Engineering},
+  year      = {2010},
+  volume    = {81},
+  number    = {9},
+  pages     = {1180--1206},
+  publisher = {Wiley Online Library},
+}
+
+@Article{radermacher2016pod,
+  author    = {Radermacher, A. and Reese, S.},
+  title     = {{POD}-based model reduction with empirical interpolation applied to nonlinear elasticity},
+  journal   = {International Journal for Numerical Methods in Engineering},
+  year      = {2016},
+  volume    = {107},
+  number    = {6},
+  pages     = {477--495},
+  publisher = {Wiley Online Library},
+}
+
+@Article{bialecki2005proper,
+  author    = {Bialecki, R.~A. and Kassab, A.~J. and Fic, A.},
+  title     = {Proper orthogonal decomposition and modal analysis for acceleration of transient {FEM} thermal analysis},
+  journal   = {International Journal for Numerical Methods in Engineering},
+  year      = {2005},
+  volume    = {62},
+  number    = {6},
+  pages     = {774--797},
+  publisher = {Wiley Online Library},
+}
+
+@Article{luo2011reduced,
+  author    = {Luo, Z. and Du, J. and Xie, Z. and Guo, Y.},
+  title     = {A reduced stabilized mixed finite element formulation based on proper orthogonal decomposition for the non-stationary {Navier--Stokes} equations},
+  journal   = {International Journal for Numerical Methods in Engineering},
+  year      = {2011},
+  volume    = {88},
+  number    = {1},
+  pages     = {31--46},
+  publisher = {Wiley Online Library},
+}
+
+@Article{pettit2002application,
+  author    = {Pettit, C.~L. and Beran, P.~S.},
+  title     = {Application of proper orthogonal decomposition to the discrete {Euler} equations},
+  journal   = {International Journal for Numerical Methods in Engineering},
+  year      = {2002},
+  volume    = {55},
+  number    = {4},
+  pages     = {479--497},
+  publisher = {Wiley Online Library},
+}
+
+@Article{kerler2017model,
+  author    = {Kerler-Back, J. and Stykel, T.},
+  title     = {Model reduction for linear and nonlinear magneto-quasistatic equations},
+  journal   = {International Journal for Numerical Methods in Engineering},
+  year      = {2017},
+  volume    = {111},
+  number    = {13},
+  pages     = {1274--1299},
+  publisher = {Wiley Online Library},
+}
+
+@InProceedings{rama2015real,
+  author    = {Rama, R.~R. and Skatulla, S. and Sansour, C.},
+  title     = {Real-time modelling of the heart using the Proper Orthogonal Decomposition with Interpolation},
+  booktitle = {VI International Conference on Computational Bioengineering ICCB},
+  year      = {2015},
+  pages     = {1--12},
+  address   = {Barcelona, Spain},
+}
+
+@PhdThesis{rama2017proper,
+  author  = {Rama, R.~R.},
+  title   = {Proper Orthogonal Decomposition with Interpolation-Based Real-Time Modelling of the Heart},
+  school  = {University of Cape Town},
+  year    = {2017},
+  address = {South Africa},
+}
+
+@article{paulsiam2022,
+author="P.~D. Ledger and W.~R.~B. Lionheart",
+year="2022",
+title="Minimal object characterisations using harmonic generalised polarizability tensors and symmetry groups",
+journal="SIAM Journal on Applied Mathematics",
+volume="82 (6)",
+pages="2057-2079"}.
+
+@Article{rozza2018advances,
+  author  = {Rozza, G. and Malik, H. and Demo, N. and Tezzele, M. and Girfoglio, M. and Stabile, G. and Mola, A.},
+  title   = {Advances in Reduced Order Methods for Parametric Industrial Problems in Computational Fluid Dynamics},
+  journal = {arXiv preprint arXiv:1811.08319},
+  year    = {2018},
+}
+
+@InProceedings{bui2003proper,
+  author    = {Bui-Thanh, T. and Damodaran, M. and Willcox, K.},
+  title     = {Proper orthogonal decomposition extensions for parametric applications in compressible aerodynamics},
+  booktitle = {21st AIAA Applied Aerodynamics Conference},
+  year      = {DOI:10.2514/6.2003-4213, 2003},
+  doi       = {10.2514/6.2003-4213},
+}
+
+@InProceedings{marino2018shape,
+  author       = {Marin{\`o}, A. and Bucci, V},
+  title        = {Shape Optimization by means of Proper Orthogonal Decomposition and Dynamic Mode Decomposition},
+  booktitle    = {Technology and Science for the Ships of the Future: Proceedings of NAV 2018: 19th International Conference on Ship \& Maritime Research},
+  year         = {2018},
+  pages        = {212},
+  organization = {IOS Press},
+}
+
+@Article{stabile2017pod,
+  author    = {Stabile, G. and Hijazi, S. and Mola, A. and Lorenzi, S. and Rozza, G.},
+  title     = {{POD-Galerkin} reduced order methods for {CFD} using {Finite Volume Discretisation}: vortex shedding around a circular cylinder},
+  journal   = {Communications in Applied and Industrial Mathematics},
+  year      = {2017},
+  volume    = {8},
+  number    = {1},
+  pages     = {210--236},
+  publisher = {De Gruyter Open},
+}
+
+@Article{georgaka2018parametric,
+  author  = {Georgaka, S. and Stabile, G. and Rozza, G. and Bluck, M.~J.},
+  title   = {Parametric {POD-Galerkin} Model Order Reduction for Unsteady-State Heat Transfer Problems},
+  journal = {arXiv:1808.05175v3},
+  year    = {2018},
+}
+
+@Article{wang2012comparative,
+  author    = {Wang, Y. and Yu, B. and Cao, Z. and Zou, W. and Yu, G.},
+  title     = {A comparative study of {POD} interpolation and {POD} projection methods for fast and accurate prediction of heat transfer problems},
+  journal   = {International Journal of Heat and Mass Transfer},
+  year      = {2012},
+  volume    = {55},
+  number    = {17-18},
+  pages     = {4827--4836},
+  publisher = {Elsevier},
+}
+
+
+
+@article{zhao2016,
+author="Y. Zhao and W. Yin and C. Ktistis and D. Butterworth and A.~J. Peyton",
+	title="Determining the Electromagnetic Polarizability Tensors of Metal Objects During In-Line Scanning",
+	journal="IEEE Transactions on Instrumentation and Measurement",
+	volume="65",
+	year="2016",
+	pages="1172-1181"
+}
+
+@article{zhao2014,
+	author="Y. Zhao and W. Yin and C. Ktistis and D. Butterworth and A.~J. Peyton",
+	title="On the Low-Frequency Electromagnetic Responses of In-line Metal Detectors To Metal Contaminants",
+	year="2014",
+	volume="63",
+	journal="IEEE Transactions on Instrumentation and Measurement",
+	pages="3181-3189"
+	}
+
+@inproceedings{rehim2015,
+	author="O.~A. Abdel Rehim and J.~L. Davidson and L.~A. Marsh and M.~D. O'Toole and D. Armitage and A.~J. Peyton",
+	title="Measurement system for determining the magnetic polarizability tensor of small metallic targets",
+	booktitle="IEEE Sensor Application Symposium",
+	year="2015"
+}
+
+@article{marsh2014,
+	author="L.~A Marsh and C. Ktistis and A. {J\"arvi} and  D.~W .Armitage and A.~J. Peyton",
+	title="Determination of the magnetic polarizability tensor and three dimensional object location for multiple objects using a walk-through metal detector",
+	journal="Measurement Science and Technology",
+	volume="25",
+	year="2014",
+	pages="055107"
+}
+
+
+
+@article{rehim2016,
+ 	author="O.~A. Abdel Rehim and J.~L. Davidson and L.~A. Marsh and M.~D. O'Toole and A.~J. Peyton",
+	title="Magnetic polarizability spectroscopy for low metal anti-personnel mine surrogates",
+	journal="IEEE Sensors Journal",
+	year="2016",
+	volume="16",
+	pages=" 3775 - 3783"
+}
+
+@inproceedings{karimian2017,
+	title = "Electromagnetic tensor spectroscopy for sorting of shredded metallic scrap",
+	author = "N. Karimian and M.~D. O'Toole and A.~J. Peyton",
+	year = "2017",
+	booktitle = "IEEE SENSORS 2017 - Conference Proceedings",
+	publisher = "IEEE",
+}
+
+@article{brown2016,
+	author=" B.~M. Brown and M. Marletta and J. Reyes Gonzales",
+	year="2016",
+	title="Uniqueness for an inverse problem in electromagnetism with partial data",
+	 journal="Journal of Differential Equations",
+	 volume="260(8)",
+	 pages="6525-6547"
+}
+
+@article{manuch2006,
+	title="A Three-Dimensional Inverse Finite-Element Method Applied to Experimental Eddy-Current Imaging Data",
+	journal="IEEE Transactions on Magnetics",
+	author="M. Soleimani and W.~R.~B. Lionheart and A.~J. Peyton and X. Ma and S.~R. Higson",
+	volume="42",
+	year="2006",
+	pages="1560-1567"}
+	
+@book{bjorck,
+	author="A. Bjorck",
+	title="Numerical Methods for Least Squares Problems",
+	publisher="SIAM, Philadelphia, USA",
+	year="1996"
+}
+
+@book{hansen,
+	author="P.~C. Hansen",
+	title="Rank-Deficient and Discrete Ill-Posed Problems: Numerical Aspects of Linear Inversion",
+	publisher="SIAM, Philadelphia, USA",
+	year="2005"
+}
+
+
+@book{ammarikangbook,
+	author="H. Ammari and H. Kang",
+	title="Polarization and Moment Tensors with Applications to Inverse Problems and Effective Medium Theory",
+	year="2007",
+	publisher="Springer-Verlag New York"
+}
+
+@article{ammari2019,
+	author="H. Ammari and M. Putinar and M. Ruiz and S. Yu and H. Zhang",
+	title="Shape reconstruction of nanoparticles from their plasmonic resonances",
+	journal="Journal de Math{\'e}matiques Pures et Appliqu{\'e}es",
+	year="2019",
+	pages="23-48",
+	volume="122"
+}
+
+@article{taufiq,
+	author="T.~A.~K. Khairuddin and W.~R.~B. Lionheart",
+	title="Fitting ellipsoids to objects by the first order polarization tensor",
+	journal="Malaya Journal of Matematik",
+	volume="4(1)",
+	year="2013",
+	pages="44-53"
+}
+
+@article{taufiq2016,
+	author="T.~A.~K. Khairuddin and W.~R.~B.  Lionheart",
+	title="Characterization of objects by electrosensing fish based on the first order polarization tensor",
+	journal="Bioinspiration and Biomimetics",
+	volume="11",
+	pages="055004",
+	year="2016" 
+}
+
+@inproceedings{taufiq2012,
+	author="T.~A.~K. Khairuddin and W.~R.~B. Lionheart",
+	title="Do electro-sensing fish use the first order polarization tensor for object characterization?",
+	booktitle="100 Years of Electrical Imaging",
+	pages="149",
+	editors="H. Chauris and A. Adler and W.~R.~B. Lionheart",
+	publisher="Presses des Mines, Colletion Sciences de la Terre et de l'Environmnet, Paris",
+	year="2012"
+}
+
+
+@article{aospheroid,
+author="C.~O. Ao and H. Braunisch and K. O'Neill and J.~A. Kong",
+title="Quasi-magnetostatic solution for a conducting and permeable spheroid with arbitrary excitation",
+journal="IEEE Transactions on Geoscience and Remote Sensing",
+volume="40",
+pages="887-897",
+year="2002"}
+
+@article{barrowes2004,
+author="B.~E. Barrowes and K. O'Neill and T.~M. Gregorcyzk and J.~A. Kong",
+title="Broadband analytical magnetoquasistatic electromagnetic induction solution for a conducting and permeable spheroid",
+journal="IEEE Transactions on Geoscience and Remote Sensing",
+volume="42",
+pages="2479-2489",
+year="2004"}
+
+@article{barrowes2008,
+author="T.~M. Gregorcyzk and B. Zhang and J.~A. Kong and B.~E. Barrowes and K. O'Neill",
+title="Electromagnetic Induction from highly permeable and conductive ellipsoids under arbitrary excitation: application to the detection of unexploded ordances",
+journal="IEEE Transactions on Geoscience and Remote Sensing",
+volume="46",
+pages="1164-1176",
+year="2008"}
+
+@article{ben2020,
+	author="B.~A. Wilson and P.~D. Ledger",
+	title="Efficient Computation of the Magnetic Polarizability Tensor Spectral Signature using {POD}",
+	volume="122",
+	pages="1940-1963",
+	year="2021",
+	journal="International Journal for Numerical Methods in Engineering"
+}
+
+@article{schmidteddycurrent, 
+author={K. {Schmidt} and O. {Sterz} and R. {Hiptmair}}, 
+journal={IEEE Transactions on Magnetics}, 
+title={Estimating the Eddy-Current Modeling Error}, 
+year={2008}, 
+volume={44},
+ number={6}, 
+ pages={686-689}}
+ 
+ 
+ @other{conductivity,
+title="Conductivity Of Metals Sorted By Resistivity",
+note="Accessed: 17/10/2020",
+howpublished={\url{http://eddy-current.com/conductivity-of-metals-sorted-by-resistivity/}}
+}
+
+@book{golub,
+	author="G.~H. Golub and C.~F. Van Loan",
+	title="Matrix Computations",
+	publisher="JHU Press",
+	year="1996"
+}
+
+@book{bishopbook,
+	author="C.~M. Bishop",
+	title="Pattern Recognition and Machine Learning",
+	publisher="Springer (Cambridge)",
+	year="2006"
+}
+
+
+@phdthesis{thesisben,
+author = {Wilson, Ben Alexander},
+doi = {10.23889/SUthesis.60297},
+file = {:home/james/Documents/Mendeley Desktop/Wilson/Unknown/Wilson - 2022 - Characterisation and Classification of Hidden Conducting Security Threats using Magnetic Polarizability Tensors.pdf:pdf},
+mendeley-groups = {Magnetic Polarisation},
+number = {January},
+school = {Swansea University},
+title = {{Characterisation and Classification of Hidden Conducting Security Threats using Magnetic Polarizability Tensors}},
+type = {PhD},
+url = {https://cronfa.swan.ac.uk/Record/cronfa60297#details},
+year = {2022}
+}
+
+
+@article{coinconductivity,
+	author="C.~Y. Ho and M.~W. Ackerman and K.~Y. Wu and T.~N. Havill and R.~H. Bogaard and R.~A. Matula and S. G. Oh and H.~M. James",
+	title="Electrical resistivity of ten selected binary alloy systems",
+	journal="Journal of Physical and Chemical Reference Data",
+	volume="12",
+	pages="183-322",
+	year="1983",
+}
+
+@techreport{coinpermeability,
+	author="M.~R. Gross",
+	title="Magnetic characteristics of non-magnetic metallic materials comparison of properties in strong and weak fields",
+	institution="U.S. Naval Engineering Experiment Station, Annapolis, Maryland, USA",
+	year="1951",
+	number="E.E.S. Report 4E(2)66904"
+}
+
+@other{royalmint,
+	author="Royal Mint",
+	note="Accessed 10/10/2020",
+	howpublished={\url{https://www.royalmint.com/discover/uk-coins/coin-design-and-specifications/}}
+}
+
+@other{wikitt33,
+	author="{TT33} Pistol Image",
+	note="Accessed: 20/10/2020",
+	howpublished={\url{https://en.wikipedia.org/wiki/TT_pistol}}
+}
+
+@other{TT-33History,
+	author="Weapon Systems",
+	note="Accessed: 20/10/2020",
+	title="Tokarev TT-33",
+	howpublished={\url{https://weaponsystems.net/system/653-Tokarev+TT-33}}
+}
+
+@other{blueprints,
+	title="{TT33} Blueprints",
+	howpublished={\url{https://pdfslide.net/documents/tt-33-model-blueprints-drawings-of-main-parts.html}},
+	note="Accessed: 20/10/2020"
+}
+
+@book{tt33conductivity,
+	author="B.~S. Mitchell",
+	title="An Introduction to Materials Engineering and Science: For Chemical and Materials Engineers",
+	year="2004",
+	publisher="John Wiley  {\&} Sons"
+}
+
+@other{tt33-image,
+	author="A. Antonosen",
+	howpublished={\url{https://www.flickr.com/photos/handvapensamlingen/6825679152/in/photolist-bpaoBj-eXwMWW-a664rz-2fhqR43-dQ7ipQ}},
+	year="2012",
+	note="Accessed: 28/10/2020"
+}
+
+@other{wikipediatang,
+author="Wikipedia",
+	howpublished={\url{https://en.wikipedia.org/wiki/Tang_(tools)}},
+	note="Accessed: 09/10/2020"
+}
+
+@techreport{Commons,
+	author="G. Allen, L. Audickas and P. Loft and A. Bellis",
+	title="Knife Crime in {E}ngland and {W}ales",
+	number="SN4304",
+	institute="House of Commons Library",
+	year="2019",
+	howpublished={\url{https://commonslibrary.parliament.uk/research-briefings/sn04304/}},
+	note="Accessed: 09/10/2020"
+}
+
+@other{440bpermeability,
+	author="Carpenter Technology",
+	title="Magnetic Properties of Stainless Steels",
+	howpublished={\url{https://www.carpentertechnology.com/en/alloy-techzone/technical-information/technical-articles/magnetic-properties-of-stainless-steels}},
+	note="Accessed: 09/10/2020"
+}
+
+@article{ammarishapeelectro,
+	author="H. Ammari and T. Boulier and J. Garnier and H. Wang",
+	title="Shape recognition and classification in electro-sensing",
+	journal="Proceedings of the National Academy of Sciences",
+	volume="111",
+	year="2014",
+	pages="11652-11657"
+}
+
+@book{bonet,
+	author="J. Bonet and R.~D. Wood",
+	title="Nonlinear Continuum Mechanics for Finite Element Analysis",
+	publisher="Cambridge University Press",
+	year="2010"
+}
+
+@book{abramowitz,
+	author="M. Abramowitz and I.~A. Stegun",
+	title="Handbook of Mathematical Functions"
+}
+
+@other{nist,
+	author="National Institute of Standard and Technology",
+	title="NIST Digital Library of Mathematical Functions",
+	howpublished={\url{https://dlmf.nist.gov/19}},
+	note="Accessed: 23/10/2020"
+}	
+
+@article{osborn,
+	author="J.~A. Osborn",
+	title="Demagnetizing factors of the general ellipsoid",
+	journal="Physical Review",
+	volume="67",
+	year="1945",
+	pages="351-357"
+}
+
+@article{multiadaboost,
+	author="J. Zhu and H. Zou and S. Rosset and T. Hastie",
+	journal="Statistics and its inference",
+	volume="2",
+	year="2009",
+	pages="349-360"
+}
+
+@article{adaboost,
+	author="Y. Freund and R. Schapire",
+	title="A decision theoretic generalization of on-line learning and an application to boosting",
+	journal="Journal of Computer and System Sciences",
+	volume="55",
+	pages="119–139",
+	year="1997"
+}
+
+@article{ledgerwilsonamadlion2021,
+	author = {Ledger, P.~D.~ and Wilson, B.~A.~ and Amad, A.~A.~ S.~ and Lionheart, W.~R.~ B.~~},
+	title = {Identification of metallic objects using spectral magnetic polarizability tensor signatures: Object characterisation and invariants},
+	journal = {International Journal for Numerical Methods in Engineering},
+	volume="122",
+	pages="3941-3984",
+	year="2021"
+}
+
+@article{ledgerwilsonlion2022,
+	author = {Ledger, P.~D.~ and Wilson, B.~A.~ and Lionheart, W.~R.~ B.~~},
+	title = {Identification of metallic objects using spectral magnetic polarizability tensor signatures: Object classification},
+	journal = {International Journal for Numerical Methods in Engineering},
+	volume="123",
+	pages="2076-2111",
+	year="2022"
+}
+
+@article{elgy2023,
+	author="J.~ Elgy and P.~D.~ Ledger and J.~L.~ Davidson and {T.~ \"Ozdeger}",
+	title="Computations and measurements of the magnetic polarizability tensor characterisation of high conducting and magnetic objects",
+	note="Submitted",
+	year="2023"}
+
+
+@misc{bawilson94_2021_4876371,
+  author       = {B.~A.~ Wilson and P.~D.~ Ledger},
+  title        = {BAWilson94/MPT-Library: Version 1.0.0 MPT-Library},
+  month        = may,
+  year         = 2021,
+  publisher    = {Zenodo},
+  version      = {v1.0.0},
+  doi          = {10.5281/zenodo.4876371},
+  howpublished          = {\url{https://doi.org/10.5281/zenodo.4876371}}
+}
+	
+@misc{mpt-calculator,
+	author="B.~A.~ Wilson and P.~D.~ Ledger",
+	title="{MPT}-{C}alculator",
+	year="2021",
+	howpublished={\url{https://github.com/BAWilson94/MPT-Calculator}},
+	note="Accessed: 15/10/2021"
+}
+
+	
+@book{reed1999neural,
+  title={Neural Smithing: Supervised Learning in Feedforward Artificial Neural Networks},
+  author={Reed, R. and Marks II, R.~J.~},
+  year={1999},
+  publisher={{MIT} Press}
+}
+
+@misc{f1metrics,
+  author = {Shmueli, B.},
+  title = {Multi-Class Metrics Made Simple, Part {II}},
+  howpublished = {\url{https://towardsdatascience.com/multi-class-metrics-made-simple-part-ii-the-f1-score-ebe8b2c2ca1}},
+  note = {Accessed: 31/01/2020}
+}
+
+@misc{kappametrics,
+  author = {Shmueli, B.},
+  title = {Multi-Class Metrics Made Simple, Part {III}},
+  howpublished = {\url{https://towardsdatascience.com/multi-class-metrics-made-simple-the-kappa-score-aka-cohens-kappa-coefficient-bdea137af09c}},
+  note = {Accessed: 31/01/2020}
+}
+
+@article{powers2007evaluation,
+  title={Evaluation: from precision, recall and {F}-measure to {ROC}, informedness, markedness and correlation},
+  author={Powers, D.~M.~W.},
+journal="International Journal of Machine Learning Technology",
+volume="2",
+year="2011",
+pages="37-63"
+}
+
+@book{sammut2011encyclopedia,
+  title={Encyclopaedia of Machine Learning},
+  author={Sammut, C. and Webb, G.~I~.},
+  year={2011},
+  publisher={Springer Science \& Business Media}
+}
+
+@article{cohen1960coefficient,
+  title={A coefficient of agreement for nominal scales},
+  author={Cohen, J.},
+  journal={Educational and Psychological Measurement},
+  volume={20},
+  number={1},
+  pages={37--46},
+  year={1960},
+  publisher={Sage Publications Sage CA: Thousand Oaks, CA}
+}
+
+@book{dekking2005modern,
+  title={A Modern Introduction to Probability and Statistics: Understanding Why and How},
+  author={Dekking, F.~M.~ and Kraaikamp, C. and Lopuha{\"a}, H.~P.~ and Meester, L.~E.~},
+  year={2005},
+  publisher={Springer Science \& Business Media}
+}
+
+@book{tibshirani1993introduction,
+  title={An Introduction to the Bootstrap},
+  author={Tibshirani, R.~J.~ and Efron, B.},
+  year={1993},
+  publisher={Chapman and Hall New York}
+}
+
+@book{kuhn2013applied,
+  title={Applied Predictive Modeling},
+  author={Kuhn, M. and Johnson, K.},
+  year={2013},
+  publisher={Springer (New York)}
+}
+
+@article{efron1983estimating,
+  title={Estimating the error rate of a prediction rule: improvement on cross-validation},
+  author={Efron, B.},
+  journal={Journal of the American Statistical Association},
+  volume={78},
+  number={382},
+  pages={316--331},
+  year={1983},
+  publisher={Taylor \& Francis}
+}
+
+@article{efron1997improvements,
+  title={Improvements on cross-validation: the 632+ bootstrap method},
+  author={Efron, B. and Tibshirani, R.},
+  journal={Journal of the American Statistical Association},
+  volume={92},
+  number={438},
+  pages={548--560},
+  year={1997},
+  publisher={Taylor \& Francis}
+}
+
+@article{student1908probable,
+ ISSN = {00063444},
+ URL = {http://www.jstor.org/stable/2331554},
+ author = {W.~S. Gosset},
+ journal = {Biometrika},
+ number = {1},
+ pages = {1--25},
+ publisher = {[Oxford University Press, Biometrika Trust]},
+ title = {The Probable Error of a Mean},
+ volume = {6},
+ year = {1908}
+}
+
+@article{powers2015f,
+  title={What the F-measure doesn't measure: Features, Flaws, Fallacies and Fixes},
+  author={Powers, D.~M.~W.~},
+  journal={arXiv preprint arXiv:1503.06410},
+  year={2015}
+}
+
+@misc{NormalPenn,
+	author={Penn State},
+	title = {Non-normal Data},
+	howpublished = {\url{https://online.stat.psu.edu/stat415/lesson/2/2.6}},
+	note = {Accessed: 19/04/2021}
+}
+
+@misc{Orloff2014Confidence,
+	author={Orloff, J. and Bloom, J.},
+	title = {Confidence Intervals for the Mean of Non-normal Data},
+	howpublished = {\url{https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18\_05S14\_Reading23b.pdf}},
+	note = {Accessed: 19/04/2021}
+}
+
+
+@other{Coinslayed,
+	author="Compound Interest",
+	title="The Metals in {UK} Coins",
+	howpublished="\url{https://www.compoundchem.com/2014/03/27/the-metals-in-uk-coins/}",
+	note="Accessed: 08/10/2022"
+}
+
+
+@other{conductivitymats,
+	author="The Engineering Toolbox",
+	title="Resistivity and Conductivity - Temperature Coefficients Common Materials",
+	howpublished="\url{https://www.engineeringtoolbox.com/resistivity-conductivity-d_418.html}",
+	note="Accessed: 10/08/2022"
+}
+
+@other{permeabilitymats,
+	author="The Engineering Toolbox",
+	title="Permeability - Electromagnetism and formation of magnetic fields",
+	howpublished="\url{https://www.engineeringtoolbox.com/permeability-d_1923.html}",
+	note="Accessed: 10/08/2022"
+}
+
+
+
+@techreport{copper1982copper,
+author="H. Jones",
+  title={Copper-nickel 90/10 and 70/30 alloys technical data},
+  institution={Copper Development Association and others},
+  number={CDA Publication TN31},
+  year={1982}
+}
+
+@manual{ISO-4759-3,
+        author={ISO},
+        title={ISO 4759-3:2016 Tolerances for fasteners - part 3: Washers for bolts, screws and nuts},
+        year=2016,
+        url = "\url{https://www.iso.org/obp/ui/#iso:std:iso:4759:-3:ed-4:v1:en}",
+               urldate = {2021-01-20}
+}
+       
+       @article{ho1983electrical,
+  title={Electrical resistivity of ten selected binary alloy systems},
+  author={Ho, C.~Y.. and Ackerman, M.~W.~ and Wu, K.~Y.~ and Havill, T.~N.~ and Bogaard, R.~H.~ and Matula, R.~A.~ and Oh, S.~G.~ and James, H.~M.~},
+  journal={Journal of Physical and Chemical Reference Data},
+  volume={12},
+  number={2},
+  pages={183--322},
+  year={1983},
+  publisher={American Institute of Physics for the National Institute of Standards and~?}
+}
+
+
+@article{friedman,
+	author= "J.~H. Friedman",
+	title="Greedy function approximation: A gradient boost machine",
+	journal="Annals of Statistics ",
+	volume="29(5)",
+	pages="1189-1232", 
+	year="2001"
+}
+	
+@article{richard1991,
+	author="M.~D. Richard and R.~P. Lippmann",
+	title="Neural network classifiers estimate {B}ayesian a-posteriori probabilities",
+	journal="Neural Computation",
+	year="1991",
+	volume="3",
+	pages="461-483"
+}
+
+@phdthesis{thomas2019gradient,
+  title={Gradient boosting in automatic machine learning: feature selection and hyperparameter optimization},
+  author={J. Thomas},
+  year={2019},
+  school={lmu}
+}
+
+@article{jones1998efficient,
+  title={Efficient global optimization of expensive black-box functions},
+  author={D.~R.~ Jones and M. Schonlau and W.~J.~ Welch},
+  journal={Journal of Global Optimization},
+  volume={13},
+  number={4},
+  pages={455--492},
+  year={1998},
+  publisher={Springer}
+}
+
+@article{snoek2012practical,
+  title={Practical {B}ayesian optimization of machine learning algorithms},
+  author={J. Snoek and H. Larochelle and R.~P.~ Adams},
+  journal={Advances in Neural Information Processing Systems},
+  volume={25},
+  year={2012}
+}
+
+@article{jones2021machine,
+  title={Machine learning for detection of stenoses and aneurysms: application in a physiologically realistic virtual patient database},
+  author={G. Jones and J. Parr and P. Nithiarasu and S. Pant},
+  journal={arXiv preprint arXiv:2103.00599},
+  year={2021}
+}
+
+
+@article{liaw2002classification,
+  title={Classification and regression by random forest},
+  author={A. Liaw and M. Wiener},
+  journal={R News},
+  volume={2},
+  number={3},
+  pages={18--22},
+  year={2002}
+}
+
+@article{breiman2001random,
+  title={Random forests},
+  author={L. Breiman},
+  journal={Machine Learning},
+  volume={45},
+  number={1},
+  pages={5--32},
+  year={2001},
+  publisher={Springer}
+}
+
+@article{elith2008working,
+  title={A working guide to boosted regression trees},
+  author={J. Elith and J. R. Leathwick and T. Hastie},
+  journal={Journal of Animal Ecology},
+  volume={77},
+  number={4},
+  pages={802--813},
+  year={2008},
+  publisher={Wiley Online Library}
+}
+
+@book{Hastie2009elements,
+  title={The Elements of Statistical Learning},
+  author={T. Hastie and R. Tibshirani and J. Friedman},
+  year={2009},
+  publisher={Springer Series in Statistics (New York)}
+}
+
+@book{quinlan2014c4,
+  title={C4. 5: Programs for Machine Learning},
+  author={J. R. Quinlan},
+  volume={1},
+  year={1992},
+  publisher={Morgan Kaufmann}
+}
+
+@book{cristianini2000introduction,
+  title={An Introduction to Support Vector Machines and other Kernel-Based Learning Methods},
+  author={N. Cristianini and J. Shawe-Taylor},
+  year={2000},
+  publisher={Cambridge University Press (Cambridge)}
+}
+
+@ARTICLE{toykan2021,
+  author={{\"Ozde\~ger}, T. and Davidson, J.~L.~ and Van Verre, W. and Marsh, L.~A.~ and Lionheart, W.~R.~B.~ and Peyton, A.~J.~},
+  journal={IEEE Sensors Journal}, 
+  title={Measuring the Magnetic Polarizability Tensor Using an Axial Multi-Coil Geometry}, 
+  year={2021},
+  volume={21},
+  pages={19322-19333}}
+
+
+@article{toykan2022,
+author={{\"Ozde\~ger}, T. and Davidson, J.~L.~ and Ledger, P.~D. and Conniffe, D. and Lionheart, W.~R.~B.~ and Peyton, A.~J.~},
+title="Measuring the magnetic polarizability tensor of non-symmetrical objects",
+note="Submitted (2022)",
+year="2022"}
+
+
+@article{paultoykan2021,
+	author="{\"Ozde\~ger}, T.  and Ledger, P.~D.~ and Lionheart, W.~R.~B.~ and Peyton, A.~J.",
+	title="Measurement of {GMPT} coefficients for improved object characterisation in metal detection",
+	note="Accepted, DOI:10.1109/JSEN.2021.3133950",
+	journal={IEEE Sensors Journal}, 
+	year="2021"	
+}
+
+
+@book{geron2019hands,
+  title={Hands-on Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems},
+  author={A. G{\'e}ron},
+  year={2019},
+  publisher={O'Reilly Media}
+}
+
+@book{manningbook,
+	author="C.~D. Manning and P. Raghavan and H. {Sch\"utze}",
+	title="An Introduction to Information Retrieval",
+	year="2009",
+	publisher="Cambridge University Press, Cambridge"
+}
+	
+@article{smitheigen,
+	author="O.~K. Smith",
+	year="1961",
+	title="Eigenvalues of a symmetric {$3 \times 3$} matrix",
+	journal="Communications of the ACM",
+	volume="4",
+	pages="168"
+	}
+	
+
+
+@inproceedings{falkner2018bohb,
+  title={{BOHB}: Robust and Efficient Hyperparameter Optimization at Scale},
+  author={Stefan Falkner and Aaron Klein and Frank Hutter},
+  booktitle={ICML},
+  year={2018}
+}
+
+
+@article{simulatedannealing,
+	author="Y. Yoo",
+	title="Hyperparameter optimization of deep neural network using univariate dynamic encoding algorithm for searches",
+	journal="Knowledge-Based Systems",
+	volume="178",
+	year="2019",
+	pages="74-83"}
+
+ @article{Ho1983,
+abstract = {This work compiles, reviews, and discusses the available data and information on the electrical resistivity of ten selected binary alloy systems and presents the recommended values resulting from critical evaluation, correlation, analysis, and synthesis of the available data and information. The ten binary alloy systems selected are the systems of aluminum{\^{a}}copper, aluminum{\^{a}}magnesium, copper{\^{a}}gold, copper{\^{a}}nickel, copper{\^{a}}palladium, copper{\^{a}}zinc, gold{\^{a}}palladium, gold{\^{a}}silver, iron{\^{a}}nickel, and silver{\^{a}}palladium. The recommended values for each of the ten binary alloy systems except three (aluminum{\^{a}}copper, aluminum{\^{a}}magnesium, and copper{\^{a}}zinc) are given for 27 compositions: 0 (pure element), 0.5, 1, 3, 5, 10(5)95, 97, 99, 99.5, and 100% (pure element). For aluminum{\^{a}}copper, aluminum{\^{a}}magnesium, and copper{\^{a}}zinc alloy systems, the recommended values are given for 26, 12, and 11 compositions, respectively. For most of the alloy systems the recommended values cover the temperature range from 1 K to the solidus temperature of the alloys or to about 1200 K. For most of the nine elements constituting the alloy systems, the recommended values cover the temperature range from 1 K to above the melting point into the molten state. The estimated uncertainties in most of the recommended values are about ±3% to ±5%. Key words: alloy systems; alloys; conductivity; critically evaluated data; data analysis; data compilation; data synthesis; electrical conductivity; electrical resistivity; metals; recommended values; resistivity. {\textcopyright} 1983, American Institute of Physics for the National Institute of Standards and Technology. All rights reserved.},
+author = {Ho, C. Y. and Ackerman, M. W. and Wu, K. Y. and Havill, T. N. and Bogaard, R. H. and Matula, R. A. and Oh, S. G. and James, H. M.},
+doi = {10.1063/1.555684},
+file = {:home/james/Documents/Mendeley Desktop/Ho et al/Journal of Physical and Chemical Reference Data/Ho et al. - 1983 - Electrical Resistivity of Ten Selected Binary Alloy Systems.pdf:pdf},
+issn = {15297845},
+journal = {Journal of Physical and Chemical Reference Data},
+keywords = {aluminium alloys,binary alloy systems,copper alloys,electric conductivity,electrical resistivity,gold alloys,iron alloys,magnesium alloys,metals and alloys,nickel alloys,palladium alloys,quantity ratio,silver alloys,zinc alloys},
+number = {2},
+pages = {183--322},
+title = {{Electrical resistivity of ten selected binary alloy systems}},
+volume = {12},
+year = {1983}
+}
+
+@book{RefDataForRadioEngineers1972,
+author={},
+doi = {10.1038/150346a0},
+edition = {5th},
+editor = {Westman, H. P. and Karsh, M and Perugini, M. M. and Fujii, W. S.},
+file = {:home/james/Documents/Mendeley Desktop/Sams/Unknown/Sams - 1972 - Reference data for radio engineers.pdf:pdf},
+isbn = {0672206781},
+issn = {00280836},
+mendeley-groups = {Books},
+publisher = {Howard W. Sams \& Co. Inc},
+title = {{Reference data for radio engineers}},
+year = {1972}
+}
+
+@techreport{NickelPlatingHandbook2014,
+author = {},
+title = {Nickel Plating Handbook},
+institution = {Nickel Institute},
+year = {2014},
+}
+
+@article{Elgy2022_preprint,
+author = {J.~Elgy and P.~D.~Ledger},
+title = {Reduced Order Model Approaches for Predicting the Magnetic Polarizability Tensor for Multiple Parameters of Interest},
+journal = {Submitted},
+year = {2022}
+}
+
+@inproceedings{toykanpaultony2022,
+address = {Ottawa, Canada},
+author = {{\"{O}}zdeğer, Toykan and Ledger, P. D and Peyton, Anthony J},
+booktitle = {2022 IEEE International Instrumentation and Measurement Technology Conference},
+doi = {10.1109/I2MTC48687.2022.9806662.},
+isbn = {9781665483605},
+keywords = {0,classification,electromagnetic induction spectroscopy,humanitarian demining,magnetic polarizability tensor,metal,metal detection},
+pages = {21845853},
+publisher = {IEEE},
+title = {{A study on the magnetic polarizability tensors of minimum metal anti-personnel landmines}},
+year = {2022}
+}
+
+@article{schawbsuri,
+author={C. Schwab and M. Suri},
+title={{The $p$ and $hp$ versions of the finite element method for problems with boundary layers}},
+journal={Mathematics of Computation},
+volume={65},
+year={1996},
+pages="1403-1429"
+}
+
+@other{fusion360,
+	author="Autodesk",
+	title="Fusion 360 | 3D CAM, CAD, CAE \& PCB Cloud-Based Software | Autodesk",
+	howpublished="\url{https://www.autodesk.co.uk/products/fusion-360/overview}",
+	note="Accessed: 13/10/2022"
+}
+
+@other{ExScan_S,
+	author="EinScan",
+	title="Download EinScan Software and Latest Updates",
+	howpublished="\url{https://www.einscan.com/support/download/}",
+	note="Accessed: 13/10/2022"
+}
+
+@book{balanis2012,
+address = {Hoboken, NJ, USA},
+author = {Balanis, Constantine A},
+edition = {2nd},
+file = {:home/james/Documents/Mendeley Desktop/Balanis/Unknown/Balanis - 2012 - Advanced Engineering Electromagnetics.pdf:pdf},
+isbn = {9780470589489},
+mendeley-groups = {Books},
+publisher = {Wiley},
+series = {CourseSmart Series},
+title = {{Advanced Engineering Electromagnetics}},
+url = {https://books.google.co.uk/books?id=cRkTuQAACAAJ},
+year = {2012}
+}
+
+@book{heyt,
+author="Hayt, W. H. and Buck, J. A.",
+title="Engineering Electromagnetics",
+publisher="McGraw-Hill",
+edition = {8th},
+year="2011"
+}
+
+@article{Elgy2022_preprintB,
+author = {J.~Elgy and P.~D.~Ledger and J.~L.~Davidson and T.~\"Ozde\u{g}er and A.~J.~Peyton},
+title = {Computations and Measurements of the Magnetic Polarizability Tensor Characterisation of Highly Conducting and Magnetic Objects},
+journal = {Submitted},
+year = {2022}
+}
+
+@article{Wilson2021,
+abstract = {The identification of hidden conducting permeable objects from measurements of the perturbed magnetic field taken over a range of low frequencies is important in metal detection. Applications include identifying threat items in security screening at transport hubs, location of unexploded ordnance, and antipersonnel landmines in areas of former conflict, searching for items of archeological significance and recycling of valuable metals. The solution of the inverse problem, or more generally locating and classifying objects, has attracted considerable attention recently using polarizability tensors. The magnetic polarizability tensor (MPT) provides a characterization of a conducting permeable object using a small number of coefficients, has an explicit formula for the calculation of their coefficients, and a well understood frequency behavior, which we call its spectral signature. However, to compute such signatures, and build a library of them for object classification, requires the repeated solution of a transmission problem, which is typically accomplished approximately using a finite element discretization. To reduce the computational cost, we propose an efficient reduced order model (ROM) that further reduces the problem using a proper orthogonal decomposition for the rapid computation of MPT spectral signatures. Our ROM benefits from a posteriori error estimates of the accuracy of the predicted MPT coefficients with respect to those obtained with finite element solutions. These estimates can be computed cheaply during the online stage of the ROM allowing the ROM prediction to be certified. To further increase the efficiency of the computation of the MPT spectral signature, we provide scaling results, which enable an immediate calculation of the signature under changes in the object size or conductivity. We illustrate our approach by application to a range of homogenous and inhomogeneous conducting permeable objects.},
+author = {Wilson, Ben A. and Ledger, Paul D.},
+doi = {10.1002/nme.6606},
+file = {:home/james/Documents/Mendeley Desktop/Wilson, Ledger/International Journal for Numerical Methods in Engineering/Wilson, Ledger - 2021 - Efficient computation of the magnetic polarizabiltiy tensor spectral signature using proper orthogonal decomposi.pdf:pdf},
+issn = {10970207},
+journal = {International Journal for Numerical Methods in Engineering},
+keywords = {finite element method,magnetic polarizability tensor,metal detection,object characterization,reduced order model,spectral,validation},
+mendeley-groups = {Magnetic Polarisation,Finite Elements},
+number = {8},
+pages = {1940--1963},
+title = {{Efficient computation of the magnetic polarizabiltiy tensor spectral signature using proper orthogonal decomposition}},
+volume = {122},
+year = {2021}
+}
+
+
+@other{aluminium_conductivity,
+	author="Iowa State University Center for Nondestructive Evaluation",
+	title="Electrical Conductivity and Resistivity for Aluminum and Aluminum Alloys",
+	howpublished="\url{https://www.nde-ed.org/NDETechniques/EddyCurrent/ET_Tables/ET_matlprop_Aluminum.xhtml}",
+	note="Accessed: 17/03/2023"
+}
+
+@article{Gabbay2019,
+author = {Gabbay, Jonathan E. and Scott, Waymond R.},
+doi = {10.1109/TGRS.2019.2912972},
+issn = {15580644},
+journal = {IEEE Transactions on Geoscience and Remote Sensing},
+keywords = {3-D modeling,eddy currents,electromagnetic induction (EMI),modal analysis,singularity expansion method},
+number = {10},
+pages = {7330--7338},
+publisher = {IEEE},
+title = {{Wideband models for the electromagnetic induction signatures of thin conducting shells}},
+volume = {57},
+year = {2019}
+}
+
+@article{Fernandez2006,
+author = {Fern{\'{a}}ndez, Juan Pablo and Barrowes, Benjamin and O'Neill, Kevin and Paulsen, Keith and Shamatava, Irma and Shubitidze, Fridon and Sun, Keli},
+doi = {10.1117/12.667963},
+isbn = {081946273X},
+issn = {0277786X},
+journal = {Detection and Remediation Technologies for Mines and Minelike Targets XI},
+number = {June},
+pages = {621703},
+title = {{Evaluation of SVM classification of metallic objects based on a magnetic-dipole representation}},
+volume = {6217},
+year = {2006}
+}
+
+@article{Song2016,
+author = {Song, Lin Ping and Billings, S. D. and Pasion, L. R. and Oldenburg, Douglas W.},
+doi = {10.1109/TGRS.2015.2473851},
+issn = {01962892},
+journal = {IEEE Transactions on Geoscience and Remote Sensing},
+keywords = {Conducting and permeable sphere,electromagnetic induction (EMI),magnetic dipole polarization,underwater,unexploded ordnance (UXO)},
+number = {2},
+pages = {1091--1102},
+publisher = {IEEE},
+title = {{Transient electromagnetic scattering of a metallic object buried in underwater sediments}},
+volume = {54},
+year = {2016}
+}
+
+@techreport{Walbrecht1963,
+address = {Alexandria. Va},
+author = {Walbrecht, Edmund E.},
+institution = {Defense Documentation Center for Scientific and Technical Information},
+title = {{Dielectric properties of some common high explosives}},
+year = {1963}
+}
+
+@article{Dohrmann2003,
+abstract = {A preconditioner for substructuring based on constrained energy minimization concepts is presented. The preconditioner is applicable to both structured and unstructured meshes and offers a straightforward approach for the iterative solution of second- and fourth-order structural mechanics problems. The approach involves constraints associated with disjoint sets of nodes on substructure boundaries. These constraints provide the means for preconditioning at both the substructure and global levels. Numerical examples are presented that demonstrate the good performance of the method in terms of iterations, compute time, and condition numbers of the preconditioned equations.},
+author = {Dohrmann, Clark R.},
+doi = {10.1137/S1064827502412887},
+isbn = {1064827502412},
+issn = {10648275},
+journal = {SIAM Journal of Scientific Computing},
+keywords = {Balancing domain decomposition,Domain decomposition,FETI,Iterative methods,Substructuring},
+number = {1},
+pages = {246--258},
+title = {{A preconditioner for substructuring based on constrained energy minimization}},
+volume = {25},
+year = {2003}
+}
+
+@article{Hesthaven2014,
+abstract = {We propose two new algorithms to improve greedy sampling of high-dimensional functions. While the techniques have a substantial degree of generality, we frame the discussion in the context of methods for empirical interpolation and the development of reduced basis techniques for high-dimensional parametrized functions. The first algorithm, based on a saturation assumption of the error in the greedy algorithm, is shown to result in a significant reduction of the workload over the standard greedy algorithm. In a further improved approach, this is combined with an algorithm in which the train set for the greedy approach is adaptively sparsified and enriched. A safety check step is added at the end of the algorithm to certify the quality of the sampling. Both these techniques are applicable to high-dimensional problems and we shall demonstrate their performance on a number of numerical examples.},
+author = {Hesthaven, Jan S. and Stamm, Benjamin and Zhang, Shun},
+doi = {10.1051/m2an/2013100},
+file = {:C\:/Users/james/Downloads/m2an130100.pdf:pdf},
+issn = {28047214},
+journal = {ESAIM: Mathematical Modelling and Numerical Analysis},
+keywords = {Empirical interpolation method,Greedy algorithm,Reduced basis method},
+number = {1},
+pages = {259--283},
+title = {{Efficient greedy algorithms for high-dimensional parameter spaces with applications to empirical interpolation and reduced basis methods}},
+volume = {48},
+year = {2014}
+}
+
+@techreport{UnitedStatesAirForce1972,
+address = {Washington, D.C, USA},
+author = {{United States Air Force}},
+institution = {United States Air Force},
+title = {{Review Of BLU-63 / B bomblet program: B-173803}},
+year = {1972}
+}
+
+@other{CAT-UXO,
+author="{Collective Awareness to UXO}",
+title="CAT-UXO - Blu 26 submunition",
+howpublished="\url{https://cat-uxo.com/explosive-hazards/submunitions/blu-26-submunition}",
+note="Accessed: 19/06/2023"
+}
+
+@article{Sevilla2011,
+author = {Sevilla, Ruben and Fern{\'{a}}ndez-M{\'{e}}ndez, Sonia and Huerta, Antonio},
+doi = {10.1007/s11831-011-9066-5},
+issn = {11343060},
+journal = {Archives of Computational Methods in Engineering},
+number = {4},
+pages = {441--484},
+title = {{NURBS-enhanced finite element method (NEFEM)}},
+volume = {18},
+year = {2011}
+}
+
+@phdthesis{Ozdeger2022_phd,
+author = {{\"{O}}zdeğer, Toykan},
+school = {The University of Manchester},
+title = {{Advances in Techniques for the Characterisation of Targets in Metal Detection and Ultrawide Band Electromagnetic Screening Applications}},
+type = {PhD thesis},
+year = {2022}
+}
+
+@article{Yu2023,
+author = {Yu, Nian and Wu, Xialan and Liu, Xinyu and Li, Ruiheng and Zhang, Hongye and Gao, Lei},
+doi = {10.1038/s41598-023-27758-2},
+isbn = {0123456789},
+issn = {20452322},
+journal = {Scientific Reports},
+pmid = {36631507},
+publisher = {Nature Publishing Group UK},
+title = {{Hybrid mesh for magnetotelluric forward modeling based on the finite element method}},
+volume = {13},
+year = {2023}
+}
+
+@article{Monk2017,
+archivePrefix = {arXiv},
+arxivId = {1910.10069},
+author = {Monk, Peter and Zhang, Yangwen},
+doi = {10.1002/9781119176817.ecm2023},
+eprint = {1910.10069},
+journal = {Encyclopedia of Computational Mechanics Second Edition},
+pages = {1--20},
+title = {{Finite Element Methods for Maxwell's Equations}},
+year = {2017}
+}

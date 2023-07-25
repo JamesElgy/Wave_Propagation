@@ -5,7 +5,8 @@ from matplotlib import pyplot as plt
 from FEM.Wave_Propagation import wave_propagation
 from ngsolve import *
 
-def run_p_ref():
+def run_p_ref(solver='scipy', preconditioner='direct'):
+    plt.figure()
     err_array = []
     ndof_array = []
     for p in [0,1,2,3]:
@@ -14,7 +15,7 @@ def run_p_ref():
 
         wave_prop = wave_propagation()
 
-        sol = wave_prop.run(p=p, wavenumber=np.asarray([-2, -0.5, 2.5]), box_size=2, h=0.2, solver='scipy')
+        sol = wave_prop.run(p=p, wavenumber=np.asarray([-2, -0.5, 2.5]), box_size=1, h=0.1, solver=solver, preconditioner=preconditioner)
         nd = wave_prop.fes.ndof
         exact = wave_prop.e_exact
 
@@ -30,10 +31,14 @@ def run_p_ref():
         err_array += [err]
         ndof_array += [nd]
 
+    plt.figure(1)
+    plt.loglog(ndof_array,err_array, marker='x', label=f'{solver}, {preconditioner}')
+    plt.ylabel('$||e||_{L_2} / ||exact||_{L_2}$')
+    plt.xlabel('$N_d$')
+    plt.legend()
+
     return err_array, ndof_array, wave_prop
 
 if __name__ == '__main__':
-    e, n, W = run_p_ref()
-    plt.loglog(n,e, marker='x')
-    plt.ylabel('$||e||_{L_2} / ||exact||_{L_2}$')
-    plt.xlabel('$N_d$')
+    e, n, W = run_p_ref(solver='scipy', preconditioner='bddc')
+    e, n, W = run_p_ref(solver='CG', preconditioner='bddc')

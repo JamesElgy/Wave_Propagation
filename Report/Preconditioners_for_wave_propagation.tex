@@ -1,0 +1,292 @@
+\documentclass[a4paper,12]{elsarticle}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, bm, graphics, bbm, color}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{xcolor,colortbl}
+%\usepackage[table]{xcolor}
+\usepackage{url}
+\usepackage{mathabx}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{mathalfa}
+\usepackage{hyperref}
+\usepackage{afterpage}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{tikz} % Using tikz for line diagrams
+\usepackage{lscape} % Using landscape package for large tables.
+\usepackage{longtable}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{parcolumns}
+
+
+\captionsetup{font=footnotesize}
+\captionsetup{width=\textwidth}
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+
+%center table entries
+%\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+
+\newcommand\y{\cellcolor{gray!50}}
+
+\newcommand\p{\cellcolor{gray!25}}
+
+\makeatletter
+\newcommand\makebig[2]{%
+ \@xp\newcommand\@xp*\csname#1\endcsname{\bBigg@{#2}}%
+ \@xp\newcommand\@xp*\csname#1l\endcsname{\@xp\mathopen\csname#1\endcsname}%
+ \@xp\newcommand\@xp*\csname#1r\endcsname{\@xp\mathclose\csname#1\endcsname}%
+}
+\makeatother
+
+\makebig{biggg} {3.0}
+\makebig{Biggg} {3.5}
+\makebig{bigggg}{4.0}
+\makebig{Bigggg}{4.5}
+\makebig{biggggg}{5.0}
+\makebig{Biggggg}{5.5}
+\makebig{bigggggg}{6.0}
+\makebig{Bigggggg}{6.5}
+
+\newcommand\bovermat[2]{%
+ \makebox[0pt][l]{$\smash{\overbrace{\phantom{%
+  \begin{matrix}
+   #2
+  \end{matrix}}}^{\text{#1}}}$}#2}
+
+\newcommand\bundermat[2]{%
+ \makebox[0pt][l]{$\smash{\underbrace{\phantom{%
+  \begin{matrix}
+   #2
+  \end{matrix}}}_{\text{#1}}}$}#2}
+
+\newcommand\partialphantom{\vphantom{\frac{\partial e_{P,M}}{\partial w_{1,1}}}}
+
+
+\newcommand{\raisesym}[2]{\raisebox{0.5\depth}{$#1\Biggggg \}$}}
+
+% redefine paper size
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.4in}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9.9in}
+\setlength{\headheight}{0in}
+
+
+%slanted vector symbols
+\renewcommand{\vec}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+%vertical d symbol for integrals
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\im}{\mathrm{i}}
+
+\newcommand{\Tx}{{\text{Tx}}}
+\newcommand{\Rx}{{\text{Rx}}}
+
+\newcommand{\vcE}{{\bm {\mathcal E}}}
+\newcommand{\vcH}{{\bm {\mathcal H}}}
+\newcommand{\vcJ}{{\bm {\mathcal J}}_0}
+\newcommand{\vE}{{\bm {E}}}
+\newcommand{\vH}{{\bm {H}}}
+\newcommand{\vEb}{{\bm {E}_0}}
+\newcommand{\vHb}{{\bm {H}_0}}
+\newcommand{\vEa}{{\bm {E}}_\alpha}
+\newcommand{\vHa}{{\bm {H}}_\alpha}
+\newcommand{\vEd}{{\bm {E}}_\Delta}
+\newcommand{\vHd}{{\bm {H}}_\Delta}
+\newcommand{\vJ}{{\bm {J}}_0}
+\newcommand{\vz}{{\bm {z}}}
+\newcommand{\vn}{{\bm {n}}}
+\newcommand{\ve}{{\bm {e}}}
+\newcommand{\va}{{\bm {a}}}
+\newcommand{\vb}{{\bm {b}}}
+\newcommand{\vx}{{\bm {x}}}
+\newcommand{\vy}{{\bm {y}}}
+\newcommand{\vu}{{\bm {u}}}
+\newcommand{\vw}{{\bm {w}}}
+\newcommand{\vwz}{{\bm {w}}_0}
+\newcommand{\vxi}{{\bm {\xi}}}
+\newcommand{\vv}{{\bm {v}}}
+\newcommand{\vF}{{\bm {F}}}
+\newcommand{\vD}{{\bm {D}}}
+\newcommand{\vPhi}{{\bm {\Phi}}_0}
+\newcommand{\vth}{{\bm {\theta}}}
+\newcommand{\vpsi}{{\bm {\psi}}}
+\newcommand{\vphi}{{\bm {\phi}}}
+\newcommand{\vzero}{{\bm {0}}}
+\newcommand{\vX}{{\bm {X}}_\alpha}
+\newcommand{\vR}{{\bm {R}}}
+\newcommand{\vT}{{\bm {T}}}
+\newcommand{\vr}{{\bm {r}}}
+\newcommand{\vM}{{\bm {M}}}
+\newcommand{\vV}{{\bm {V}}}
+\newcommand{\vA}{{\bm {A}}}
+\newcommand{\vI}{{\bm {I}}}
+\newcommand{\curl}{\nabla \times}
+
+
+\newcommand{\vvtheta}{{\bm {\vartheta}}}
+\newcommand{\vvphi}{{\bm {\varphi}}}
+\newcommand{\vtheta}{{\bm {\theta}}}
+
+\DeclareMathOperator*{\esssup}{ess \, sup}
+%\pgfplotsset{compat=1.16}
+\pgfplotsset{compat=1.15}
+
+\graphicspath{{./Figures/}}
+
+
+% code snippet style:
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+
+
+\begin{document}
+% !TeX spellcheck = en_GB
+
+\begin{frontmatter}
+
+\title{Improved Efficiency and Accuracy of the Magnetic Polarizability Tensor Spectral Signature Object Characterisation for Metal Detection}
+%
+%\author[1]{J. Elgy$^{\rm a*}$ and P.D. Ledger$^{\rm a}$\\
+%$^{\rm a}$School of Computer Science and Mathematics, Keele University\\
+%Keele, Staffordshire U.K\\
+%$^*$j.elgy@keele.ac.uk, p.d.ledger@keele.ac.uk}
+\cortext[cor1]{*}
+\affiliation[1]{organization={School of Computer Science and Mathematics, Keele University},
+city={Keele, Staffordshire},
+country={UK}}
+ 
+\author[1]{J. Elgy\corref{cor1}} \ead{j.elgy@keele.ac.uk}
+\author[1]{P. D. Ledger} \ead{p.d.ledger@keele.ac.uk}
+
+%\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\begin{keyword} 
+\end{keyword}
+
+\end{frontmatter}
+
+\section{Introduction}\label{sect:intro}
+
+\subsection{Model Problem}
+\begin{equation}
+\begin{alignedat}{2}
+\curl \curl \boldsymbol{E} - k^2\boldsymbol{E} &= \boldsymbol{0} &&\quad \text{in } \Omega \\
+\boldsymbol{n} \times \boldsymbol{E} &= \boldsymbol{n} \times \boldsymbol{E}^{(exact)} &&\quad \text{on } \Gamma = \partial \Omega
+\end{alignedat}
+\end{equation}
+
+with $\boldsymbol{E}^{(exact)} = e^{\rm{i} \vec{k} \cdot \vec{x}}$ being the known solution for the electric field at position $\boldsymbol{x}$ for perpendicular wavenumber $\boldsymbol{k} = \left[k_x, k_y, k_z\right]$. For the standard $\boldsymbol{H}(\rm{curl})$ conforming finite element space \cite{Monk2017} the weak form of this problem is: Find $\boldsymbol{u} \in \boldsymbol{H}_D(\rm{curl})$ such that
+\begin{equation}
+\int_\Omega
+\end{equation}
+\section{Software}
+\texttt{NGSolve} (version 6.2.2302) and \texttt{Netgen} (version 6.2.2302)~\cite{NGSolve,zaglmayrphd,netgendet}, 
+
+\section{Conversion to Scipy Iterative Solvers} \label{sect:scipy}
+The iterative solvers available in \texttt{NGSolve}, notably \texttt{CGSolver} and \texttt{GMRESSolver} do not allow for the execution of arbitrary callback functions in the same way as many other solvers from other established python libraries. For this reason, it is difficult to retain the residual at each iteration of the \texttt{NGSolve} solvers. Furthermore, the \texttt{GMRESSolver} does not appear to have a restart option available to the API and is in general poorly documented. For this reason, the solving of the linear system used in static condensation is instead implemented using \texttt{SciPy} (version 1.10.1) and \texttt{NumPy} (version 1.24.2).
+
+The following two code snippets are equivalent.
+\clearpage
+\begin{lstlisting}[caption=Static condensation using NGSolve,frame=tlrb, language=python]{ngsolve}
+# For assembled linear form f and bilinear form a for solution vector u. 
+r = f.vec.CreateVector()
+r.data = f.vec - a.mat * u.vec
+r.data += a.harmonic_extension_trans * r
+
+# CGSolver(.) * r is equivalent to solving preconditioned Ax=r
+u.vec.data += CGSolver(A.mat, P.mat, precision=1e-10) * r
+u.vec.data += a.harmonic_extension * u.vec
+u.vec.data += a.inner_solve * r
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Static condensation using SciPy,frame=tlrb, language=python]{scipy}
+# For assembled linear form f and bilinear form a for solution vector u. 
+r = f.vec.CreateVector()
+r.data = f.vec - a.mat * u.vec
+r.data += a.harmonic_extension_trans * r
+
+# The projector is used to remove non-local and non-Dirichlet degrees of freedom that should not participate in the solve
+q = r.CreateVector()
+pre = Projector(mask=fes.FreeDofs(coupling=True), range=True)
+
+tmp1 = F.vec.CreateVector()
+tmp2 = F.vec.CreateVector()
+
+# A linear operator that returns Av for the sparse matrix A
+def matvec(v):
+	tmp1.FV().NumPy()[:] = v
+	tmp2.data = A.mat * tmp1
+	tmp2.data = pre * tmp2
+	return tmp2.FV().NumPy()
+
+r.data = pre * res
+A_linop = sp.sparse.linalg.LinearOperator((A.mat.height, A.mat.width), matvec)
+
+# Solve Ax = r
+q.FV().NumPy()[:], OutputStatus = sp.sparse.linalg.gmres(A_linop, r.FV().NumPy(), tol=1e-10, M=P.mat)
+u.vec.data += q
+
+u.vec.data += a.harmonic_extension * u.vec
+u.vec.data += a.inner_solve * r
+\end{lstlisting}
+
+\section{GMRES Convergence}
+
+
+
+\subsection{Choice of Preconditioner}
+
+
+\section{Numerical Results}
+
+\subsection{Non-Magnetic Sphere}
+
+\bibliographystyle{acm}
+\bibliography{paperbib}
+
+\end{document}

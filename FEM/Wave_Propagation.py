@@ -7,6 +7,7 @@ from netgen.occ import *
 import netgen.meshing as ngmeshing
 import scipy as sp
 import inspect
+from FEM.gmres_counter import *
 
 class wave_propagation:
 
@@ -22,7 +23,7 @@ class wave_propagation:
         self.h = 2
         self.p = 2
         self.preconditioner = 'bddc' # 'local', 'direct', 'multigrid', 'bddc'
-        self.solver = 'GMRES' # 'CG' or 'GMRES'
+        self.solver = 'scipy' # 'CG' or 'GMRES'
 
         # Geometry parameters
         self.box_size = 20
@@ -30,7 +31,7 @@ class wave_propagation:
     def generate_mesh(self):
         half_length = self.box_size / 2
         box = Box(Pnt(-half_length, -half_length, -half_length), Pnt(half_length, half_length, half_length))
-        # box = Sphere(Pnt(0,0,0), r=20)
+        box = Sphere(Pnt(0,0,0), r=half_length)
         box.maxh = self.h
         box.bc('outer')
 
@@ -90,37 +91,50 @@ class wave_propagation:
         res.data = self.F.vec - (self.A.mat * self.sol.vec)
 
         if self.solver == 'CG':
+            print('Solving using NGSolve CG')
             inverse = CGSolver(self.A.mat, self.P.mat, precision=1e-10, maxsteps=2500, printrates=True)
             self.sol.vec.data += inverse * res
         elif self.solver == 'GMRES':
+            print('Solving using NGSolve GMRES')
             inverse = GMRESSolver(self.A.mat, self.P.mat, precision=1e-10, maxsteps=2500, printrates=True)
             self.sol.vec.data += inverse * res
         elif self.solver == 'scipy':
-
-            pre = Projector(mask=self.fes.FreeDofs(), range=True)
-
-            tmp1 = self.F.vec.CreateVector()
-            tmp2 = self.F.vec.CreateVector()
-
-            def matvec(v):
-                tmp1.FV().NumPy()[:] = v
-                tmp2.data = self.A.mat * tmp1
-                tmp2.data = pre * tmp2
-                return tmp2.FV().NumPy()
-
-
-            res.data = pre * res
-            A = sp.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
-            u = self.sol.vec.CreateVector()
-            u.FV().NumPy()[:], succ = sp.sparse.linalg.gmres(A, res.FV().NumPy(), tol=1e-10, M=self.P.mat)
-            print(succ)
-            print(np.allclose(A.dot(u.FV().NumPy()[:]), res.FV().NumPy()[:]))
+            u = self.scipy_solve(res)
             self.sol.vec.data += u
 
 
         self.sol.vec.data += self.A.harmonic_extension * self.sol.vec
         self.sol.vec.data += self.A.inner_solve * self.F.vec
         print("finished solve")
+
+    def scipy_solve(self, res):
+        print('Solving using scipy GMRES')
+        pre = Projector(mask=self.fes.FreeDofs(coupling=True), range=True)
+        tmp1 = self.F.vec.CreateVector()
+        tmp2 = self.F.vec.CreateVector()
+
+        def matvec(v):
+            tmp1.FV().NumPy()[:] = v
+            tmp2.data = self.A.mat * tmp1
+            tmp2.data = pre * tmp2
+            return tmp2.FV().NumPy()
+
+        counter = gmres_counter()
+
+        r2 = res.CreateVector()
+        r2.data = pre * res
+        A = sp.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
+        u = self.sol.vec.CreateVector()
+        u.FV().NumPy()[:], succ = sp.sparse.linalg.gmres(A, r2.FV().NumPy(), tol=1e-10, M=self.P.mat, callback=counter)
+        print(succ)
+        print(np.allclose(A.dot(u.FV().NumPy()[:]), res.FV().NumPy()[:]))
+
+        plot = True
+        if plot is True:
+            plt.figure()
+            counter.plot()
+
+        return u
 
     def run(self, **kwargs):
 
@@ -138,9 +152,11 @@ class wave_propagation:
 
         return self.sol
 
-def report(xk):
-    frame = inspect.currentframe().f_back
-    print(frame.f_locals['resid'])
+
+
+# def report(xk):
+#     frame = inspect.currentframe().f_back
+#     print(frame.f_locals['resid'])
 
 if __name__ == '__main__':
     W = wave_propagation()
