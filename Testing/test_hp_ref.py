@@ -32,7 +32,7 @@ def run_hp_ref(solver='scipy', preconditioner='direct', tol=1e-10):
             err_array += [err]
             ndof_array += [nd]
 
-        plt.figure(1)
+        plt.figure(2)
         plt.loglog(ndof_array,err_array, marker='x', label=f'h = {h}')
         plt.ylabel('relative error, $e$')
         plt.xlabel('$N_d$')

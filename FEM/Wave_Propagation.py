@@ -32,13 +32,19 @@ class wave_propagation:
         self.max_iter = 2500
         self.use_GPU = False
 
+        # Solver residual plotting
+        self.solver_residual_plot = True
+        self.solver_residual_plot_fignum = 1
+        wavelength = 2*np.pi / np.linalg.norm(self.wavenumber)
+        self.solver_residual_plot_label = f'{(wavelength/self.h):.2f} elements per $\lambda$'
+
         # Geometry parameters
         self.box_size = 1
 
     def generate_mesh(self):
         half_length = self.box_size / 2
-        # box = Box(Pnt(-half_length, -half_length, -half_length), Pnt(half_length, half_length, half_length))
-        box = Sphere(Pnt(0,0,0), r=half_length)
+        box = Box(Pnt(-half_length, -half_length, -half_length), Pnt(half_length, half_length, half_length))
+        # box = Sphere(Pnt(0,0,0), r=half_length)
         box.maxh = self.h
         box.bc('outer')
 
@@ -137,10 +143,10 @@ class wave_propagation:
         print(succ)
         print(f'Passed forward solve check: {np.allclose(A @ (u.FV().NumPy()[:]), r2.FV().NumPy()[:])}')
 
-        plot = True
-        if plot is True:
-            plt.figure(2)
-            counter.plot(label=f'{int(2*np.pi/self.h)} elements per $\lambda$')
+        if self.solver_residual_plot is True:
+            plt.figure(self.solver_residual_plot_fignum)
+            counter.setup_plot_params(label=self.solver_residual_plot_label)
+            counter.plot(label=True)
 
         return u
 

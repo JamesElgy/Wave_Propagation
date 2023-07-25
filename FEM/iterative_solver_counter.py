@@ -15,11 +15,17 @@ class iterative_solver_counter(object):
     def get_list(self):
         return self.internal_list
 
-    def plot(self, label=''):
-        if label == '':
-            plt.semilogy(np.linspace(1, len(self.internal_list), len(self.internal_list)), self.internal_list)
+    def setup_plot_params(self, **kwargs):
+        self.plot_dict = kwargs
+        for key, value in kwargs.items():
+            self.__setattr__(key, value)
+
+
+    def plot(self, label=True, **kwargs):
+        if label is False:
+            plt.semilogy(np.linspace(1, len(self.internal_list), len(self.internal_list)), self.internal_list, **kwargs)
         else:
-            plt.semilogy(np.linspace(1, len(self.internal_list), len(self.internal_list)), self.internal_list, label=label)
+            plt.semilogy(np.linspace(1, len(self.internal_list), len(self.internal_list)), self.internal_list, **self.plot_dict)
             plt.legend()
 
         plt.xlabel('Iterations')
