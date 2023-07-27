@@ -9,7 +9,6 @@ import scipy as sp
 import scipy.sparse.linalg
 import inspect
 from FEM.iterative_solver_counter import *
-import cupyx
 # import scipy.sparse.linalg
 
 
@@ -24,27 +23,28 @@ class wave_propagation:
         self.amp = np.asarray([0, 1, 0])
 
         # FEM parameters
-        self.h = 2
-        self.p = 2
-        self.preconditioner = 'bddc' # 'local', 'direct', 'multigrid', 'bddc'
-        self.solver = 'scipy' # 'CG' or 'GMRES'
+        self.h = 1#0.08
+        self.p = 0
+        self.preconditioner = 'bddc'  # 'local', 'direct', 'multigrid', 'bddc'
+        self.solver = 'scipy'  # 'CG' or 'GMRES'
         self.tol = 1e-10
         self.max_iter = 2500
         self.use_GPU = False
 
         # Solver residual plotting
         self.solver_residual_plot = True
-        self.solver_residual_plot_fignum = 1
+        self.solver_residual_plot_fignum = 999
         wavelength = 2*np.pi / np.linalg.norm(self.wavenumber)
-        self.solver_residual_plot_label = f'{(wavelength/self.h):.2f} elements per $\lambda$'
+        # self.solver_residual_plot_label = f'{(wavelength/self.h):.2f} elements per $\lambda$'
+        self.solver_residual_plot_label = f'SciPy GMRES, {self.preconditioner} preconditioner'
 
         # Geometry parameters
         self.box_size = 1
 
     def generate_mesh(self):
         half_length = self.box_size / 2
-        box = Box(Pnt(-half_length, -half_length, -half_length), Pnt(half_length, half_length, half_length))
-        # box = Sphere(Pnt(0,0,0), r=half_length)
+        # box = Box(Pnt(-half_length, -half_length, -half_length), Pnt(half_length, half_length, half_length))
+        box = Sphere(Pnt(0,0,0), r=half_length)
         box.maxh = self.h
         box.bc('outer')
 
@@ -87,9 +87,27 @@ class wave_propagation:
         F += SymbolicLFI(0)
         self.F = F.Assemble()
         self.P.Update()
+
         # Setting boundary conditions
         self.sol = GridFunction(self.fes)
         self.sol.Set(self.e_exact, BND)
+
+    def apply_postprojection(self):
+        fes = HCurl(self.mesh, order=self.p, dirichlet='outer', complex=False)
+        u, v = fes.TnT()
+        m = BilinearForm(u * v * dx)
+        m.Assemble()
+        # build gradient matrix as sparse matrix (and corresponding scalar FESpace)
+        gradmat, fesh1 = self.fes.CreateGradient()
+        gradmattrans = gradmat.CreateTranspose()  # transpose sparse matrix
+        math1 = gradmattrans @ m.mat @ gradmat  # multiply matrices
+        math1[0, 0] += 1  # fix the 1-dim kernel
+        invh1 = math1.Inverse(inverse="sparsecholesky")
+
+        # build the Poisson projector with operator Algebra:
+        proj = IdentityMatrix() - gradmat @ invh1 @ gradmattrans @ m.mat
+
+        self.P = proj @ self.P.mat
 
     def solve(self):
 
@@ -117,36 +135,50 @@ class wave_propagation:
 
     def scipy_solve(self, res):
         print('Solving using scipy GMRES')
+
+        # Preconditioner to remove coupled degrees of freedom for static condensation.
         pre = Projector(mask=self.fes.FreeDofs(coupling=True), range=True)
+
+        # Setting up linear operator function that takes v and returns Av
         tmp1 = self.F.vec.CreateVector()
         tmp2 = self.F.vec.CreateVector()
-
         def matvec(v):
             tmp1.FV().NumPy()[:] = v
             tmp2.data = self.A.mat * tmp1
             tmp2.data = pre * tmp2
             return tmp2.FV().NumPy()
 
-        counter = iterative_solver_counter()
+        # rows, cols, vals = self.A.mat.COO()
+        # M = sp.sparse.csr_matrix((vals,(rows,cols)))
+        # M = M.todense()
+        # print(np.linalg.eigvals(M))
+        # print(f'cond = {max(np.linalg.eigvals(M)) / min(np.linalg.eigvals(M))}')
 
         r2 = res.CreateVector()
-        r2.data = pre * res
+        r2.data = pre * res  # Applying pre to both the left and right hand sides.
         u = self.sol.vec.CreateVector()
-        if self.use_GPU is True:
-            A = cupyx.scipy.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
-            u.FV().NumPy()[:], succ = cupyx.scipy.sparse.linalg.gmres(A, r2.FV().NumPy(), tol=self.tol, maxiter=self.max_iter,
-                                                             M=self.P.mat, callback=counter)
-        else:
-            A = sp.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
-            u.FV().NumPy()[:], succ = sp.sparse.linalg.gmres(A, r2.FV().NumPy(), tol=self.tol, maxiter=self.max_iter, M=self.P.mat, callback=counter)
 
-        print(succ)
+        # Solve
+        A = sp.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
+
+        counter = iterative_solver_counter() # timing is done using ns precision, so counter is initialised immediately before solver.
+        u.FV().NumPy()[:], succ = sp.sparse.linalg.gmres(A, r2.FV().NumPy(), tol=self.tol, maxiter=self.max_iter, M=self.P, callback=counter)
         print(f'Passed forward solve check: {np.allclose(A @ (u.FV().NumPy()[:]), r2.FV().NumPy()[:])}')
 
+        # Plotting convergence.
         if self.solver_residual_plot is True:
-            plt.figure(self.solver_residual_plot_fignum)
+            self.solver_residual_plot_label = f'SciPy GMRES, {self.preconditioner} preconditioner'
+
+            plt.figure(self.solver_residual_plot_fignum + self.p)
             counter.setup_plot_params(label=self.solver_residual_plot_label)
             counter.plot(label=True)
+            plt.show()
+
+            plt.figure(self.solver_residual_plot_fignum + self.p + 10)
+            counter.setup_plot_params(label=self.solver_residual_plot_label)
+            counter.plot_time(label=True)
+            plt.show()
+
 
         return u
 
@@ -162,6 +194,7 @@ class wave_propagation:
         self.generate_FES()
         self.generate_exact_solution()
         self.generate_bilinear_linear_forms()
+        # self.apply_postprojection()
         self.solve()
 
         return self.sol

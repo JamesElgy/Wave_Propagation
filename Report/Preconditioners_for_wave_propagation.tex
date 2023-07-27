@@ -237,18 +237,71 @@ where $L^2(\Omega)$ denotes the space of square integrable functions. Considerin
 \end{equation*}
 
 The Galerkin finite element discretisation of the variational statement (\ref{eqn:weak_form}) is the large linear system
-\begin{equation}
+\begin{equation}\label{eqn:lse}
 \mathbf{A}\mathbf{q} = \mathbf{r}
 \end{equation}
-where $\mathbf{A}$ is a large sparse matrix of size $N_d$.
+where $\mathbf{A}$ is a large sparse matrix of size $N_d$. The symmetric sparse matrix $\mathbf{A}$ is indefinite, and consequently may be difficult to solve.
 \section{Software}
-\texttt{NGSolve} (version 6.2.2302) and \texttt{Netgen} (version 6.2.2302)~\cite{NGSolve,zaglmayrphd,netgendet}, 
+\texttt{NGSolve} (version 6.2.2302) and \texttt{Netgen} (version 6.2.2302)~\cite{NGSolve,zaglmayrphd,netgendet}, \texttt{SciPy}~\cite{2020SciPy-NMeth} (version 1.10.1), \texttt{NumPy} (version 1.24.2)~\cite{harris2020array}.
 
 \section{Conversion to Scipy Iterative Solvers} \label{sect:scipy}
-The iterative solvers available in \texttt{NGSolve}, notably \texttt{CGSolver} and \texttt{GMRESSolver} do not allow for the execution of arbitrary callback functions in the same way as many other solvers from other established python libraries. For this reason, it is difficult to retain the residual at each iteration of the \texttt{NGSolve} solvers. Furthermore, the \texttt{GMRESSolver} does not appear to have a restart option available to the API and is in general poorly documented. For this reason, the solving of the linear system used in static condensation is instead implemented using \texttt{SciPy} (version 1.10.1) and \texttt{NumPy} (version 1.24.2).
+The iterative solvers available in \texttt{NGSolve}, notably \texttt{CGSolver} and \texttt{GMRESSolver} do not allow for the execution of arbitrary callback functions in the same way as many other solvers from other established python libraries. For this reason, it is difficult to retain the residual at each iteration of the \texttt{NGSolve} solvers. Furthermore, the \texttt{GMRESSolver} does not appear to have a restart option available to the API and is in general poorly documented. For this reason, the solving of the linear system used in static condensation is instead implemented using and 
 
 \textcolor{cyan}{The NGSolve implementation of GMRES also gives noticeably different results to the CGSolver, even when using the same direct preconditioner, so I don't really trust it.}
 
+
+%\section{GMRES Convergence}
+%
+
+%
+\subsection{Choice of Preconditioner}
+In this report, we consider 4 different preconditioners, as implemented by \texttt{NGSolve}. A direct inverse preconditioner, where $\mathbf{P} = \mathbf{A}$ and $\mathbf{P}^{-1}\mathbf{A} = \mathbb{I}$, a Jacobi preconditioner, where $\mathbf{P} = \mathrm{diag}(\mathbf{A})$, a Multigrid preconditioner, and the Balancing Domain Decomposition with Constraints (BDDC) preconditioner. \textcolor{cyan}{References}
+
+
+\section{Numerical Results}
+In this section, we consider a range of numerical examples to illustrate the performance of the different preconditioners.
+
+\subsection{Non-Magnetic Sphere}
+
+We first consider the case of a sphere of radius 1 centred at $\vec{x}=\vec{0}$, discretised using $h=0.04$, resulting in $\Omega$ being discretised by 14989 unstructured tetrahedral elements. The amplitude and wavenumber are chosen as $\vec{p} = [0,1,0]$ and $\vec{k}=[1,0,0]$, respectively. We therefore expect the exact solution to have unit magnitude and a wavelength of $2\pi$. 
+Using $TOL=1\times 10^{-12}$ and a direct inverse preconditioner we compare the performance of the \texttt{NGSolve} conjugate gradient solver (which is valid given the applied preconditioner) with the \texttt{SciPy} GMRES solver. Figure~\ref{fig:sphere_solver_comparison} shows the error between the approximate and exact solutions in the $L_2$ norm,
+\begin{equation}
+e = \frac{\left(\int_\Omega \left(\vec{E}^{(hp)} - \vec{E}^{(exact)}\right) \cdot \overline{\left(\vec{E}^{(hp)} - \vec{E}^{(exact)}\right)} \, \mathrm{d}\Omega\right)^{1/2}}{\left(\int_\Omega \left(\vec{E}^{(exact)}\right) \cdot \overline{\left(\vec{E}^{(exact)}\right)} \, \mathrm{d}\Omega\right)^{1/2}},
+\end{equation}
+for the aforementioned discretisation and $p=0,1,2,3$ for both the GMRES and conjugate gradient solvers. The figure shows rapid decay of the error as $p$ is increased. Similar agreement between the two solvers is also observed for other configurations. Due to the application of the direct inverse preconditioner, the solvers converge in 1 or 2 iterations.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{Sphere_convergence_scipy_ngsolve_comp.pdf}
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. A comparison between GMRES and conjugate gradient solvers, where differences are indistinguishable on this scale.}
+\label{fig:sphere_solver_comparison}
+\end{figure}
+
+Having established that the \texttt{SciPy} GMRES solver and the \texttt{NGSolve} CG Solver are in agreement, we now consider the case of the BDDC preconditioner, when used in conjunction with the \texttt{SciPy} GMRES solver. First, in Figure~\ref{fig:sphere_preconditioner_comparison}, we establish that the error, $e$, is invariant to the choice of preconditioner, for a sufficiently accurate solution to (\ref{eqn:lse}). The figure shows that applying both the BDDC and Multigrid preconditioners results in an accurate approximation to (\ref{eqn:weak_form}), whereas the Jacobi (local) preconditioner does not. This can be explained by the solution to (\ref{eqn:lse}) not being sufficiently accurate. A demonstration of the convergence behaviour for this problem can be seen in Figure~\ref{fig:sphere_preconditioner_iterations}, where the relative $L_2$ residual is plotted for each iteration for each preconditioner for $p=0,1,2,3$. The figure shows that while the BDDC and multigrid preconditioners converge quickly, the Jacobi preconditioner does not, and is unsuitable for this problem. Ad    
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{Sphere_p_ref_preconditioner_comparison}
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computed error estimate, $e$ for BDDC, Jacobi (local), and Multigrid preconditioners.}
+\label{fig:sphere_preconditioner_comparison}
+\end{figure}
+
+\begin{figure}
+$\begin{array}{c c}
+\includegraphics[width=0.45\textwidth]{Sphere_ord0_preconditioner_comparison} & \includegraphics[width=0.45\textwidth]{Sphere_ord1_preconditioner_comparison} \\
+(a) & (b)\\
+\includegraphics[width=0.45\textwidth]{Sphere_ord2_preconditioner_comparison} & \includegraphics[width=0.45\textwidth]{Sphere_ord3_preconditioner_comparison} \\
+(c) & (d)
+\end{array}$
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computed residual to (\ref{eqn:lse}) for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,}
+\label{fig:sphere_preconditioner_iterations}
+\end{figure}
+
+% BDDC elements per wavelength.
+% Finally, we show the performance of the BDDC preconditioner for the cases of $p=1,3,5$ 
+
+\appendix
+\section{Code for NGSolve and SciPy Solvers}
 The following two code snippets are equivalent.
 \clearpage
 \begin{lstlisting}[caption=Static condensation using NGSolve,frame=tlrb, language=python]{ngsolve}
@@ -294,33 +347,7 @@ u.vec.data += a.harmonic_extension * u.vec
 u.vec.data += a.inner_solve * r
 \end{lstlisting}
 
-\section{GMRES Convergence}
 
-
-
-\subsection{Choice of Preconditioner}
-
-
-\section{Numerical Results}
-In this section, we consider a range of numerical examples to illustrate the performance of the different preconditioners.
-
-\subsection{Non-Magnetic Sphere}
-
-We first consider the case of a sphere of radius 1 centered at $\vec{x}=\vec{0}$, discretised using $h=0.04$, resulting in $\Omega$ being discretised by 14989 unstructured tetrahedral elements. The amplitude and wavenumber are chosen as $\vec{p} = [0,1,0]$ and $\vec{k}=[1,0,0]$, respectively. We therefore expect the exact solution to have unit magnitude and a wavelength of $2\pi$. 
-Using $TOL=1\times 10^{-12}$ and a direct inverse preconditioner we compare the performance of the \texttt{NGSolve} conjugate gradient solver (which is valid given the applied preconditioner) with the \texttt{SciPy} GMRES solver. Figure~\ref{fig:sphere_solver_comparison} shows the error between the approximate and exact solutions in the $L_2$ norm,
-\begin{equation}
-\|e\|_{L_2} = \frac{\left(\int_\Omega \left(\vec{E}^{(hp)} - \vec{E}^{(exact)}\right) \cdot \overline{\left(\vec{E}^{(hp)} - \vec{E}^{(exact)}\right)} \, \mathrm{d}\Omega\right)^{1/2}}{\left(\int_\Omega \left(\vec{E}^{(exact)}\right) \cdot \overline{\left(\vec{E}^{(exact)}\right)} \, \mathrm{d}\Omega\right)^{1/2}},
-\end{equation}
-for the aforementioned discretisation and $p=0,1,2,3$ for both the GMRES and conjugate gradient solvers. The figure shows rapid decay of the error as $p$ is increased. Similar agreement between the two solvers is also observed for other configurations. Due to the application of the direct inverse preconditioner, the solvers converge in 1 or 2 iterations.
-
-\begin{figure}
-\centering
-\includegraphics[width=0.45\textwidth]{Sphere_convergence_scipy_ngsolve_comp.pdf}
-\caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Figure a comparison between GMRES and conjugate gradient solvers, where differences are indistinguishable on this scale.}
-\label{fig:sphere_solver_comparison}
-\end{figure}
-
-Having established that the \texttt{SciPy} GMRES solver and the \texttt{NGSolve} CG Solver are in agreement, we now consider the case of the BDDC preconditioner, when used in conjunction with the \texttt{SciPy} GMRES solver. 
 
 \bibliographystyle{acm}
 \bibliography{paperbib}

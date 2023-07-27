@@ -5,7 +5,7 @@ import inspect
 
 def report(xk):
     frame = inspect.currentframe().f_back
-    print(frame.f_locals['resid'])
+    # print(frame.f_locals['resid'])
 
 def static_condensation_test():
     mesh = Mesh(unit_square.GenerateMesh(maxh=0.4))
@@ -139,7 +139,7 @@ def poisson(meth='direct'):
     a += grad(u) * grad(v) * dx
 
     if meth == 'CG' or 'scipy':
-        pre = Projector(mask=fes.FreeDofs(), range=True)
+        pre = Projector(mask=fes.FreeDofs(coupling=True), range=True)
         c = Preconditioner(a, 'direct')
     a.Assemble()
 

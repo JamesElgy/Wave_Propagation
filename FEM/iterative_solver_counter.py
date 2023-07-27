@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
-
+import time
 
 class iterative_solver_counter(object):
     def __init__(self, disp=True):
@@ -8,6 +8,8 @@ class iterative_solver_counter(object):
         self.niter = 0
         self.callbacks = []
         self.internal_list = []
+        self.time_list = []
+        self.start_time = time.time_ns()
 
     def append(self, elem):
         self.internal_list.append(elem)
@@ -30,7 +32,20 @@ class iterative_solver_counter(object):
 
         plt.xlabel('Iterations')
         plt.ylabel('Relative $L_2$ Residual')
+
+    def plot_time(self, label=True, **kwargs):
+        times = (np.asarray(self.time_list) - self.time_list[0]) / 1e9 # time_list is in nanoseconds
+        if label is False:
+            plt.semilogy(times, self.internal_list, **kwargs)
+        else:
+            plt.semilogy(times, self.internal_list, **self.plot_dict)
+            plt.legend()
+
+        plt.xlabel('Time [sec]')
+        plt.ylabel('Relative $L_2$ Residual')
+
     def __call__(self, rk=None):
         self.callbacks.append(rk)
         self.internal_list.append(rk)
         self.niter += 1
+        self.time_list.append(time.time_ns())

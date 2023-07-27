@@ -6,16 +6,16 @@ from FEM.Wave_Propagation import wave_propagation
 from ngsolve import *
 
 def run_p_ref(solver='scipy', preconditioner='direct', tol=1e-10):
-    plt.figure()
+    plt.figure(1)
     err_array = []
     ndof_array = []
-    for p in [0,1,2,3,4,5]:
+    for p in [0,1,2,3]:
 
         print(f'Running for order {p}')
 
         wave_prop = wave_propagation()
 
-        sol = wave_prop.run(p=p, wavenumber=np.asarray([1, 0, 0]), box_size=2*np.pi, h=0.3, solver=solver, preconditioner=preconditioner, tol=tol)
+        sol = wave_prop.run(p=p, wavenumber=np.asarray([1, 0, 0]), box_size=2, h=0.08, solver=solver, preconditioner=preconditioner, tol=tol)
         nd = wave_prop.fes.ndof
         exact = wave_prop.e_exact
 
@@ -37,7 +37,8 @@ def run_p_ref(solver='scipy', preconditioner='direct', tol=1e-10):
     plt.xlabel('$N_d$')
     plt.legend()
 
-    return err_array, ndof_array, wave_prop
 
 if __name__ == '__main__':
-    e, n, W = run_p_ref(solver='scipy', preconditioner='bddc', tol=1e-12)
+    run_p_ref(solver='scipy', preconditioner='bddc', tol=1e-12)
+    run_p_ref(solver='scipy', preconditioner='local', tol=1e-12)
+    run_p_ref(solver='scipy', preconditioner='multigrid', tol=1e-12)
