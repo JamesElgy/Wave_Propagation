@@ -1,11 +1,7 @@
-import __init__
+import wave_propagation as wp
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    wp.Testing.run_p_ref(solver='CG', preconditioner='direct', tol=1e-12)
+    wp.Testing.run_p_ref(solver='scipy', preconditioner='direct', tol=1e-12)
+    # wp.Testing.run_p_ref(solver='scipy', preconditioner='bddc', tol=1e-12)
+    # wp.Testing.run_p_ref(solver='scipy', preconditioner='multigrid', tol=1e-12)

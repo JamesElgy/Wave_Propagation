@@ -3,8 +3,8 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-from FEM.Wave_Propagation import wave_propagation
-from Saving.export_to_vtk import export_to_vtk
+from ..FEM.Wave_Propagation import wave_propagation
+from ..Saving.export_to_vtk import export_to_vtk
 
 from ngsolve import *
 

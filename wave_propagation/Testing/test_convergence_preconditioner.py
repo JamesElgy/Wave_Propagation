@@ -2,7 +2,7 @@
 
 import numpy as np
 from matplotlib import pyplot as plt
-from FEM.Wave_Propagation import wave_propagation
+from ..FEM.Wave_Propagation import wave_propagation
 from ngsolve import *
 
 def run_problem(solver='scipy', preconditioner='bddc', tol=1e-12):

@@ -220,7 +220,7 @@ country={UK}}
 \end{alignedat}
 \end{equation}
 
-with $\boldsymbol{E}^{(exact)} = \vec{p}e^{\rm{i} \vec{k} \cdot \vec{x}}$ being the known solution for the electric field at position $\boldsymbol{x}$ for wavenumber $\boldsymbol{k} = \left[k_x, k_y, k_z\right]$ and perpendicular amplitude $\boldsymbol{p} = \left[p_x, p_y, p_z\right]$. For the standard $\boldsymbol{H}(\rm{curl})$ conforming finite element space \cite{Monk2017} the weak form of this problem is: Find $\boldsymbol{u} \in \boldsymbol{H}_D(\rm{curl})$ such that
+with $\boldsymbol{E}^{(exact)} = \vec{p}e^{\rm{i} \vec{k} \cdot \vec{x}}$ being the known solution for the electric field at position $\boldsymbol{x}$ for wavevector $\boldsymbol{k} = \left[k_x, k_y, k_z\right]$ and perpendicular amplitude $\boldsymbol{p} = \left[p_x, p_y, p_z\right]$. For the standard $\boldsymbol{H}(\rm{curl})$ conforming finite element space \cite{Monk2017} the weak form of this problem is: Find $\boldsymbol{u} \in \boldsymbol{H}_D(\rm{curl})$ such that
 \begin{equation}\label{eqn:weak_form}
 \int_\Omega \curl \vec{u} \, \curl \vec{v} \,\mathrm{d}\Omega - \int_\Omega k^2 \vec{u}\vec{v} \,\mathrm{d}\Omega = \vec{0},
 \end{equation}
@@ -241,8 +241,13 @@ The Galerkin finite element discretisation of the variational statement (\ref{eq
 \mathbf{A}\mathbf{q} = \mathbf{r}
 \end{equation}
 where $\mathbf{A}$ is a large sparse matrix of size $N_d$. The symmetric sparse matrix $\mathbf{A}$ is indefinite, and consequently may be difficult to solve.
-\section{Software}
-\texttt{NGSolve} (version 6.2.2302) and \texttt{Netgen} (version 6.2.2302)~\cite{NGSolve,zaglmayrphd,netgendet}, \texttt{SciPy}~\cite{2020SciPy-NMeth} (version 1.10.1), \texttt{NumPy} (version 1.24.2)~\cite{harris2020array}.
+
+\textcolor{cyan}{Should expand}
+
+\section{Software}\label{sect:software}
+The  computational resources were used to perform the simulations in this paper correspond to  workstations with the following specifications: Intel i7-9700K CPU with a clock speed of 3.60GHz with 64GB DDR4 RAM.
+
+The software used for this work \texttt{NGSolve} (version 6.2.2302) and \texttt{Netgen} (version 6.2.2302)~\cite{NGSolve,zaglmayrphd,netgendet}, \texttt{SciPy}~\cite{2020SciPy-NMeth} (version 1.10.1), \texttt{NumPy} (version 1.24.2)~\cite{harris2020array}.
 
 \section{Conversion to Scipy Iterative Solvers} \label{sect:scipy}
 The iterative solvers available in \texttt{NGSolve}, notably \texttt{CGSolver} and \texttt{GMRESSolver} do not allow for the execution of arbitrary callback functions in the same way as many other solvers from other established python libraries. For this reason, it is difficult to retain the residual at each iteration of the \texttt{NGSolve} solvers. Furthermore, the \texttt{GMRESSolver} does not appear to have a restart option available to the API and is in general poorly documented. For this reason, the solving of the linear system used in static condensation is instead implemented using and 
@@ -263,7 +268,7 @@ In this section, we consider a range of numerical examples to illustrate the per
 
 \subsection{Non-Magnetic Sphere}
 
-We first consider the case of a sphere of radius 1 centred at $\vec{x}=\vec{0}$, discretised using $h=0.04$, resulting in $\Omega$ being discretised by 14989 unstructured tetrahedral elements. The amplitude and wavenumber are chosen as $\vec{p} = [0,1,0]$ and $\vec{k}=[1,0,0]$, respectively. We therefore expect the exact solution to have unit magnitude and a wavelength of $2\pi$. 
+We first consider the case of a sphere of radius 1 centred at $\vec{x}=\vec{0}$, discretised using $h=0.04$, resulting in $\Omega$ being discretised by 14989 unstructured tetrahedral elements. The amplitude and wavevector are chosen as $\vec{p} = [0,1,0]$ and $\vec{k}=[1,0,0]$, respectively. We therefore expect the exact solution to have unit magnitude and a wavelength of $2\pi$. 
 Using $TOL=1\times 10^{-12}$ and a direct inverse preconditioner we compare the performance of the \texttt{NGSolve} conjugate gradient solver (which is valid given the applied preconditioner) with the \texttt{SciPy} GMRES solver. Figure~\ref{fig:sphere_solver_comparison} shows the error between the approximate and exact solutions in the $L_2$ norm,
 \begin{equation}
 e = \frac{\left(\int_\Omega \left(\vec{E}^{(hp)} - \vec{E}^{(exact)}\right) \cdot \overline{\left(\vec{E}^{(hp)} - \vec{E}^{(exact)}\right)} \, \mathrm{d}\Omega\right)^{1/2}}{\left(\int_\Omega \left(\vec{E}^{(exact)}\right) \cdot \overline{\left(\vec{E}^{(exact)}\right)} \, \mathrm{d}\Omega\right)^{1/2}},
@@ -277,54 +282,58 @@ for the aforementioned discretisation and $p=0,1,2,3$ for both the GMRES and con
 \label{fig:sphere_solver_comparison}
 \end{figure}
 
-Having established that the \texttt{SciPy} GMRES solver and the \texttt{NGSolve} CG Solver are in agreement, we now consider the case of the BDDC preconditioner, when used in conjunction with the \texttt{SciPy} GMRES solver. First, in Figure~\ref{fig:sphere_preconditioner_comparison}, we establish that the error, $e$, is invariant to the choice of preconditioner, for a sufficiently accurate solution to (\ref{eqn:lse}). The figure shows that applying both the BDDC and Multigrid preconditioners results in an accurate approximation to (\ref{eqn:weak_form}), whereas the Jacobi (local) preconditioner does not. This can be explained by the solution to (\ref{eqn:lse}) not being sufficiently accurate. A demonstration of the convergence behaviour for this problem can be seen in Figure~\ref{fig:sphere_preconditioner_iterations}, where the relative $L_2$ residual is plotted for each iteration for each preconditioner for $p=0,1,2,3$. The figure shows that while the BDDC and multigrid preconditioners converge quickly, the Jacobi preconditioner does not, and is unsuitable for this problem. Ad    
+Having established that the \texttt{SciPy} GMRES solver and the \texttt{NGSolve} CG Solver are in agreement, we now consider the case of the BDDC preconditioner, when used in conjunction with the \texttt{SciPy} GMRES solver. First, in Figure~\ref{fig:sphere_preconditioner_comparison}, we establish that the error, $e$, is invariant to the choice of preconditioner, for a sufficiently accurate solution to (\ref{eqn:lse}). The figure shows that applying both the BDDC and Multigrid preconditioners results in an accurate approximation to (\ref{eqn:weak_form}), whereas the Jacobi (local) preconditioner does not. This can be explained by the solution to (\ref{eqn:lse}) not being sufficiently accurate. A demonstration of the convergence behaviour for this problem can be seen in Figure~\ref{fig:sphere_preconditioner_iterations}, where the relative $L_2$ residual is plotted for each iteration for each preconditioner for $p=0,1,2,3$. The figure shows that while the BDDC and multigrid preconditioners converge quickly, the Jacobi preconditioner does not, and is unsuitable for this problem. In the case of the Multigrid and BDDC preconditioners, the lowest order terms are solved directly, as a result the $p=0$ case is solved in 1 iteration.    
 
-\begin{figure}
+\begin{figure}[htb]
 \centering
 \includegraphics[width=0.45\textwidth]{Sphere_p_ref_preconditioner_comparison}
 \caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computed error estimate, $e$ for BDDC, Jacobi (local), and Multigrid preconditioners.}
 \label{fig:sphere_preconditioner_comparison}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htb]
 $\begin{array}{c c}
 \includegraphics[width=0.45\textwidth]{Sphere_ord0_preconditioner_comparison} & \includegraphics[width=0.45\textwidth]{Sphere_ord1_preconditioner_comparison} \\
 (a) & (b)\\
 \includegraphics[width=0.45\textwidth]{Sphere_ord2_preconditioner_comparison} & \includegraphics[width=0.45\textwidth]{Sphere_ord3_preconditioner_comparison} \\
 (c) & (d)
 \end{array}$
-\caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computed residual to (\ref{eqn:lse}) for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,}
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computed residual to (\ref{eqn:lse}) for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,}
 \label{fig:sphere_preconditioner_iterations}
 \end{figure}
 
+From the figure, we see that the Multigrid preconditioner results in the fewest number of iterations, however this does not account for the computation time required for each iteration. Figure~\ref{fig:sphere_preconditioner_times} shows the wall clock computation time for each iteration of the GMRES solver for this sphere problem using ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, and ($d$) $p=3$. Note that this does not include the time required to construct the preconditioner.
+Timings were performed using a single threaded implementation of the iterative solver using the workstation and software provided in Section~\ref{sect:software}. Similar to Figure~\ref{fig:sphere_preconditioner_iterations}, we observe that the Multigrid preconditioner is (slightly) faster than both the BDDC and Jacobi preconditioners. 
 
-\begin{figure}
-$\begin{array}{c c}
-\includegraphics[width=0.45\textwidth]{Sphere_ord0_preconditioner_comparison} & \includegraphics[width=0.45\textwidth]{Sphere_ord1_preconditioner_comparison} \\
-(a) & (b)\\
-\includegraphics[width=0.45\textwidth]{Sphere_ord2_preconditioner_comparison} & \includegraphics[width=0.45\textwidth]{Sphere_ord3_preconditioner_comparison} \\
-(c) & (d)
-\end{array}$
-\caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computed residual for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,}
-\label{fig:sphere_preconditioner_iterations}
-\end{figure}
-
-Timings were performed using wall clock times for a single threaded implementation using a dedicated workstation with an Intel i7-9700K CPU at 3.60GHz frequency with 64GB DDR4 RAM.
-
-\begin{figure}
+\begin{figure}[htb]
 $\begin{array}{c c}
 \includegraphics[width=0.45\textwidth]{Sphere_ord0_preconditioner_comparison_time} & \includegraphics[width=0.45\textwidth]{Sphere_ord1_preconditioner_comparison_time} \\
 (a) & (b)\\
 \includegraphics[width=0.45\textwidth]{Sphere_ord2_preconditioner_comparison_time} & \includegraphics[width=0.45\textwidth]{Sphere_ord3_preconditioner_comparison_time} \\
 (c) & (d)
 \end{array}$
-\caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computation time for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,}
-\label{fig:sphere_preconditioner_iterations}
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computation time for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,}
+\label{fig:sphere_preconditioner_times}
+\end{figure}
+
+This may be a consequence of the wavenumber, and by extension wavelength, so we next consider the case where $|\vec{k}|$ is increased from 1 to 2 to 4. In these tests, the discretisation of the sphere is kept constant (using radius 1 and 15243 unstructured tetrahedra); the increase in wavenumber is reported in terms of the number of elements per wavelength.
+Figure~\ref{fig:sphere_preconditioner_ele_per_wavelength} shows a comparison for the same sphere discretisation, with $h=0.08$, where the wavelength is increased from $2\pi$ to $4\pi$ to $8\pi$ between the Multigrid and BDDC preconditioners with respect to the number of iterations required to reach a stopping tolerance of $1\times 10^{-12}$
+
+\begin{figure}[htb]
+\centering
+$\begin{array}{c c}
+\includegraphics[width=0.45\textwidth]{Sphere_ord1_ele_per_wavelength} & \includegraphics[width=0.45\textwidth]{Sphere_ord2_ele_per_wavelength} \\
+(a) & (b)\\
+\includegraphics[width=0.45\textwidth]{Sphere_ord3_ele_per_wavelength}\\
+(c)
+\end{array}$
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=1,2,3$. Number of iterations for BDDC and Multigrid preconditioners when considering $|\vec{k}| = 1,2$, and $4$. Figure shows that both BDDC and Multigrid converge rapidly, with the number of iterations required for the BDDC preconditioner reducing as the number of elements per $\lambda$ increases. ($a$) $p=1$, ($b$) $p=2$, ($c$) $p=3$.}
+\label{fig:sphere_preconditioner_ele_per_wavelength}
 \end{figure}
 
 
-% BDDC elements per wavelength.
-% Finally, we show the performance of the BDDC preconditioner for the cases of $p=1,3,5$ 
+
+
 
 \appendix
 \section{Code for NGSolve and SciPy Solvers}

@@ -8,13 +8,16 @@ import netgen.meshing as ngmeshing
 import scipy as sp
 import scipy.sparse.linalg
 import inspect
-from FEM.iterative_solver_counter import *
-# import scipy.sparse.linalg
+from .iterative_solver_counter import *
+
 
 
 class wave_propagation:
 
-    def __init__(self, ):
+    def __init__(self, **kwargs):
+        # Useful internal params:
+        self.instance = 0
+
         # propagation parameters
         kx = -2
         ky = -0.5
@@ -32,14 +35,19 @@ class wave_propagation:
         self.use_GPU = False
 
         # Solver residual plotting
-        self.solver_residual_plot = True
-        self.solver_residual_plot_fignum = 999
+        self.solver_residual_plot = False
+        self.solver_residual_plot_fignum = 1
         wavelength = 2*np.pi / np.linalg.norm(self.wavenumber)
-        # self.solver_residual_plot_label = f'{(wavelength/self.h):.2f} elements per $\lambda$'
-        self.solver_residual_plot_label = f'SciPy GMRES, {self.preconditioner} preconditioner'
+        self.solver_residual_plot_label = f'{(wavelength/self.h):.2f} elements per $\lambda$'
+        # self.solver_residual_plot_label = f'SciPy GMRES, {self.preconditioner} preconditioner'
 
         # Geometry parameters
         self.box_size = 1
+
+        # Setting any attributes specified when creating the class:
+        for key, value in kwargs.items():
+            self.__setattr__(key, value)
+
 
     def generate_mesh(self):
         half_length = self.box_size / 2
@@ -167,17 +175,24 @@ class wave_propagation:
 
         # Plotting convergence.
         if self.solver_residual_plot is True:
-            self.solver_residual_plot_label = f'SciPy GMRES, {self.preconditioner} preconditioner'
+            ls = ['-', '--', '-.']
+
+            if self.preconditioner == 'bddc':
+                self.solver_residual_plot_label = f'BDDC, {((2*np.pi / np.linalg.norm(self.wavenumber)) / self.h):.2f} elements per $\lambda$'
+                col = 'b'
+            else:
+                self.solver_residual_plot_label = f'Multigrid, {((2 * np.pi / np.linalg.norm(self.wavenumber)) / self.h):.2f} elements per $\lambda$'
+                col = 'g'
 
             plt.figure(self.solver_residual_plot_fignum + self.p)
-            counter.setup_plot_params(label=self.solver_residual_plot_label)
+            counter.setup_plot_params(label=self.solver_residual_plot_label, color=col, linestyle=ls[self.instance], xlim=[0,575])
             counter.plot(label=True)
             plt.show()
 
-            plt.figure(self.solver_residual_plot_fignum + self.p + 10)
-            counter.setup_plot_params(label=self.solver_residual_plot_label)
-            counter.plot_time(label=True)
-            plt.show()
+            # plt.figure(self.solver_residual_plot_fignum + self.p + 10)
+            # counter.setup_plot_params(label=self.solver_residual_plot_label, )
+            # counter.plot_time(label=True)
+            # plt.show()
 
 
         return u

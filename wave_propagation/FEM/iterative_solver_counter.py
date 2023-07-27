@@ -19,6 +19,19 @@ class iterative_solver_counter(object):
 
     def setup_plot_params(self, **kwargs):
         self.plot_dict = kwargs
+
+        try:
+            self.xlim = self.plot_dict['xlim']
+            del self.plot_dict['xlim']
+        except:
+            self.xlim = ''
+        try:
+            self.ylim = self.plot_dict['ylim']
+            del self.plot_dict['ylim']
+        except:
+            self.ylim = ''
+
+
         for key, value in kwargs.items():
             self.__setattr__(key, value)
 
@@ -29,6 +42,11 @@ class iterative_solver_counter(object):
         else:
             plt.semilogy(np.linspace(1, len(self.internal_list), len(self.internal_list)), self.internal_list, **self.plot_dict)
             plt.legend()
+
+        if self.xlim != '':
+            plt.xlim(self.xlim)
+        if self.ylim != '':
+            plt.xlim(self.ylim)
 
         plt.xlabel('Iterations')
         plt.ylabel('Relative $L_2$ Residual')
