@@ -297,6 +297,22 @@ $\begin{array}{c c}
 \label{fig:sphere_preconditioner_iterations}
 \end{figure}
 
+Timings were performed using wall clock times for a single threaded implementation Intel i7-9700K CPU at 3.60GHz
+64.0 GB DDR4 RAM
+Non-parallelised
+
+\begin{figure}
+$\begin{array}{c c}
+\includegraphics[width=0.45\textwidth]{Sphere_ord0_preconditioner_comparison_time} & \includegraphics[width=0.45\textwidth]{Sphere_ord1_preconditioner_comparison_time} \\
+(a) & (b)\\
+\includegraphics[width=0.45\textwidth]{Sphere_ord2_preconditioner_comparison_time} & \includegraphics[width=0.45\textwidth]{Sphere_ord3_preconditioner_comparison_time} \\
+(c) & (d)
+\end{array}$
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computation time for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,}
+\label{fig:sphere_preconditioner_iterations}
+\end{figure}
+
+
 % BDDC elements per wavelength.
 % Finally, we show the performance of the BDDC preconditioner for the cases of $p=1,3,5$ 
 

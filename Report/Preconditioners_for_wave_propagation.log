@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.24)  26 JUL 2023 23:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.24)  27 JUL 2023 01:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1320,7 +1320,14 @@ Package: processkv 2004/08/09 v1.0.1 process key=value lists
 LaTeX Warning: Unused global option(s):
     [12].
 
-(Preconditioners_for_wave_propagation.aux)
+(Preconditioners_for_wave_propagation.aux
+
+LaTeX Warning: Label `fig:sphere_preconditioner_iterations' multiply defined.
+
+
+LaTeX Warning: Label `fig:sphere_preconditioner_iterations' multiply defined.
+
+)
 \openout1 = `Preconditioners_for_wave_propagation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 183.
@@ -1341,8 +1348,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 183.
 LaTeX Font Info:    ... okay on input line 183.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 183.
 LaTeX Font Info:    ... okay on input line 183.
-
-(C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii
+ (C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count373
 \scratchdimen=\dimen316
@@ -1484,31 +1490,93 @@ df)
 Package pdftex.def Info: ./Figures//Sphere_ord3_preconditioner_comparison.pdf  
 used on input line 293.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
+File: ./Figures//Sphere_ord0_preconditioner_comparison.pdf Graphic file (type p
+df)
+<use ./Figures//Sphere_ord0_preconditioner_comparison.pdf>
+Package pdftex.def Info: ./Figures//Sphere_ord0_preconditioner_comparison.pdf  
+used on input line 303.
+(pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
+File: ./Figures//Sphere_ord1_preconditioner_comparison.pdf Graphic file (type p
+df)
+<use ./Figures//Sphere_ord1_preconditioner_comparison.pdf>
+Package pdftex.def Info: ./Figures//Sphere_ord1_preconditioner_comparison.pdf  
+used on input line 303.
+(pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
+File: ./Figures//Sphere_ord2_preconditioner_comparison.pdf Graphic file (type p
+df)
+<use ./Figures//Sphere_ord2_preconditioner_comparison.pdf>
+Package pdftex.def Info: ./Figures//Sphere_ord2_preconditioner_comparison.pdf  
+used on input line 305.
+(pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
+File: ./Figures//Sphere_ord3_preconditioner_comparison.pdf Graphic file (type p
+df)
+<use ./Figures//Sphere_ord3_preconditioner_comparison.pdf>
+Package pdftex.def Info: ./Figures//Sphere_ord3_preconditioner_comparison.pdf  
+used on input line 305.
+(pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
+<./Figures//Sphere_ord0_preconditioner_comparison_time.pdf, id=94, 462.52798pt 
+x 346.89601pt>
+File: ./Figures//Sphere_ord0_preconditioner_comparison_time.pdf Graphic file (t
+ype pdf)
+<use ./Figures//Sphere_ord0_preconditioner_comparison_time.pdf>
+Package pdftex.def Info: ./Figures//Sphere_ord0_preconditioner_comparison_time.
+pdf  used on input line 316.
+(pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
+<./Figures//Sphere_ord1_preconditioner_comparison_time.pdf, id=95, 462.52798pt 
+x 346.89601pt>
+File: ./Figures//Sphere_ord1_preconditioner_comparison_time.pdf Graphic file (t
+ype pdf)
+<use ./Figures//Sphere_ord1_preconditioner_comparison_time.pdf>
+Package pdftex.def Info: ./Figures//Sphere_ord1_preconditioner_comparison_time.
+pdf  used on input line 316.
+(pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
+<./Figures//Sphere_ord2_preconditioner_comparison_time.pdf, id=96, 462.52798pt 
+x 346.89601pt>
+File: ./Figures//Sphere_ord2_preconditioner_comparison_time.pdf Graphic file (t
+ype pdf)
+<use ./Figures//Sphere_ord2_preconditioner_comparison_time.pdf>
+Package pdftex.def Info: ./Figures//Sphere_ord2_preconditioner_comparison_time.
+pdf  used on input line 318.
+(pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
+<./Figures//Sphere_ord3_preconditioner_comparison_time.pdf, id=97, 462.52798pt 
+x 346.89601pt>
+File: ./Figures//Sphere_ord3_preconditioner_comparison_time.pdf Graphic file (t
+ype pdf)
+<use ./Figures//Sphere_ord3_preconditioner_comparison_time.pdf>
+Package pdftex.def Info: ./Figures//Sphere_ord3_preconditioner_comparison_time.
+pdf  used on input line 318.
+(pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 
 [2 <./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf>] [3 <./Figures//Spher
 e_p_ref_preconditioner_comparison.pdf> <./Figures//Sphere_ord0_preconditioner_c
 omparison.pdf> <./Figures//Sphere_ord1_preconditioner_comparison.pdf> <./Figure
 s//Sphere_ord2_preconditioner_comparison.pdf> <./Figures//Sphere_ord3_precondit
-ioner_comparison.pdf>]
+ioner_comparison.pdf>] [4] [5 <./Figures//Sphere_ord0_preconditioner_comparison
+_time.pdf> <./Figures//Sphere_ord1_preconditioner_comparison_time.pdf> <./Figur
+es//Sphere_ord2_preconditioner_comparison_time.pdf> <./Figures//Sphere_ord3_pre
+conditioner_comparison_time.pdf>] [6]
 (C:\Program Files\MiKTeX 2.9\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 307.
+nput line 333.
 
-(Preconditioners_for_wave_propagation.bbl [4
+(Preconditioners_for_wave_propagation.bbl [7
 
-]) [5]
+]) [8]
 (Preconditioners_for_wave_propagation.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `Preconditioners_for_wave_propagation.out' ha
 s not changed.
 (rerunfilecheck)             Checksum: 93D5B323BD1C626EA3D638F73BB0A5CB;1249.
  ) 
 Here is how much of TeX's memory you used:
- 37600 strings out of 478584
- 835111 string characters out of 2852288
- 1706487 words of memory out of 3000000
- 55070 multiletter control sequences out of 15000+600000
+ 37641 strings out of 478584
+ 837381 string characters out of 2852288
+ 1706728 words of memory out of 3000000
+ 55106 multiletter control sequences out of 15000+600000
  485878 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,13n,103p,1179b,1387s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1534,10 +1602,10 @@ type1/public/mathabx-type1/matha7.pfb><C:/Users/James/AppData/Roaming/MiKTeX/2.
 9/fonts/type1/public/mathabx-type1/matha8.pfb><C:/Users/James/AppData/Roaming/M
 iKTeX/2.9/fonts/type1/public/mathabx-type1/mathx10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Preconditioners_for_wave_propagation.pdf (5 pages, 401791 byt
+Output written on Preconditioners_for_wave_propagation.pdf (8 pages, 482620 byt
 es).
 PDF statistics:
- 533 PDF objects out of 1000 (max. 8388607)
- 69 named destinations out of 1000 (max. 500000)
- 107 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 751 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
+ 127 words of extra memory for PDF output out of 10000 (max. 10000000)
 
