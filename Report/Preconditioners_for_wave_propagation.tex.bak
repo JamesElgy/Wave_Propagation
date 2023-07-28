@@ -24,7 +24,9 @@
 \usepackage{algpseudocode}
 \usepackage{listings}
 \usepackage{parcolumns}
+\usepackage{tikz}
 
+\usetikzlibrary{patterns}
 
 \captionsetup{font=footnotesize}
 \captionsetup{width=\textwidth}
@@ -213,7 +215,7 @@ country={UK}}
 \section{Introduction}\label{sect:intro}
 
 \subsection{Model Problem}
-\begin{equation}
+\begin{equation}\label{eqn:system}
 \begin{alignedat}{2}
 \curl \curl \boldsymbol{E} - k^2\boldsymbol{E} &= \boldsymbol{0} &&\quad \text{in } \Omega \in \mathbb{R}^3 \\
 \boldsymbol{n} \times \boldsymbol{E} &= \boldsymbol{n} \times \boldsymbol{E}^{(exact)} &&\quad \text{on } \Gamma = \partial \Omega
@@ -242,7 +244,17 @@ The Galerkin finite element discretisation of the variational statement (\ref{eq
 \end{equation}
 where $\mathbf{A}$ is a large sparse matrix of size $N_d$. The symmetric sparse matrix $\mathbf{A}$ is indefinite, and consequently may be difficult to solve.
 
-\textcolor{cyan}{Should expand}
+\textcolor{cyan}{Should expand, mostly here to have something to cross reference.}
+
+
+\subsection{Perfectly Matched Layers}
+Perfectly Matched Layers (PMLs) are artificial absorbing boundary layers typically used in association with wave equation problems (such as (\ref{eqn:system}), where boundary reflections are eliminated via the matching condition. The PML is constructed such that the EM field decays rapidly to 0 at the outer boundary by forcing a suitably rapid decay in the wave.
+
+\begin{figure}[htb]
+\centering
+\input{Figures/PML_Diagram}
+\caption{Illustration of the electromagnetic problem with PMLs outside the object $B$.}
+\end{figure}
 
 \section{Software}\label{sect:software}
 The  computational resources were used to perform the simulations in this paper correspond to  workstations with the following specifications: Intel i7-9700K CPU with a clock speed of 3.60GHz with 64GB DDR4 RAM.
@@ -302,7 +314,7 @@ $\begin{array}{c c}
 \label{fig:sphere_preconditioner_iterations}
 \end{figure}
 
-From the figure, we see that the Multigrid preconditioner results in the fewest number of iterations, however this does not account for the computation time required for each iteration. Figure~\ref{fig:sphere_preconditioner_times} shows the wall clock computation time for each iteration of the GMRES solver for this sphere problem using ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, and ($d$) $p=3$. Note that this does not include the time required to construct the preconditioner.
+From the figure, we see that the Multigrid preconditioner results in the fewest number of iterations, however this does not account for the computation time required for each iteration. Figure~\ref{fig:sphere_preconditioner_times} shows the wall clock computation time for each iteration of the GMRES solver for this sphere problem using ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, and ($d$) $p=3$. Note that this does not include the time required to construct the preconditioner or consider memory requirements.
 Timings were performed using a single threaded implementation of the iterative solver using the workstation and software provided in Section~\ref{sect:software}. Similar to Figure~\ref{fig:sphere_preconditioner_iterations}, we observe that the Multigrid preconditioner is (slightly) faster than both the BDDC and Jacobi preconditioners. 
 
 \begin{figure}[htb]
@@ -317,7 +329,7 @@ $\begin{array}{c c}
 \end{figure}
 
 This may be a consequence of the wavenumber, and by extension wavelength, so we next consider the case where $|\vec{k}|$ is increased from 1 to 2 to 4. In these tests, the discretisation of the sphere is kept constant (using radius 1 and 15243 unstructured tetrahedra); the increase in wavenumber is reported in terms of the number of elements per wavelength.
-Figure~\ref{fig:sphere_preconditioner_ele_per_wavelength} shows a comparison for the same sphere discretisation, with $h=0.08$, where the wavelength is increased from $2\pi$ to $4\pi$ to $8\pi$ between the Multigrid and BDDC preconditioners with respect to the number of iterations required to reach a stopping tolerance of $1\times 10^{-12}$
+Figure~\ref{fig:sphere_preconditioner_ele_per_wavelength} shows a comparison for the same sphere discretisation, with $h=0.08$, where the wavelength is increased from $2\pi$ to $4\pi$ to $8\pi$ between the Multigrid and BDDC preconditioners with respect to the number of iterations required to reach a stopping tolerance of $1\times 10^{-12}$. The figure shows a significant improvement in the required number of iterations, in line with what was reported in~\cite{Ledger2009} for a similar problem for a block Jacobi preconditioner.
 
 \begin{figure}[htb]
 \centering

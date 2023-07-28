@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.24)  27 JUL 2023 16:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.24)  28 JUL 2023 00:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1314,6 +1314,14 @@ Package: processkv 2004/08/09 v1.0.1 process key=value lists
 \pc@columncount=\count371
 \pc@everypar=\toks56
 )
+(C:\Program Files\MiKTeX 2.9\tex/generic/pgf/frontendlayer/tikz/libraries\tikzl
+ibrarypatterns.code.tex
+File: tikzlibrarypatterns.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+
+(C:\Program Files\MiKTeX 2.9\tex/generic/pgf/libraries\pgflibrarypatterns.code.
+tex
+File: pgflibrarypatterns.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+))
 \c@theorem=\count372
 
 
@@ -1323,24 +1331,24 @@ LaTeX Warning: Unused global option(s):
 (Preconditioners_for_wave_propagation.aux)
 \openout1 = `Preconditioners_for_wave_propagation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 183.
-LaTeX Font Info:    ... okay on input line 183.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 183.
-LaTeX Font Info:    ... okay on input line 183.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 183.
-LaTeX Font Info:    ... okay on input line 183.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 183.
-LaTeX Font Info:    ... okay on input line 183.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 183.
-LaTeX Font Info:    ... okay on input line 183.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 183.
-LaTeX Font Info:    ... okay on input line 183.
-LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 183.
-LaTeX Font Info:    ... okay on input line 183.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 183.
-LaTeX Font Info:    ... okay on input line 183.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 183.
-LaTeX Font Info:    ... okay on input line 183.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
 
 (C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1378,7 +1386,7 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.18} (current compat level: 1.15).
 
-Package hyperref Info: Link coloring OFF on input line 183.
+Package hyperref Info: Link coloring OFF on input line 185.
 (C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -1391,168 +1399,169 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count379
 )
-LaTeX Info: Redefining \ref on input line 183.
-LaTeX Info: Redefining \pageref on input line 183.
-LaTeX Info: Redefining \nameref on input line 183.
+LaTeX Info: Redefining \ref on input line 185.
+LaTeX Info: Redefining \pageref on input line 185.
+LaTeX Info: Redefining \nameref on input line 185.
  (Preconditioners_for_wave_propagation.out)
 (Preconditioners_for_wave_propagation.out)
 \@outlinefile=\write5
 \openout5 = `Preconditioners_for_wave_propagation.out'.
 
 \c@lstlisting=\count380
-LaTeX Font Info:    Trying to load font information for U+msa on input line 211
+LaTeX Font Info:    Trying to load font information for U+msa on input line 213
 .
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 211
+LaTeX Font Info:    Trying to load font information for U+msb on input line 213
 .
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+(Figures/PML_Diagram.tex)
 Overfull \hbox (2.22221pt too wide) has occurred while \output is active
 [] 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 254.
+(hyperref)                removing `\<def>-command' on input line 266.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cnotenum' on input line 254.
+(hyperref)                removing `\cnotenum' on input line 266.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 254.
+(hyperref)                removing `\<def>-command' on input line 266.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@corref' on input line 254.
+(hyperref)                removing `\@corref' on input line 266.
 
 [1
 
 
 {C:/Users/James/AppData/Local/MiKTeX/2.9/fonts/map/pdftex/pdftex.map}]
-<./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf, id=81, 462.52798pt x 346
+[2]
+<./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf, id=95, 462.52798pt x 346
 .89601pt>
 File: ./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf>
 Package pdftex.def Info: ./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf  
-used on input line 280.
+used on input line 292.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-
-[2 <./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf>]
-<./Figures//Sphere_p_ref_preconditioner_comparison.pdf, id=133, 462.52798pt x 3
+<./Figures//Sphere_p_ref_preconditioner_comparison.pdf, id=101, 462.52798pt x 3
 46.89601pt>
 File: ./Figures//Sphere_p_ref_preconditioner_comparison.pdf Graphic file (type 
 pdf)
 <use ./Figures//Sphere_p_ref_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_p_ref_preconditioner_comparison.pdf 
- used on input line 289.
+ used on input line 301.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord0_preconditioner_comparison.pdf, id=134, 462.52798pt x 34
+<./Figures//Sphere_ord0_preconditioner_comparison.pdf, id=102, 462.52798pt x 34
 6.89601pt>
 File: ./Figures//Sphere_ord0_preconditioner_comparison.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_ord0_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord0_preconditioner_comparison.pdf  
-used on input line 296.
+used on input line 308.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord1_preconditioner_comparison.pdf, id=135, 462.52798pt x 34
+<./Figures//Sphere_ord1_preconditioner_comparison.pdf, id=103, 462.52798pt x 34
 6.89601pt>
 File: ./Figures//Sphere_ord1_preconditioner_comparison.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_ord1_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord1_preconditioner_comparison.pdf  
-used on input line 296.
+used on input line 308.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord2_preconditioner_comparison.pdf, id=136, 462.52798pt x 34
+<./Figures//Sphere_ord2_preconditioner_comparison.pdf, id=104, 462.52798pt x 34
 6.89601pt>
 File: ./Figures//Sphere_ord2_preconditioner_comparison.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_ord2_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord2_preconditioner_comparison.pdf  
-used on input line 298.
+used on input line 310.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord3_preconditioner_comparison.pdf, id=137, 462.52798pt x 34
+<./Figures//Sphere_ord3_preconditioner_comparison.pdf, id=105, 462.52798pt x 34
 6.89601pt>
 File: ./Figures//Sphere_ord3_preconditioner_comparison.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_ord3_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord3_preconditioner_comparison.pdf  
-used on input line 298.
+used on input line 310.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord0_preconditioner_comparison_time.pdf, id=143, 462.52798pt
+<./Figures//Sphere_ord0_preconditioner_comparison_time.pdf, id=111, 462.52798pt
  x 346.89601pt>
 File: ./Figures//Sphere_ord0_preconditioner_comparison_time.pdf Graphic file (t
 ype pdf)
 <use ./Figures//Sphere_ord0_preconditioner_comparison_time.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord0_preconditioner_comparison_time.
-pdf  used on input line 310.
+pdf  used on input line 322.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord1_preconditioner_comparison_time.pdf, id=144, 462.52798pt
+<./Figures//Sphere_ord1_preconditioner_comparison_time.pdf, id=112, 462.52798pt
  x 346.89601pt>
 File: ./Figures//Sphere_ord1_preconditioner_comparison_time.pdf Graphic file (t
 ype pdf)
 <use ./Figures//Sphere_ord1_preconditioner_comparison_time.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord1_preconditioner_comparison_time.
-pdf  used on input line 310.
+pdf  used on input line 322.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord2_preconditioner_comparison_time.pdf, id=145, 462.52798pt
+<./Figures//Sphere_ord2_preconditioner_comparison_time.pdf, id=113, 462.52798pt
  x 346.89601pt>
 File: ./Figures//Sphere_ord2_preconditioner_comparison_time.pdf Graphic file (t
 ype pdf)
 <use ./Figures//Sphere_ord2_preconditioner_comparison_time.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord2_preconditioner_comparison_time.
-pdf  used on input line 312.
+pdf  used on input line 324.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord3_preconditioner_comparison_time.pdf, id=146, 462.52798pt
+<./Figures//Sphere_ord3_preconditioner_comparison_time.pdf, id=114, 462.52798pt
  x 346.89601pt>
 File: ./Figures//Sphere_ord3_preconditioner_comparison_time.pdf Graphic file (t
 ype pdf)
 <use ./Figures//Sphere_ord3_preconditioner_comparison_time.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord3_preconditioner_comparison_time.
-pdf  used on input line 312.
+pdf  used on input line 324.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord1_ele_per_wavelength.pdf, id=148, 462.52798pt x 346.89601
+ [3 <./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf> <./Figures//Sphere_p
+_ref_preconditioner_comparison.pdf>]
+<./Figures//Sphere_ord1_ele_per_wavelength.pdf, id=205, 462.52798pt x 346.89601
 pt>
 File: ./Figures//Sphere_ord1_ele_per_wavelength.pdf Graphic file (type pdf)
 <use ./Figures//Sphere_ord1_ele_per_wavelength.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord1_ele_per_wavelength.pdf  used on
- input line 325.
+ input line 337.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord2_ele_per_wavelength.pdf, id=149, 462.52798pt x 346.89601
+<./Figures//Sphere_ord2_ele_per_wavelength.pdf, id=206, 462.52798pt x 346.89601
 pt>
 File: ./Figures//Sphere_ord2_ele_per_wavelength.pdf Graphic file (type pdf)
 <use ./Figures//Sphere_ord2_ele_per_wavelength.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord2_ele_per_wavelength.pdf  used on
- input line 325.
+ input line 337.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
-<./Figures//Sphere_ord3_ele_per_wavelength.pdf, id=150, 462.52798pt x 346.89601
+<./Figures//Sphere_ord3_ele_per_wavelength.pdf, id=207, 462.52798pt x 346.89601
 pt>
 File: ./Figures//Sphere_ord3_ele_per_wavelength.pdf Graphic file (type pdf)
 <use ./Figures//Sphere_ord3_ele_per_wavelength.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord3_ele_per_wavelength.pdf  used on
- input line 327.
+ input line 339.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
- [3 <./Figures//Sphere_p_ref_preconditioner_comparison.pdf>] [4 <./Figures//Sph
-ere_ord0_preconditioner_comparison.pdf> <./Figures//Sphere_ord1_preconditioner_
-comparison.pdf> <./Figures//Sphere_ord2_preconditioner_comparison.pdf> <./Figur
-es//Sphere_ord3_preconditioner_comparison.pdf>] [5 <./Figures//Sphere_ord0_prec
-onditioner_comparison_time.pdf> <./Figures//Sphere_ord1_preconditioner_comparis
-on_time.pdf> <./Figures//Sphere_ord2_preconditioner_comparison_time.pdf> <./Fig
-ures//Sphere_ord3_preconditioner_comparison_time.pdf>] [6 <./Figures//Sphere_or
-d1_ele_per_wavelength.pdf> <./Figures//Sphere_ord2_ele_per_wavelength.pdf> <./F
-igures//Sphere_ord3_ele_per_wavelength.pdf>]
+ [4 <./Figures//Sphere_ord0_preconditioner_comparison.pdf> <./Figures//Sphere_o
+rd1_preconditioner_comparison.pdf> <./Figures//Sphere_ord2_preconditioner_compa
+rison.pdf> <./Figures//Sphere_ord3_preconditioner_comparison.pdf>] [5 <./Figure
+s//Sphere_ord0_preconditioner_comparison_time.pdf> <./Figures//Sphere_ord1_prec
+onditioner_comparison_time.pdf> <./Figures//Sphere_ord2_preconditioner_comparis
+on_time.pdf> <./Figures//Sphere_ord3_preconditioner_comparison_time.pdf>] [6 <.
+/Figures//Sphere_ord1_ele_per_wavelength.pdf> <./Figures//Sphere_ord2_ele_per_w
+avelength.pdf> <./Figures//Sphere_ord3_ele_per_wavelength.pdf>]
 (C:\Program Files\MiKTeX 2.9\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 342.
+nput line 354.
 
 (Preconditioners_for_wave_propagation.bbl [7
 
@@ -1560,13 +1569,13 @@ nput line 342.
 (Preconditioners_for_wave_propagation.aux)
 Package rerunfilecheck Info: File `Preconditioners_for_wave_propagation.out' ha
 s not changed.
-(rerunfilecheck)             Checksum: 93D5B323BD1C626EA3D638F73BB0A5CB;1249.
+(rerunfilecheck)             Checksum: F38294EFF38FCCD7710F81C3F5397754;1432.
  ) 
 Here is how much of TeX's memory you used:
- 37671 strings out of 478584
- 838816 string characters out of 2852288
- 1707804 words of memory out of 3000000
- 55136 multiletter control sequences out of 15000+600000
+ 37879 strings out of 478584
+ 844988 string characters out of 2852288
+ 1715955 words of memory out of 3000000
+ 55330 multiletter control sequences out of 15000+600000
  485878 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,13n,103p,1328b,1387s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1593,10 +1602,10 @@ e1/public/mathabx-type1/matha7.pfb><C:/Users/James/AppData/Roaming/MiKTeX/2.9/f
 onts/type1/public/mathabx-type1/matha8.pfb><C:/Users/James/AppData/Roaming/MiKT
 eX/2.9/fonts/type1/public/mathabx-type1/mathx10.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Preconditioners_for_wave_propagation.pdf (8 pages, 556445 byt
+Output written on Preconditioners_for_wave_propagation.pdf (8 pages, 560542 byt
 es).
 PDF statistics:
- 896 PDF objects out of 1000 (max. 8388607)
- 74 named destinations out of 1000 (max. 500000)
- 142 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 905 PDF objects out of 1000 (max. 8388607)
+ 77 named destinations out of 1000 (max. 500000)
+ 154 words of extra memory for PDF output out of 10000 (max. 10000000)
 

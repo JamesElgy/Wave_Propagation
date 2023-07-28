@@ -1508,3 +1508,16 @@ year = {2017}
  publisher     = {Springer Science and Business Media {LLC}},
  url           = {https://doi.org/10.1038/s41586-020-2649-2}
 }
+
+@article{Ledger2009,
+author = {Ledger, P D},
+doi = {10.1002/cnm},
+file = {:F\:/Documents/Mendeley Desktop/Communications in Numerical Methods in Engineering/Ledger/Ledger - 2009 - Preconditioners for the indefinite linear system arising from the hp discretization of Maxwell ' s equations.pdf:pdf},
+journal = {Communications in Numerical Methods in Engineering},
+keywords = {higher-order edge finite elements,indefinite,iterative solution techniques,preconditioners},
+pages = {275--289},
+title = {{Preconditioners for the indefinite linear system arising from the hp discretization of Maxwell ' s equations}},
+volume = {25},
+year = {2009}
+}
+

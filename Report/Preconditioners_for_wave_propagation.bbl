@@ -10,6 +10,13 @@
 \newblock Array programming with {NumPy}.
 \newblock {\em Nature 585}, 7825 (Sept. 2020), 357--362.
 
+\bibitem{Ledger2009}
+{\sc Ledger, P.~D.}
+\newblock {Preconditioners for the indefinite linear system arising from the hp
+  discretization of Maxwell ' s equations}.
+\newblock {\em Communications in Numerical Methods in Engineering 25\/} (2009),
+  275--289.
+
 \bibitem{Monk2017}
 {\sc Monk, P., and Zhang, Y.}
 \newblock {Finite Element Methods for Maxwell's Equations}.
