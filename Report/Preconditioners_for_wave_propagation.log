@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.24)  28 JUL 2023 00:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.24)  28 JUL 2023 14:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1452,7 +1452,7 @@ File: ./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf>
 Package pdftex.def Info: ./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf  
-used on input line 292.
+used on input line 294.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_p_ref_preconditioner_comparison.pdf, id=101, 462.52798pt x 3
 46.89601pt>
@@ -1460,7 +1460,7 @@ File: ./Figures//Sphere_p_ref_preconditioner_comparison.pdf Graphic file (type
 pdf)
 <use ./Figures//Sphere_p_ref_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_p_ref_preconditioner_comparison.pdf 
- used on input line 301.
+ used on input line 303.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord0_preconditioner_comparison.pdf, id=102, 462.52798pt x 34
 6.89601pt>
@@ -1468,7 +1468,7 @@ File: ./Figures//Sphere_ord0_preconditioner_comparison.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_ord0_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord0_preconditioner_comparison.pdf  
-used on input line 308.
+used on input line 310.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord1_preconditioner_comparison.pdf, id=103, 462.52798pt x 34
 6.89601pt>
@@ -1476,7 +1476,7 @@ File: ./Figures//Sphere_ord1_preconditioner_comparison.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_ord1_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord1_preconditioner_comparison.pdf  
-used on input line 308.
+used on input line 310.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord2_preconditioner_comparison.pdf, id=104, 462.52798pt x 34
 6.89601pt>
@@ -1484,7 +1484,7 @@ File: ./Figures//Sphere_ord2_preconditioner_comparison.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_ord2_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord2_preconditioner_comparison.pdf  
-used on input line 310.
+used on input line 312.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord3_preconditioner_comparison.pdf, id=105, 462.52798pt x 34
 6.89601pt>
@@ -1492,7 +1492,7 @@ File: ./Figures//Sphere_ord3_preconditioner_comparison.pdf Graphic file (type p
 df)
 <use ./Figures//Sphere_ord3_preconditioner_comparison.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord3_preconditioner_comparison.pdf  
-used on input line 310.
+used on input line 312.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord0_preconditioner_comparison_time.pdf, id=111, 462.52798pt
  x 346.89601pt>
@@ -1500,7 +1500,7 @@ File: ./Figures//Sphere_ord0_preconditioner_comparison_time.pdf Graphic file (t
 ype pdf)
 <use ./Figures//Sphere_ord0_preconditioner_comparison_time.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord0_preconditioner_comparison_time.
-pdf  used on input line 322.
+pdf  used on input line 324.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord1_preconditioner_comparison_time.pdf, id=112, 462.52798pt
  x 346.89601pt>
@@ -1508,7 +1508,7 @@ File: ./Figures//Sphere_ord1_preconditioner_comparison_time.pdf Graphic file (t
 ype pdf)
 <use ./Figures//Sphere_ord1_preconditioner_comparison_time.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord1_preconditioner_comparison_time.
-pdf  used on input line 322.
+pdf  used on input line 324.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord2_preconditioner_comparison_time.pdf, id=113, 462.52798pt
  x 346.89601pt>
@@ -1516,7 +1516,7 @@ File: ./Figures//Sphere_ord2_preconditioner_comparison_time.pdf Graphic file (t
 ype pdf)
 <use ./Figures//Sphere_ord2_preconditioner_comparison_time.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord2_preconditioner_comparison_time.
-pdf  used on input line 324.
+pdf  used on input line 326.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord3_preconditioner_comparison_time.pdf, id=114, 462.52798pt
  x 346.89601pt>
@@ -1524,7 +1524,7 @@ File: ./Figures//Sphere_ord3_preconditioner_comparison_time.pdf Graphic file (t
 ype pdf)
 <use ./Figures//Sphere_ord3_preconditioner_comparison_time.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord3_preconditioner_comparison_time.
-pdf  used on input line 324.
+pdf  used on input line 326.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
  [3 <./Figures//Sphere_convergence_scipy_ngsolve_comp.pdf> <./Figures//Sphere_p
 _ref_preconditioner_comparison.pdf>]
@@ -1533,21 +1533,21 @@ pt>
 File: ./Figures//Sphere_ord1_ele_per_wavelength.pdf Graphic file (type pdf)
 <use ./Figures//Sphere_ord1_ele_per_wavelength.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord1_ele_per_wavelength.pdf  used on
- input line 337.
+ input line 339.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord2_ele_per_wavelength.pdf, id=206, 462.52798pt x 346.89601
 pt>
 File: ./Figures//Sphere_ord2_ele_per_wavelength.pdf Graphic file (type pdf)
 <use ./Figures//Sphere_ord2_ele_per_wavelength.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord2_ele_per_wavelength.pdf  used on
- input line 337.
+ input line 339.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
 <./Figures//Sphere_ord3_ele_per_wavelength.pdf, id=207, 462.52798pt x 346.89601
 pt>
 File: ./Figures//Sphere_ord3_ele_per_wavelength.pdf Graphic file (type pdf)
 <use ./Figures//Sphere_ord3_ele_per_wavelength.pdf>
 Package pdftex.def Info: ./Figures//Sphere_ord3_ele_per_wavelength.pdf  used on
- input line 339.
+ input line 341.
 (pdftex.def)             Requested size: 208.13599pt x 156.10176pt.
  [4 <./Figures//Sphere_ord0_preconditioner_comparison.pdf> <./Figures//Sphere_o
 rd1_preconditioner_comparison.pdf> <./Figures//Sphere_ord2_preconditioner_compa
@@ -1561,7 +1561,7 @@ avelength.pdf> <./Figures//Sphere_ord3_ele_per_wavelength.pdf>]
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 354.
+nput line 356.
 
 (Preconditioners_for_wave_propagation.bbl [7
 
@@ -1574,7 +1574,7 @@ s not changed.
 Here is how much of TeX's memory you used:
  37879 strings out of 478584
  844988 string characters out of 2852288
- 1715955 words of memory out of 3000000
+ 1715956 words of memory out of 3000000
  55330 multiletter control sequences out of 15000+600000
  485878 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1602,7 +1602,7 @@ e1/public/mathabx-type1/matha7.pfb><C:/Users/James/AppData/Roaming/MiKTeX/2.9/f
 onts/type1/public/mathabx-type1/matha8.pfb><C:/Users/James/AppData/Roaming/MiKT
 eX/2.9/fonts/type1/public/mathabx-type1/mathx10.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Preconditioners_for_wave_propagation.pdf (8 pages, 560542 byt
+Output written on Preconditioners_for_wave_propagation.pdf (8 pages, 560724 byt
 es).
 PDF statistics:
  905 PDF objects out of 1000 (max. 8388607)

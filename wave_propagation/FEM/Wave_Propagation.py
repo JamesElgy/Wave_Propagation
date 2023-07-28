@@ -1,15 +1,20 @@
 # James Elgy - 19/07/2023
-# import netgen.gui
-import numpy as np
-from matplotlib import pyplot as plt
-from ngsolve import *
+
 from netgen.occ import *
 import netgen.meshing as ngmeshing
-import scipy as sp
-import scipy.sparse.linalg
 import inspect
-from .iterative_solver_counter import *
 
+from .iterative_solver_counter import *
+from ..Testing.scipy_random_solve import *
+
+from ngsolve import *
+import scipy as sp
+import numpy as np
+from matplotlib import pyplot as plt
+from ngsolve import exp as ng_exp
+from ngsolve import x as ng_x
+from ngsolve import y as ng_y
+from ngsolve import z as ng_z
 
 
 class wave_propagation:
@@ -26,7 +31,7 @@ class wave_propagation:
         self.amp = np.asarray([0, 1, 0])
 
         # FEM parameters
-        self.h = 1#0.08
+        self.h = 1 #0.08
         self.p = 0
         self.preconditioner = 'bddc'  # 'local', 'direct', 'multigrid', 'bddc'
         self.solver = 'scipy'  # 'CG' or 'GMRES'
@@ -35,14 +40,16 @@ class wave_propagation:
         self.use_GPU = False
 
         # Solver residual plotting
-        self.solver_residual_plot = False
-        self.solver_residual_plot_fignum = 1
+        self.solver_residual_plot = True
+        self.solver_residual_plot_fignum = 2
         wavelength = 2*np.pi / np.linalg.norm(self.wavenumber)
         self.solver_residual_plot_label = f'{(wavelength/self.h):.2f} elements per $\lambda$'
-        # self.solver_residual_plot_label = f'SciPy GMRES, {self.preconditioner} preconditioner'
 
         # Geometry parameters
         self.box_size = 1
+        self.use_PML = False
+        self.PML_thickness = 0.1
+        self.PML_decay_rate = 10 * 1j
 
         # Setting any attributes specified when creating the class:
         for key, value in kwargs.items():
@@ -52,13 +59,25 @@ class wave_propagation:
     def generate_mesh(self):
         half_length = self.box_size / 2
         # box = Box(Pnt(-half_length, -half_length, -half_length), Pnt(half_length, half_length, half_length))
-        box = Sphere(Pnt(0,0,0), r=half_length)
-        box.maxh = self.h
-        box.bc('outer')
+        sph = Sphere(Pnt(0,0,0), r=half_length)
+        sph.maxh = self.h
+        sph.mat('sphere')
+        sph.bc('outer')
+        nmesh = OCCGeometry(sph).GenerateMesh()
 
-        nmesh = OCCGeometry(box).GenerateMesh()
+        if self.use_PML is True:
+            p = Sphere(Pnt(0,0,0), r = half_length + self.PML_thickness)
+            p.mat('pmlregion')
+            box = Glue([sph, p])
+            nmesh = OCCGeometry(box).GenerateMesh()
+
+
         self.mesh = Mesh(nmesh)
         self.mesh.Curve(5)
+
+        if self.use_PML is True:
+            print('Setting PML')
+            self.mesh.SetPML(pml.Radial(rad=self.PML_thickness,alpha=self.PML_decay_rate,origin=(0,0,0)), "pmlregion")
 
         curve = 5
         self.mesh.Curve(curve)  # This can be used to set the degree of curved elements
@@ -72,8 +91,8 @@ class wave_propagation:
         print(f'NDOF = {self.fes.ndof}')
 
     def generate_exact_solution(self):
-        # e = np.e
-        phasor = exp(1j * ((self.wavenumber[0] * x) + (self.wavenumber[1] * y) + self.wavenumber[2] * z))
+
+        phasor = ng_exp(1j * ((self.wavenumber[0] * ng_x) + (self.wavenumber[1] * ng_y) + self.wavenumber[2] * ng_z))
         ex = self.amp[0] * phasor
         ey = self.amp[1] * phasor
         ez = self.amp[2] * phasor
@@ -156,11 +175,20 @@ class wave_propagation:
             tmp2.data = pre * tmp2
             return tmp2.FV().NumPy()
 
-        # rows, cols, vals = self.A.mat.COO()
-        # M = sp.sparse.csr_matrix((vals,(rows,cols)))
-        # M = M.todense()
-        # print(np.linalg.eigvals(M))
-        # print(f'cond = {max(np.linalg.eigvals(M)) / min(np.linalg.eigvals(M))}')
+        rows, cols, vals = self.A.mat.COO()
+        M = sp.sparse.csr_matrix((vals,(rows,cols)))
+
+
+
+        M = M.todense()
+        print(M)
+        print(np.sum(M))
+        print(np.std(M))
+
+        print(f'cond = {max(np.linalg.eigvals(M)) / min(np.linalg.eigvals(M))}')
+
+        from IPython import embed
+        embed()
 
         r2 = res.CreateVector()
         r2.data = pre * res  # Applying pre to both the left and right hand sides.
@@ -185,7 +213,7 @@ class wave_propagation:
                 col = 'g'
 
             plt.figure(self.solver_residual_plot_fignum + self.p)
-            counter.setup_plot_params(label=self.solver_residual_plot_label, color=col, linestyle=ls[self.instance], xlim=[0,575])
+            counter.setup_plot_params(label=self.solver_residual_plot_label, color=col, linestyle=ls[self.instance], xlim='')
             counter.plot(label=True)
             plt.show()
 

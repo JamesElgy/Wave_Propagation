@@ -256,6 +256,8 @@ Perfectly Matched Layers (PMLs) are artificial absorbing boundary layers typical
 \caption{Illustration of the electromagnetic problem with PMLs outside the object $B$.}
 \end{figure}
 
+The implementation of the PML is handled via the \texttt{NGSolve} interface where the assembly of the linear and bilinear forms accounts for it internally.
+
 \section{Software}\label{sect:software}
 The  computational resources were used to perform the simulations in this paper correspond to  workstations with the following specifications: Intel i7-9700K CPU with a clock speed of 3.60GHz with 64GB DDR4 RAM.
 

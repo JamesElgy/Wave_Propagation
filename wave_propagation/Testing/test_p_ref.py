@@ -25,9 +25,12 @@ def run_p_ref(solver='scipy', preconditioner='direct', tol=1e-10):
             exact_grid = GridFunction(fes)
             exact_grid.Set((exact[0], exact[1], exact[2]))
 
+            domain_values = {'sphere': 1, 'pmlregion': 0}
+            cf = wave_prop.mesh.MaterialCF(domain_values)
+
             Integration_Order = np.max([4 * (0 + 1), 3 * (5 - 1)])
-            err = Integrate(InnerProduct(wave_prop.sol - wave_prop.e_exact, wave_prop.sol - wave_prop.e_exact), wave_prop.mesh, order=Integration_Order)**0.5
-            err = err / Integrate(InnerProduct(wave_prop.e_exact, wave_prop.e_exact), wave_prop.mesh, order=Integration_Order)**0.5
+            err = Integrate(cf *InnerProduct(wave_prop.sol - wave_prop.e_exact, wave_prop.sol - wave_prop.e_exact), wave_prop.mesh, order=Integration_Order)**0.5
+            err = err / Integrate(cf * InnerProduct(wave_prop.e_exact, wave_prop.e_exact), wave_prop.mesh, order=Integration_Order)**0.5
             print(err)
 
             err_array += [err]
@@ -41,6 +44,6 @@ def run_p_ref(solver='scipy', preconditioner='direct', tol=1e-10):
 
 
 if __name__ == '__main__':
-    run_p_ref(solver='scipy', preconditioner='bddc', tol=1e-12)
+    # run_p_ref(solver='scipy', preconditioner='bddc', tol=1e-12)
     # run_p_ref(solver='scipy', preconditioner='local', tol=1e-12)
     run_p_ref(solver='scipy', preconditioner='multigrid', tol=1e-12)

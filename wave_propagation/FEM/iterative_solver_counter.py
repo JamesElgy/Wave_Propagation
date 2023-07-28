@@ -67,3 +67,5 @@ class iterative_solver_counter(object):
         self.internal_list.append(rk)
         self.niter += 1
         self.time_list.append(time.time_ns())
+
+        print(f'{self.niter}: {rk}')
