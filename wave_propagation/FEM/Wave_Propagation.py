@@ -7,7 +7,7 @@ import inspect
 from .iterative_solver_counter import *
 from ..Testing.scipy_random_solve import *
 
-from ngsolve import *
+# from ngsolve import *
 import scipy as sp
 import numpy as np
 from matplotlib import pyplot as plt
@@ -15,7 +15,8 @@ from ngsolve import exp as ng_exp
 from ngsolve import x as ng_x
 from ngsolve import y as ng_y
 from ngsolve import z as ng_z
-
+from ngsolve import BilinearForm, LinearForm, GridFunction, CoefficientFunction, CGSolver, GMRESSolver, Projector,\
+    Preconditioner, HCurl, curl, div, Conj, SymbolicBFI, SymbolicLFI, BND, dx, IdentityMatrix, Mesh
 
 class wave_propagation:
 
@@ -55,6 +56,8 @@ class wave_propagation:
         for key, value in kwargs.items():
             self.__setattr__(key, value)
 
+
+        scipy_random_solve()
 
     def generate_mesh(self):
         half_length = self.box_size / 2
@@ -162,7 +165,7 @@ class wave_propagation:
 
     def scipy_solve(self, res):
         print('Solving using scipy GMRES')
-
+        scipy_random_solve()
         # Preconditioner to remove coupled degrees of freedom for static condensation.
         pre = Projector(mask=self.fes.FreeDofs(coupling=True), range=True)
 
@@ -175,20 +178,20 @@ class wave_propagation:
             tmp2.data = pre * tmp2
             return tmp2.FV().NumPy()
 
-        rows, cols, vals = self.A.mat.COO()
-        M = sp.sparse.csr_matrix((vals,(rows,cols)))
+        # rows, cols, vals = self.A.mat.COO()
+        # M = sp.sparse.csr_matrix((vals,(rows,cols)))
+        #
+        #
+        #
+        # M = M.todense()
+        # print(M)
+        # print(np.sum(M))
+        # print(np.std(M))
+        #
+        # print(f'cond = {max(np.linalg.eigvals(M)) / min(np.linalg.eigvals(M))}')
 
-
-
-        M = M.todense()
-        print(M)
-        print(np.sum(M))
-        print(np.std(M))
-
-        print(f'cond = {max(np.linalg.eigvals(M)) / min(np.linalg.eigvals(M))}')
-
-        from IPython import embed
-        embed()
+        # from IPython import embed
+        # embed()
 
         r2 = res.CreateVector()
         r2.data = pre * res  # Applying pre to both the left and right hand sides.

@@ -2,7 +2,7 @@
 
 import numpy as np
 from matplotlib import pyplot as plt
-from ngsolve import *
+# from ngsolve import VTKOutput
 
 def export_to_vtk(wave_prop, savename, refine=True):
 

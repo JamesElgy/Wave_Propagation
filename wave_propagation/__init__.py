@@ -8,5 +8,7 @@ from .Testing import *
 from .FEM import *
 from .Saving import *
 
+print('Importing wave propagation package')
+
 
 

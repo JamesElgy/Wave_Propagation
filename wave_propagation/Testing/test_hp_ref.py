@@ -3,7 +3,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from ..FEM.Wave_Propagation import wave_propagation
-from ngsolve import *
+# from ngsolve import HCurl, GridFunction, InnerProduct, Integrate
 
 def run_hp_ref(solver='scipy', preconditioner='direct', tol=1e-10):
     plt.figure()

@@ -1,5 +1,6 @@
-from ngsolve import *
-from netgen.geom2d import unit_square
+# from ngsolve import H1, Mesh, unit_square, GridFunction, grad, dx, BilinearForm, LinearForm, Integrate, CGSolver, \
+#     GMRESSolver, Preconditioner, x, y, BND, CoefficientFunction, Projector
+# from netgen.geom2d import unit_square
 import scipy as sp
 import inspect
 
@@ -39,7 +40,7 @@ def static_condensation_test():
     u.vec.data += a.harmonic_extension * u.vec
     u.vec.data += a.inner_solve * r
 
-    err = sqrt(Integrate((U-u)*(U-u),mesh))  # Compute error
+    err = (Integrate((U-u)*(U-u),mesh))**0.5 # Compute error
     print(f'Direct: {err}')
 
     # CGSolver
@@ -72,7 +73,7 @@ def static_condensation_test():
     u.vec.data += a.harmonic_extension * u.vec
     u.vec.data += a.inner_solve * r
 
-    err = sqrt(Integrate((U-u)*(U-u),mesh))  # Compute error
+    err = (Integrate((U-u)*(U-u),mesh))**0.5  # Compute error
     print(f'CG: {err}')
 
     # Scipy
@@ -119,7 +120,7 @@ def static_condensation_test():
     u.vec.data += a.harmonic_extension * u.vec
     u.vec.data += a.inner_solve * r
 
-    err = sqrt(Integrate((U-u)*(U-u),mesh))  # Compute error
+    err = (Integrate((U-u)*(U-u),mesh))**0.5  # Compute error
     print(f'Scipy CG: {err}')
 
 def poisson(meth='direct'):
@@ -181,7 +182,7 @@ def poisson(meth='direct'):
         print(s)
         gfu.vec.data += q
 
-    err = sqrt(Integrate((U-gfu)*(U-gfu),mesh))  # Compute error
+    err = (Integrate((U-gfu)*(U-gfu),mesh))**0.5  # Compute error
     print(f'{meth}: {err}')
 
 

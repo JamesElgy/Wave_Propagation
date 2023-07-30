@@ -3,7 +3,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from ..FEM.Wave_Propagation import wave_propagation
-from ngsolve import *
+# from ngsolve import GridFunction, HCurl, Integrate, InnerProduct
 
 def run_problem(solver='scipy', preconditioner='bddc', tol=1e-12):
     plt.figure()
@@ -41,4 +41,4 @@ def run_problem(solver='scipy', preconditioner='bddc', tol=1e-12):
     return err_array, ndof_array, wave_prop
 
 if __name__ == '__main__':
-    e, n, W = run_p_ref(solver='scipy', preconditioner='bddc', tol=1e-12)
+    e, n, W = run_problem(solver='scipy', preconditioner='bddc', tol=1e-12)

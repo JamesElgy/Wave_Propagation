@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from ..FEM.Wave_Propagation import wave_propagation
 from ..Saving.export_to_vtk import export_to_vtk
 
-from ngsolve import *
+#from ngsolve import *
 
 def test_vtk():
     W = wave_propagation()

@@ -1,9 +1,9 @@
 # Import libaries
 # import netgen.gui
 import numpy as np
-import netgen.meshing as ngmeshing
-from ngsolve import *
-from netgen.occ import *
+# import netgen.meshing as ngmeshing
+# from ngsolve import *
+# from netgen.occ import *
 import scipy.sparse as sp
 import gc
 
