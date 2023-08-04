@@ -17,36 +17,29 @@ from ngsolve import y as ng_y
 from ngsolve import z as ng_z
 from ngsolve import BilinearForm, LinearForm, GridFunction, CoefficientFunction, CGSolver, GMRESSolver, Projector,\
     Preconditioner, HCurl, curl, div, Conj, SymbolicBFI, SymbolicLFI, BND, dx, IdentityMatrix, Mesh
-from ngsolve.la import EigenValues_Preconditioner
 
-class wave_propagation:
+class wave_scattering_2d:
 
     def __init__(self, **kwargs):
         # Useful internal params:
         self.instance = 0
 
         # propagation parameters
-        kx = 1
-        ky = 0
-        kz = 0
-        self.wavenumber = np.asarray([kx, ky, kz])
+        self.wavenumber = np.asarray([1, 0, 0])
         self.amp = np.asarray([0, 1, 0])
 
         # FEM parameters
-        self.h = 0.08 #0.08
-        self.p = 1
-        self.preconditioner = 'bddc'  # 'local', 'direct', 'multigrid', 'bddc'
+        self.h = 1
+        self.p = 0
+        self.preconditioner = 'multigrid'  # 'local', 'direct', 'multigrid', 'bddc'
         self.solver = 'scipy'  # 'CG' or 'GMRES'
         self.tol = 1e-10
         self.max_iter = 2500
-        self.refinement_levels = 0
-
 
         # Solver residual plotting
         self.solver_residual_plot = False
         self.solver_residual_plot_fignum = 2
-        wavelength = 2*np.pi / np.linalg.norm(self.wavenumber)
-        self.solver_residual_plot_label = f'{self.solver}'
+        self.solver_residual_plot_label = f'{(self.solver)}'
 
         # Geometry parameters
         self.box_size = 1
@@ -58,36 +51,26 @@ class wave_propagation:
         for key, value in kwargs.items():
             self.__setattr__(key, value)
 
-
-        scipy_random_solve()
-
     def generate_mesh(self):
 
         print(f'Using h={self.h}')
 
-        half_length = self.box_size / 2
-        # box = Box(Pnt(-half_length, -half_length, -half_length), Pnt(half_length, half_length, half_length))
-        sph = Sphere(Pnt(0,0,0), r=half_length)
-        sph.maxh = self.h
-        sph.mat('sphere')
-        sph.bc('outer')
-        nmesh = OCCGeometry(sph).GenerateMesh()
+        wp = WorkPlane().RectangleC(2, 2) \
+            .Circle(0.5, 0, 0.2).Reverse()
 
+        face = wp.Face()
+
+        nmesh = OCCGeometry(face).GenerateMesh(maxh=self.h)
         self.mesh = Mesh(nmesh)
+
         numelements = self.mesh.ne  # Count the number elements
-
-        self.mesh.Curve(5)
-
-        curve = 5
-        self.mesh.Curve(curve)  # This can be used to set the degree of curved elements
         print("mesh contains " + str(numelements) + " elements")
 
     def generate_FES(self):
-        self.fes = HCurl(self.mesh, order=self.p, dirichlet='outer', complex=True, autoupdate=True)
+        self.fes = HCurl(self.mesh, order=self.p, dirichlet='outer', complex=True)
         self.u = self.fes.TrialFunction()
         self.v = self.fes.TestFunction()
         print(f'NDOF = {self.fes.ndof}')
-        self.fes.Update()
 
     def generate_exact_solution(self):
 
@@ -105,10 +88,7 @@ class wave_propagation:
         A += SymbolicBFI(curl(self.u) * (curl(self.v)), bonus_intorder=2)
         A += SymbolicBFI((-k_squared) * self.u * (self.v), bonus_intorder=2)
 
-        self.P = Preconditioner(A, self.preconditioner)  # Apply the preconditioner  before assembly
-
-        self.mesh, self.fes = self.refine_mesh(self.mesh, self.fes)
-
+        self.P = Preconditioner(A, self.preconditioner)  # Apply the direct preconditioner
         self.A = A.Assemble()
 
         # RHS:
@@ -162,42 +142,25 @@ class wave_propagation:
         self.sol.vec.data += self.A.inner_solve * self.F.vec
         print("finished solve")
 
-    def refine_mesh(self, mesh, fes):
-        numelements = self.mesh.ne
-        # Generating multigrid refinement levels
-        for l in range(self.refinement_levels):
-            if l > 0:
-                mesh.Refine()
-            print(f'Refinement Factor = {mesh.ne / numelements}')
-            numelements = mesh.ne
-            fes.Update()
-
-        return mesh, fes
-
-    def compute_eigenspectum(self, n=5, which='LM', tol=1e-10, use_NGSolve=False):
+    def compute_eigenspectum(self, n=5, which='LM', tol=1e-10):
 
         print('Computing Eigenvalues')
 
-        if use_NGSolve is True:
-            lams = EigenValues_Preconditioner(mat=self.A.mat, pre=self.P, tol=tol)
-            return lams
-        else:
+        Precond_A = self.P.mat @ self.A.mat
 
-            Precond_A = self.P.mat @ self.A.mat
+        tmp1 = self.F.vec.CreateVector()
+        tmp2 = self.F.vec.CreateVector()
 
-            tmp1 = self.F.vec.CreateVector()
-            tmp2 = self.F.vec.CreateVector()
+        def matvec(v):
+            tmp1.FV().NumPy()[:] = v
+            tmp2.data = Precond_A * tmp1
+            tmp2.data =tmp2
+            return tmp2.FV().NumPy()
 
-            def matvec(v):
-                tmp1.FV().NumPy()[:] = v
-                tmp2.data = Precond_A * tmp1
-                tmp2.data =tmp2
-                return tmp2.FV().NumPy()
+        A = sp.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
+        e,_ = sp.sparse.linalg.eigs(A, k=n, which=which, tol=tol)
 
-            A = sp.sparse.linalg.LinearOperator((self.A.mat.height, self.A.mat.width), matvec)
-            e,_ = sp.sparse.linalg.eigs(A, k=n, which=which, tol=tol)
-
-            return e
+        return e
 
     def scipy_solve(self, res):
         print('Solving using scipy GMRES')
@@ -267,21 +230,10 @@ class wave_propagation:
         for key, value in kwargs.items():
             self.__setattr__(key, value)
 
-        print(f'Using p={self.p}')
-        print(f'Using h={self.h}')
-
         self.generate_mesh()
-        self.generate_FES()
-        self.generate_exact_solution()
-        self.generate_bilinear_linear_forms()
-        # self.apply_postprojection()
-        # self.solve()
 
-        return self.sol
+        return 0
 
 if __name__ == '__main__':
-    W = wave_propagation()
-    W.run(p=2)
-    eigs = W.compute_eigenspectum()
-
-
+    W = wave_scattering_2d()
+    W.run()

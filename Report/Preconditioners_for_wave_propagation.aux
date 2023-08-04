@@ -20,9 +20,6 @@
 \emailauthor{p.d.ledger@keele.ac.uk}{P. D. Ledger}
 \Newlabel{cor1}{1}
 \citation{Monk2017}
-\citation{NGSolve,zaglmayrphd,netgendet}
-\citation{2020SciPy-NMeth}
-\citation{harris2020array}
 \Newlabel{1}{a}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \newlabel{sect:intro}{{1}{1}{Introduction}{section.1}{}}
@@ -31,38 +28,54 @@
 \newlabel{eqn:weak_form}{{2}{1}{Model Problem}{equation.1.2}{}}
 \newlabel{eqn:lse}{{3}{1}{Model Problem}{equation.1.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Perfectly Matched Layers}{1}{subsection.1.2}\protected@file@percent }
+\citation{Guyan1965}
+\citation{NGSolve,zaglmayrphd,netgendet}
+\citation{2020SciPy-NMeth}
+\citation{harris2020array}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Illustration of the electromagnetic problem with PMLs outside the object $B$.\relax }}{2}{figure.caption.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Software}{2}{section.2}\protected@file@percent }
-\newlabel{sect:software}{{2}{2}{Software}{section.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Conversion to Scipy Iterative Solvers}{2}{section.3}\protected@file@percent }
-\newlabel{sect:scipy}{{3}{2}{Conversion to Scipy Iterative Solvers}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Choice of Preconditioner}{2}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Numerical Results}{2}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Non-Magnetic Sphere}{2}{subsection.4.1}\protected@file@percent }
-\citation{Ledger2009}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Preconditioners}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Local Preconditioner}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Multigrid Preconditioner}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Software}{2}{section.3}\protected@file@percent }
+\newlabel{sect:software}{{3}{2}{Software}{section.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. A comparison between GMRES and conjugate gradient solvers, where differences are indistinguishable on this scale.\relax }}{3}{figure.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:sphere_solver_comparison}{{2}{3}{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. A comparison between GMRES and conjugate gradient solvers, where differences are indistinguishable on this scale.\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computed error estimate, $e$ for BDDC, Jacobi (local), and Multigrid preconditioners.\relax }}{3}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:sphere_preconditioner_comparison}{{3}{3}{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computed error estimate, $e$ for BDDC, Jacobi (local), and Multigrid preconditioners.\relax }{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computed residual to (\ref  {eqn:lse}) for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,\relax }}{4}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:sphere_preconditioner_iterations}{{4}{4}{Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computed residual to (\ref {eqn:lse}) for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conversion to Scipy Iterative Solvers}{3}{section.4}\protected@file@percent }
+\newlabel{sect:scipy}{{4}{3}{Conversion to Scipy Iterative Solvers}{section.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical Results}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Non-Magnetic Sphere}{3}{subsection.5.1}\protected@file@percent }
+\citation{Ledger2009}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computed error estimate, $e$ for BDDC, Jacobi (local), and Multigrid preconditioners.\relax }}{4}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:sphere_preconditioner_comparison}{{3}{4}{Non-mangetic non-conducting sphere of unit radius discretised using 14989 unstructured tetrahedral elements using $p=0,1,2,3$. Computed error estimate, $e$ for BDDC, Jacobi (local), and Multigrid preconditioners.\relax }{figure.caption.3}{}}
 \@writefile{toc}{\let\numberline\tmptocnumberline}
 \@writefile{toc}{\contentsline {section}{\numberline {Appendix \nobreakspace  {}A}Code for NGSolve and SciPy Solvers}{4}{appendix.A}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computation time for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,\relax }}{5}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:sphere_preconditioner_times}{{5}{5}{Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computation time for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,\relax }{figure.caption.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=1,2,3$. Number of iterations for BDDC and Multigrid preconditioners when considering $|\mbox  {\boldmath  $k$}| = 1,2$, and $4$. Figure shows that both BDDC and Multigrid converge rapidly, with the number of iterations required for the BDDC preconditioner reducing as the number of elements per $\lambda $ increases. ($a$) $p=1$, ($b$) $p=2$, ($c$) $p=3$.\relax }}{6}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:sphere_preconditioner_ele_per_wavelength}{{6}{6}{Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=1,2,3$. Number of iterations for BDDC and Multigrid preconditioners when considering $|\vec {k}| = 1,2$, and $4$. Figure shows that both BDDC and Multigrid converge rapidly, with the number of iterations required for the BDDC preconditioner reducing as the number of elements per $\lambda $ increases. ($a$) $p=1$, ($b$) $p=2$, ($c$) $p=3$.\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computed residual to (\ref  {eqn:lse}) for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,\relax }}{5}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:sphere_preconditioner_iterations}{{4}{5}{Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computed residual to (\ref {eqn:lse}) for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computation time for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,\relax }}{6}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:sphere_preconditioner_times}{{5}{6}{Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=0,1,2,3$. Computation time for BDDC, Jacobi (local), and Multigrid preconditioners. Figure shows that both BDDC and Multigrid converge rapidly, and that the local preconditioner does not result in convergence. ($a$) $p=0$, ($b$) $p=1$, ($c$) $p=2$, ($d$) $p=3$,\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=1,2,3$. Number of iterations for BDDC and Multigrid preconditioners when considering $|\mbox  {\boldmath  $k$}| = 1,2$, and $4$. Figure shows that both BDDC and Multigrid converge rapidly, with the number of iterations required for the BDDC preconditioner reducing as the number of elements per $\lambda $ increases. ($a$) $p=1$, ($b$) $p=2$, ($c$) $p=3$.\relax }}{7}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:sphere_preconditioner_ele_per_wavelength}{{6}{7}{Non-mangetic non-conducting sphere of unit radius discretised using 15243 unstructured tetrahedral elements using $p=1,2,3$. Number of iterations for BDDC and Multigrid preconditioners when considering $|\vec {k}| = 1,2$, and $4$. Figure shows that both BDDC and Multigrid converge rapidly, with the number of iterations required for the BDDC preconditioner reducing as the number of elements per $\lambda $ increases. ($a$) $p=1$, ($b$) $p=2$, ($c$) $p=3$.\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using $h=2\pi / 8$, $2\pi / 16$, $2\pi / 32$, and $2\pi / 64$ using $p=1$. 100 largest magnitude eigenvalues for the preconditioned system matrix for the BDDC, Local, and Multigrid preconditioners when considering $|\mbox  {\boldmath  $k$}| = 1$. Figure shows an improvement in clustering as $h$ is decreased for both the Local and Multigrid preconditioners, with the opposite effect being observed for the BDDC preconditioner. ($a$) BDDC, ($b$) Local, ($c$) Multigrid.\relax }}{8}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:sphere_preconditioner_eigenvalues_p1}{{7}{8}{Non-mangetic non-conducting sphere of unit radius discretised using $h=2\pi / 8$, $2\pi / 16$, $2\pi / 32$, and $2\pi / 64$ using $p=1$. 100 largest magnitude eigenvalues for the preconditioned system matrix for the BDDC, Local, and Multigrid preconditioners when considering $|\vec {k}| = 1$. Figure shows an improvement in clustering as $h$ is decreased for both the Local and Multigrid preconditioners, with the opposite effect being observed for the BDDC preconditioner. ($a$) BDDC, ($b$) Local, ($c$) Multigrid.\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using $h=2\pi / 8$, $2\pi / 16$, $2\pi / 32$, and $2\pi / 64$ using $p=2$. 100 largest magnitude eigenvalues for the preconditioned system matrix for the BDDC, Local, and Multigrid preconditioners when considering $|\mbox  {\boldmath  $k$}| = 1$. Figure shows an improvement in clustering as $h$ is decreased for both the Local and BDDC preconditioners. ($a$) BDDC, ($b$) Local, ($c$) Multigrid.\relax }}{9}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:sphere_preconditioner_eigenvalues_p1}{{8}{9}{Non-mangetic non-conducting sphere of unit radius discretised using $h=2\pi / 8$, $2\pi / 16$, $2\pi / 32$, and $2\pi / 64$ using $p=2$. 100 largest magnitude eigenvalues for the preconditioned system matrix for the BDDC, Local, and Multigrid preconditioners when considering $|\vec {k}| = 1$. Figure shows an improvement in clustering as $h$ is decreased for both the Local and BDDC preconditioners. ($a$) BDDC, ($b$) Local, ($c$) Multigrid.\relax }{figure.caption.8}{}}
+\citation{ngsolve_gmres}
 \bibstyle{acm}
 \bibdata{paperbib}
-\bibcite{harris2020array}{{1}{}{{}}{{}}}
-\bibcite{Ledger2009}{{2}{}{{}}{{}}}
-\bibcite{Monk2017}{{3}{}{{}}{{}}}
-\bibcite{netgendet}{{4}{}{{}}{{}}}
-\bibcite{NGSolve}{{5}{}{{}}{{}}}
-\bibcite{2020SciPy-NMeth}{{6}{}{{}}{{}}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Static condensation using NGSolve}}{7}{lstlisting.1}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces Static condensation using SciPy}}{7}{lstlisting.2}\protected@file@percent }
-\bibcite{zaglmayrphd}{{7}{}{{}}{{}}}
+\bibcite{Guyan1965}{{1}{}{{}}{{}}}
+\bibcite{harris2020array}{{2}{}{{}}{{}}}
+\bibcite{Ledger2009}{{3}{}{{}}{{}}}
+\bibcite{Monk2017}{{4}{}{{}}{{}}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Static condensation using NGSolve}{10}{lstlisting.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}Static condensation using SciPy}{10}{lstlisting.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {Appendix \nobreakspace  {}B}NGSolve CG and GMRES Comparison}{10}{appendix.B}\protected@file@percent }
+\bibcite{ngsolve_gmres}{{5}{}{{}}{{}}}
+\bibcite{netgendet}{{6}{}{{}}{{}}}
+\bibcite{NGSolve}{{7}{}{{}}{{}}}
+\bibcite{2020SciPy-NMeth}{{8}{}{{}}{{}}}
+\bibcite{zaglmayrphd}{{9}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\gdef \@abspage@last{8}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.9}{\ignorespaces Non-mangetic non-conducting sphere of unit radius discretised using 15251 unstructured tetrahedral elements using $p=1,2,3$. Comparison between the NGSolve CG and GMRES solvers, and the SciPy GMRES solver using the relative error $e$ using the direct preconditioner. Figure shows that while the NGSolve CG and SciPy GMRES output is in agreement, the NGSolve GMRES is not.\relax }}{11}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:ngsolve_cg_gmres}{{B.9}{11}{Non-mangetic non-conducting sphere of unit radius discretised using 15251 unstructured tetrahedral elements using $p=1,2,3$. Comparison between the NGSolve CG and GMRES solvers, and the SciPy GMRES solver using the relative error $e$ using the direct preconditioner. Figure shows that while the NGSolve CG and SciPy GMRES output is in agreement, the NGSolve GMRES is not.\relax }{figure.caption.9}{}}
+\gdef \@abspage@last{11}

@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{Guyan1965}
+{\sc Guyan, R.~J.}
+\newblock {Reduction of stiffness and mass matrices}.
+\newblock {\em AIAA Journal 3}, 2 (1965), 380.
+
 \bibitem{harris2020array}
 {\sc Harris, C.~R., Millman, K.~J., van~der Walt, S.~J., Gommers, R., Virtanen,
   P., Cournapeau, D., Wieser, E., Taylor, J., Berg, S., Smith, N.~J., Kern, R.,
@@ -22,6 +27,13 @@
 \newblock {Finite Element Methods for Maxwell's Equations}.
 \newblock {\em Encyclopedia of Computational Mechanics Second Edition\/}
   (2017), 1--20.
+
+\bibitem{ngsolve_gmres}
+{\sc {NGSolve}}.
+\newblock 5.6.4 feti-dp in ngsolve iv: Inexact feti-dp.
+\newblock
+  \url{https://docu.ngsolve.org/v6.2.2304/i-tutorials/historic/unit-5.5-fetidp_inexact/feti-dp-iv.html?highlight=gmres}.
+\newblock Accessed: 31/07/2023.
 
 \bibitem{netgendet}
 {\sc {Sch\"oberl}, J.}

@@ -258,6 +258,59 @@ Perfectly Matched Layers (PMLs) are artificial absorbing boundary layers typical
 
 The implementation of the PML is handled via the \texttt{NGSolve} interface where the assembly of the linear and bilinear forms accounts for it.
 
+\section{Preconditioners}
+Three different preconditioners are considered, The Local (Jacobi) preconditioner, the Balancing Domain Decomposition with Constraints (BDDC) preconditioner, and a geometric Multigrid preconditioner.
+
+\subsection{Local Preconditioner}
+The Local preconditioner, as implemented in \texttt{NGSolve}, is a simple Jacobi preconditioner. For this preconditioner, the preconditioner matrix $\mathbf{P}$ is chosen as $\mathbf{P} := \mathrm{diag}(\mathbf{A})$. Using Static condensation, the system matrix $\mathbf{A}$ can be partitioned into local $L$ and interface $E$ degrees of freedom as 
+%
+\begin{equation*}
+\mathbf{A} = \begin{bmatrix}
+\mathbf{A}_{LL} & \mathbf{A}_{LE} \\ \mathbf{A}_{EL} & \mathbf{A}_{EE}
+\end{bmatrix},
+\end{equation*}
+%
+where internal degrees of freedom are eliminated via the Schur Complement~\cite{Guyan1965} 
+\begin{equation*}
+\mathbf{S} = \mathbf{A}_{EE} - \mathbf{A}_{EL} \mathbf{A}_{LL}^{-1} \mathbf{A}_{LE}.
+\end{equation*}
+%
+When assembling the bilinear form for use with static condensation, \texttt{NGSolve} computes $\mathbf{S}$, thus
+%
+\begin{equation*}
+\mathbf{A} = \begin{bmatrix}
+0 &0 \\ 0 & \mathbf{S}
+\end{bmatrix},
+\end{equation*}
+%
+and the preconditioner corresponds to
+\begin{equation*}
+\mathbf{P} = \begin{bmatrix}
+0 &0 \\ 0 & \mathrm{diag}(\mathbf{S})
+\end{bmatrix}.
+\end{equation*}
+
+\subsection{Multigrid Preconditioner}
+The multigrid preconditioner implemented by \texttt{NGSolve} uses a sequence of successively refined meshes such that a direct solve for the coarsest mesh is possible. Block Gauss-Seidel smoothers are then employed for finer meshes.
+
+1 V cycle
+Uses vertex patch for complex FES smoothing
+
+For the linear system (\ref{eqn:lse}), the multigrid preconditioner
+\begin{algorithm}
+\begin{algorithmic}
+\State Perform 1 iteration of Gauss--Sidel smoothing.
+\State $\vec{x} \gets \vec{x} + \mathbf{P}^{-1}_{loc} (\vec{r} - \mathbf{A}\vec{x})$
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{equation*}
+\end{equation*}
+
+
+
+
 \section{Software}\label{sect:software}
 The  computational resources were used to perform the simulations in this paper correspond to  workstations with the following specifications: Intel i7-9700K CPU with a clock speed of 3.60GHz with 64GB DDR4 RAM.
 
@@ -267,15 +320,6 @@ The software used for this work \texttt{NGSolve} (version 6.2.2302) and \texttt{
 The iterative solvers available in \texttt{NGSolve}, notably \texttt{CGSolver} and \texttt{GMRESSolver} do not allow for the execution of arbitrary callback functions in the same way as many other solvers from other established python libraries. For this reason, it is difficult to retain the residual at each iteration of the \texttt{NGSolve} solvers. Furthermore, the \texttt{GMRESSolver} does not appear to have a restart option available to the API and is in general poorly documented. For this reason, the solving of the linear system used in static condensation is instead implemented using and 
 
 \textcolor{cyan}{The NGSolve implementation of GMRES also gives noticeably different results to the CGSolver, even when using the same direct preconditioner, so I don't really trust it.}
-
-
-%\section{GMRES Convergence}
-%
-
-%
-\subsection{Choice of Preconditioner}
-In this report, we consider 4 different preconditioners, as implemented by \texttt{NGSolve}. A direct inverse preconditioner, where $\mathbf{P} = \mathbf{A}$ and $\mathbf{P}^{-1}\mathbf{A} = \mathbb{I}$, a Jacobi preconditioner, where $\mathbf{P} = \mathrm{diag}(\mathbf{A})$, a Multigrid preconditioner, and the Balancing Domain Decomposition with Constraints (BDDC) preconditioner. \textcolor{cyan}{References}
-
 
 \section{Numerical Results}
 In this section, we consider a range of numerical examples to illustrate the performance of the different preconditioners.
@@ -345,7 +389,31 @@ $\begin{array}{c c}
 \label{fig:sphere_preconditioner_ele_per_wavelength}
 \end{figure}
 
+To provide a further examination of the performance of the preconditioners, we examine the (complex) eigenvalues of the preconditioned matrix $\mathbf{P}^{-1}\mathbf{A}$ where $\mathbf{P}^{-1}$ approximates the inverse of $\mathbf{A}$. 
 
+\begin{figure}[h!]
+\centering
+$\begin{array}{c c}
+\includegraphics[width=0.45\textwidth]{Sphere_p=1_bddc_eigenvalues} & \includegraphics[width=0.45\textwidth]{Sphere_p=1_local_eigenvalues} \\
+(a) & (b)\\
+\includegraphics[width=0.45\textwidth]{Sphere_p=1_multigrid_eigenvalues}\\
+(c)
+\end{array}$
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using $h=2\pi / 8$, $2\pi / 16$, $2\pi / 32$, and $2\pi / 64$ using $p=1$. 100 largest magnitude eigenvalues for the preconditioned system matrix for the BDDC, Local, and Multigrid preconditioners when considering $|\vec{k}| = 1$. Figure shows an improvement in clustering as $h$ is decreased for both the Local and Multigrid preconditioners, with the opposite effect being observed for the BDDC preconditioner. ($a$) BDDC, ($b$) Local, ($c$) Multigrid.}
+\label{fig:sphere_preconditioner_eigenvalues_p1}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+$\begin{array}{c c}
+\includegraphics[width=0.45\textwidth]{Sphere_p=2_bddc_eigenvalues} & \includegraphics[width=0.45\textwidth]{Sphere_p=2_local_eigenvalues} \\
+(a) & (b)\\
+\includegraphics[width=0.45\textwidth]{Sphere_p=2_multigrid_eigenvalues}\\
+(c)
+\end{array}$
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using $h=2\pi / 8$, $2\pi / 16$, $2\pi / 32$, and $2\pi / 64$ using $p=2$. 100 largest magnitude eigenvalues for the preconditioned system matrix for the BDDC, Local, and Multigrid preconditioners when considering $|\vec{k}| = 1$. Figure shows an improvement in clustering as $h$ is decreased for both the Local and BDDC preconditioners. ($a$) BDDC, ($b$) Local, ($c$) Multigrid.}
+\label{fig:sphere_preconditioner_eigenvalues_p1}
+\end{figure}
 
 
 
@@ -396,7 +464,18 @@ u.vec.data += a.harmonic_extension * u.vec
 u.vec.data += a.inner_solve * r
 \end{lstlisting}
 
+\section{NGSolve CG and GMRES Comparison}
 
+To further justify the swap to a \texttt{SciPy} implementation of the iterative solver, a comparison between the \texttt{NGSolve} conjugate gradients (CG) and GMRES solvers is presented in Figure~\ref{fig:ngsolve_cg_gmres}. The figure shows the effect of $p$--refinement for the problem (\ref{eqn:weak_form}) as measured using $e$. The presented example corresponds to a sphere of radius 1, with wavevector $\vec{k}=[1,0,0]$ and amplitude $\vec{p}=[0,1,0]$ discretised using a constant $h=0.08$ and 15251 unstructured tetrahedra. The figure shows that while the \texttt{NGSolve} CG and \texttt{SciPy} GMRES solvers are in agreement with each other, the \texttt{NGSolve} GMRES solver is not.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{NGSolve_CG_GMRES_comparison}
+\caption{Non-mangetic non-conducting sphere of unit radius discretised using 15251 unstructured tetrahedral elements using $p=1,2,3$. Comparison between the NGSolve CG and GMRES solvers, and the SciPy GMRES solver using the relative error $e$ using the direct preconditioner. Figure shows that while the NGSolve CG and SciPy GMRES output is in agreement, the NGSolve GMRES is not.}
+\label{fig:ngsolve_cg_gmres}
+\end{figure}
+
+From the \texttt{NGSolve} documentation~\cite{ngsolve_gmres}, the GMRESSolver uses the same syntax as the CGSolver. 
 
 \bibliographystyle{acm}
 \bibliography{paperbib}

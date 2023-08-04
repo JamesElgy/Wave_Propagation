@@ -16,7 +16,12 @@ def scipy_random_solve():
 
     # scipy.gmres
     x2 = slg.gmres(A,b)
-    print(f'SciPy random solve : {np.linalg.norm(x2[0]-x)}')
+
+    err = np.linalg.norm(x2[0]-x)
+
+    # print(f'Passed SciPy random solve : {err < 1e-10}')
+
+    return err
 
 if __name__ == '__main__':
     scipy_random_solve()
