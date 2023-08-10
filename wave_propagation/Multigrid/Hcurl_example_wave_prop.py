@@ -1,7 +1,12 @@
-from ngsolve import *
-import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import pyplot as plt
+from ngsolve import BilinearForm, Mesh, HCurl, unit_square, grad, LinearForm, dx, GridFunction, Preconditioner, \
+    TaskManager, CGSolver, SymbolicBFI, SymbolicLFI, Integrate, InnerProduct, unit_cube, BND, curl, CoefficientFunction
+from ngsolve import exp as ng_exp
+from ngsolve import x as ng_x
 
-def SolveProblem(h=0.5, p=1, levels=1,
+
+def Hcurl_example_wave_prop(h=0.5, p=1, levels=1,
                  condense=True,
                  precond="local"):
     """
@@ -18,7 +23,7 @@ def SolveProblem(h=0.5, p=1, levels=1,
     # mesh = Mesh(unit_square.GenerateMesh(maxh=h))
     mesh = Mesh(unit_cube.GenerateMesh(maxh=h))
     # fes = H1(mesh, order=p, dirichlet="bottom|left")
-    fes = HCurl(mesh, order=p, dirichlet="bottom|left|right|top", complex=True)
+    fes = HCurl(mesh, order=p, dirichlet="bottom|left|right|top|back|front", complex=True)
 
     u, v = fes.TnT()
     # a = BilinearForm(grad(u)*grad(v)*dx, condense=condense)
@@ -30,14 +35,12 @@ def SolveProblem(h=0.5, p=1, levels=1,
     f = LinearForm(fes)
     f += SymbolicLFI(0)
 
-    ey = exp(1j * (1 * x))
+    ey = ng_exp(1j * (1 * ng_x))
     exact = CoefficientFunction((0, ey, 0))
 
-    gfu = GridFunction(fes)
-    gfu.Set(exact, BND)
-    Draw(gfu)
-    c = Preconditioner(a, precond) # Register c to a BEFORE assembly
 
+    c = Preconditioner(a, precond) # Register c to a BEFORE assembly
+    gfu = GridFunction(fes)
     steps = []
 
     for l in range(levels):
@@ -46,6 +49,8 @@ def SolveProblem(h=0.5, p=1, levels=1,
         fes.Update()
         gfu.Update()
 
+
+        gfu.Set(exact, BND)
         with TaskManager():
             a.Assemble()
             f.Assemble()
@@ -64,21 +69,18 @@ def SolveProblem(h=0.5, p=1, levels=1,
             if condense:
                 gfu.vec.data += a.harmonic_extension * gfu.vec
                 gfu.vec.data += a.inner_solve * f.vec
-        if fes.ndof < 15000:
-            Redraw()
+
 
         # Computing error:
         err = Integrate(InnerProduct(exact - gfu, exact - gfu),mesh) ** 0.5 / Integrate(InnerProduct(exact, exact),mesh) ** 0.5
         steps.append ( (fes.ndof, inv.GetSteps(), err) )
 
-        gfu = GridFunction(fes)
-        gfu.Set(exact, BND) # Resetting GFU
 
     return steps
 
 
 if __name__ == '__main__':
-    res_mg = SolveProblem(levels=5, precond="bddc", p=2)
+    res_mg = Hcurl_example_wave_prop(levels=5, precond="multigrid", p=2)
 
     for n in res_mg:
         print(n)

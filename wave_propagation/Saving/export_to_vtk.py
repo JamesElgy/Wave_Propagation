@@ -1,8 +1,6 @@
 # James Elgy - 21/07/2023
 
-import numpy as np
-from matplotlib import pyplot as plt
-# from ngsolve import VTKOutput
+from ngsolve import VTKOutput
 
 def export_to_vtk(wave_prop, savename, refine=True):
 

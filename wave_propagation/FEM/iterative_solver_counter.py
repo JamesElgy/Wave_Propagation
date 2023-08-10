@@ -11,11 +11,21 @@ class iterative_solver_counter(object):
         self.time_list = []
         self.start_time = time.time_ns()
 
+        self.weighting = 1
+
+
+
     def append(self, elem):
         self.internal_list.append(elem)
 
     def get_list(self):
         return self.internal_list
+
+    def set_LSE(self, linop, b):
+        self.linop = linop
+        self.b = b
+        self.weighting = np.linalg.norm(self.b)
+
 
     def setup_plot_params(self, **kwargs):
         self.plot_dict = kwargs
@@ -49,7 +59,7 @@ class iterative_solver_counter(object):
             plt.xlim(self.ylim)
 
         plt.xlabel('Iterations')
-        plt.ylabel('Relative $L_2$ Residual')
+        plt.ylabel('$L_2$ Residual')
 
     def plot_time(self, label=True, **kwargs):
         times = (np.asarray(self.time_list) - self.time_list[0]) / 1e9 # time_list is in nanoseconds
@@ -63,9 +73,15 @@ class iterative_solver_counter(object):
         plt.ylabel('Relative $L_2$ Residual')
 
     def __call__(self, rk=None):
+
+        if len(rk > 1):
+            # solution vector rather than residual
+            rk = np.linalg.norm((self.linop(rk)) - self.b)
+
         self.callbacks.append(rk)
         self.internal_list.append(rk)
         self.niter += 1
         self.time_list.append(time.time_ns())
 
-        # print(f'{self.niter}: {rk}')
+        # if self.niter % 100 == 0:
+        #     print(f'{self.niter}: {rk}')
