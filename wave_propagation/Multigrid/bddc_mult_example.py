@@ -54,51 +54,53 @@ def run_example(precond='bddc_mult', p=2, use_scipy=False):
                 gfu.vec.data += a.harmonic_extension * gfu.vec
                 gfu.vec.data += a.inner_solve * f.vec
         else:
-            a.Assemble()
-            f.Assemble()
-            proj = Projector(mask=fes.FreeDofs(coupling=True), range=True)
+            with TaskManager():
+                a.Assemble()
+                f.Assemble()
+                proj = Projector(mask=fes.FreeDofs(coupling=True), range=True)
 
-            f.vec.data += a.harmonic_extension_trans * f.vec
+                f.vec.data += a.harmonic_extension_trans * f.vec
 
-            res = f.vec.CreateVector()
-            res.data = f.vec - (a.mat * gfu.vec)
+                res = f.vec.CreateVector()
+                res.data = f.vec - (a.mat * gfu.vec)
 
-            tmp1 = f.vec.CreateVector()
-            tmp2 = f.vec.CreateVector()
+                tmp1 = f.vec.CreateVector()
+                tmp2 = f.vec.CreateVector()
 
-            def matvec(v):
-                tmp1.FV().NumPy()[:] = v
-                tmp2.data = a.mat * tmp1
-                tmp2.data = proj *tmp2
-                return tmp2.FV().NumPy()
+                def matvec(v):
+                    tmp1.FV().NumPy()[:] = v
+                    tmp2.data = a.mat * tmp1
+                    tmp2.data = proj *tmp2
+                    return tmp2.FV().NumPy()
 
-            res.data = proj * res
-            A = LinearOperator((a.mat.height, a.mat.width), matvec)
-            u = gfu.vec.CreateVector()
-            counter = iterative_solver_counter()  # timing is done using ns precision, so counter is initialised immediately before solver.
-            counter.set_LSE(A, res.FV().NumPy())
+                res.data = proj * res
+                A = LinearOperator((a.mat.height, a.mat.width), matvec)
+                u = gfu.vec.CreateVector()
+                counter = iterative_solver_counter()  # timing is done using ns precision, so counter is initialised immediately before solver.
+                counter.set_LSE(A, res.FV().NumPy())
 
-            u.FV().NumPy()[:], succ = cg(A, res.FV().NumPy(), tol=1e-8, maxiter=10000, M=c, callback=counter)
-            gfu.vec.data += u
-            gfu.vec.data += a.harmonic_extension * gfu.vec
-            gfu.vec.data += a.inner_solve * f.vec
+                u.FV().NumPy()[:], succ = cg(A, res.FV().NumPy(), tol=1e-8, maxiter=10000, M=c, callback=counter)
+                gfu.vec.data += u
+                gfu.vec.data += a.harmonic_extension * gfu.vec
+                gfu.vec.data += a.inner_solve * f.vec
 
-            plt.figure(999)
-            counter.setup_plot_params(label=f'Refinement Level = {l}, NDOF={fes.ndof}')
-            counter.plot(label=True)
-            plt.title(f'{precond}')
-            plt.axhline(1e-8*np.linalg.norm(res.FV().NumPy()), color='r', linestyle='--')
+            # plt.figure(999)
+            # counter.setup_plot_params(label=f'Refinement Level = {l}, NDOF={fes.ndof}')
+            # counter.plot(label=True)
+            # plt.title(f'{precond}')
+            # plt.axhline(1e-8*np.linalg.norm(res.FV().NumPy()), color='r', linestyle='--')
 
         # Computing error:
         err = Integrate(InnerProduct(A_exact - gfu, A_exact - gfu), mesh) ** 0.5
         err /= Integrate(InnerProduct(A_exact, A_exact),mesh) ** 0.5
 
-        # print(l, fes.ndof, inv.GetSteps(), err)
+        print(l, fes.ndof, inv.GetSteps(), err)
 
 if __name__ == '__main__':
     print('\nBDDC Mult')
     run_example(precond='bddc_mult', use_scipy=True)
     plt.show()
+    print('Done')
 
     # print('\nBDDC')
     # run_example(precond='bddc')
