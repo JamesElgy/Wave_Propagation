@@ -7,6 +7,7 @@
 from .Testing import *
 from .FEM import *
 from .Saving import *
+from .Multigrid import *
 
 print('Importing wave propagation package')
 

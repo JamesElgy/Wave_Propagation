@@ -1,0 +1,48 @@
+\begin{thebibliography}{1}
+
+\bibitem{Guyan1965}
+{\sc Guyan, R.~J.}
+\newblock {Reduction of stiffness and mass matrices}.
+\newblock {\em AIAA Journal 3}, 2 (1965), 380.
+
+\bibitem{harris2020array}
+{\sc Harris, C.~R., Millman, K.~J., van~der Walt, S.~J., Gommers, R., Virtanen,
+  P., Cournapeau, D., Wieser, E., Taylor, J., Berg, S., Smith, N.~J., Kern, R.,
+  Picus, M., Hoyer, S., van Kerkwijk, M.~H., Brett, M., Haldane, A., del
+  R{\'{i}}o, J.~F., Wiebe, M., Peterson, P., G{\'{e}}rard-Marchant, P.,
+  Sheppard, K., Reddy, T., Weckesser, W., Abbasi, H., Gohlke, C., and Oliphant,
+  T.~E.}
+\newblock Array programming with {NumPy}.
+\newblock {\em Nature 585}, 7825 (Sept. 2020), 357--362.
+
+\bibitem{netgendet}
+{\sc {Sch\"oberl}, J.}
+\newblock {NETGEN} - an advancing front {2D/3D}-mesh generator based on
+  abstract rules.
+\newblock {\em Computing and Visualization in Science 1(1)\/} (1997), 41--52.
+
+\bibitem{NGSolve}
+{\sc {Sch\"oberl}, J.}
+\newblock C++11 implementation of finite elements in {NGSolve}.
+\newblock Tech. rep., ASC Report 30/2014, Institute for Analysis and Scientific
+  Computing, Vienna University of Technology, 2014.
+
+\bibitem{2020SciPy-NMeth}
+{\sc Virtanen, P., Gommers, R., Oliphant, T.~E., Haberland, M., Reddy, T.,
+  Cournapeau, D., Burovski, E., Peterson, P., Weckesser, W., Bright, J., {van
+  der Walt}, S.~J., Brett, M., Wilson, J., Millman, K.~J., Mayorov, N., Nelson,
+  A. R.~J., Jones, E., Kern, R., Larson, E., Carey, C.~J., Polat, {\.I}., Feng,
+  Y., Moore, E.~W., {VanderPlas}, J., Laxalde, D., Perktold, J., Cimrman, R.,
+  Henriksen, I., Quintero, E.~A., Harris, C.~R., Archibald, A.~M., Ribeiro,
+  A.~H., Pedregosa, F., {van Mulbregt}, P., and {SciPy 1.0 Contributors}}.
+\newblock {{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in
+  Python}.
+\newblock {\em Nature Methods 17\/} (2020), 261--272.
+
+\bibitem{zaglmayrphd}
+{\sc Zaglmayr, S.}
+\newblock {\em High Order Finite Elements for Electromagnetic Field
+  Computation}.
+\newblock PhD thesis, Johannes Kepler University Linz, 2006.
+
+\end{thebibliography}
