@@ -440,6 +440,9 @@ def run(Solver='multigrid', block_dofs='vertices'):
         # plt.legend()
         # wave_propagation.Saving.save_figs.save_all_figures('Results', format='pdf')
 
+    del mesh, fes, f, res, a, TSM, P
+    gc.collect()
+
     return times
 
 
@@ -508,16 +511,28 @@ if __name__ == '__main__':
 
     # mem_profile(Solver='mg', block_dofs='vertices')
     # plt.figure(2); plt.title('Vertices')
-    # mem_profile(Solver='mg', block_dofs='edges|faces|')
+    # mem_profile(Solver='mg', block_dofs='edges')
     # plt.figure(3); plt.title('Edges')
     # mem_profile(Solver='mg', block_dofs='faces')
     # plt.figure(4); plt.title('Faces')
     # mem_profile(Solver='mg', block_dofs='facets')
     # plt.figure(5); plt.title('Facets')
-    mem_profile(Solver='bddc_mg', block_dofs='')
-    plt.figure(5); plt.title('None')
 
-    plt.figure(1); plt.legend(['Vertices', 'Edges', 'Faces', 'Facets', 'None'])
+
+    mem_profile(Solver='bddc_mg', block_dofs='')
+    plt.figure(1); plt.title('BDDC_MG')
+    #
+    # plt.figure(1); plt.legend(['Vertices', 'Edges', 'Faces', 'Facets', 'None'])
+    plt.figure(1); plt.legend(['None'])
+    #
+    mem_profile(Solver='bddc', block_dofs='')
+    plt.figure(2); plt.title('BDDC')
+    plt.figure(2); plt.legend(['None'])
+
+    mem_profile(Solver='mg', block_dofs='')
+    plt.figure(2); plt.title('BDDC')
+    plt.figure(2); plt.legend(['None'])
+
 
     # wave_propagation.Saving.save_figs.save_all_figures('Results', format='pdf', prefix='Sphere_p=2_mgprecond_comp_')
 
