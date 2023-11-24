@@ -74,14 +74,19 @@ class iterative_solver_counter(object):
 
     def __call__(self, rk=None):
 
-        if len(rk > 1):
-            # solution vector rather than residual
-            rk = np.linalg.norm((self.linop(rk)) - self.b)
+        try:
+            if len(rk) > 1:
+                # solution vector rather than residual
+                rk = np.linalg.norm((self.linop(rk)) - self.b)
 
-        self.callbacks.append(rk)
-        self.internal_list.append(rk)
-        self.niter += 1
-        self.time_list.append(time.time_ns())
-
+            self.callbacks.append(rk)
+            self.internal_list.append(rk)
+            self.niter += 1
+            self.time_list.append(time.time_ns())
+        except:
+            self.callbacks.append(rk)
+            self.internal_list.append(rk)
+            self.niter += 1
+            self.time_list.append(time.time_ns())
         # if self.niter % 100 == 0:
         #     print(f'{self.niter}: {rk}')

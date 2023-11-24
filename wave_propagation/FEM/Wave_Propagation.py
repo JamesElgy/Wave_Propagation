@@ -275,13 +275,12 @@ class wave_propagation:
         self.generate_exact_solution()
         self.generate_bilinear_linear_forms()
         # self.apply_postprojection()
-        # self.solve()
+        self.solve()
 
         return self.sol
 
 if __name__ == '__main__':
     W = wave_propagation()
     W.run(p=2)
-    eigs = W.compute_eigenspectum()
 
 
