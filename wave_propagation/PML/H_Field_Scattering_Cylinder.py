@@ -202,7 +202,22 @@ def generate_exact_solution(N_samples, box_size=5, omega=2*np.pi, plot=True, use
     
     return Exact, mask
 
-def generate_FEM_mesh(box_size=5, PML_size=5, h=0.25, hpml=0.15):
+def generate_exact_solution_dielectric(N_samples, mu, epsi, box_size=5, omega=2*np.pi, plot=True,):
+    
+    x_extent = np.linspace(-box_size/2, box_size/2, N_samples)
+    y_extent = x_extent
+    xx,yy = np.meshgrid(x_extent, y_extent, indexing='ij')
+
+    R = np.sqrt(xx**2 + yy**2) # Cylinder is centered at (0,0)
+    theta = np.arctan2(yy, xx)
+
+    Z = np.sqrt(mu/ epsi) # intrinsic impedence inside dielectric
+    Z_0 = 76.730313668 # impedence of free space.
+    
+    beta = omega * np.sqrt(mu * epsi) # wavenumber inside dielectric
+    beta_0 = omega / 3e8 # Free space wavenumber
+
+def generate_FEM_mesh(box_size=5, PML_size=5, h=0.25, hpml=0.15, use_PEC=True):
     """Generates 2d mesh box of size box_size + PML_size with a unit radius hole in center.
     boundaries are labeled as 'innerbnd' for the inner boundary with the PML, 'outerbnd' for the PML outer boundary, and
     'scabnd' for the boundary around the scatterer.
@@ -234,9 +249,14 @@ def generate_FEM_mesh(box_size=5, PML_size=5, h=0.25, hpml=0.15):
     outer.edges.name = 'outerbnd'
     inner.faces.name ='inner'
     outer.faces.name = 'pmlregion'
+    if use_PEC is False:
+        scatterer.faces.name = 'scatterer'
 
-    geo = OCCGeometry(Glue([inner, outer]), dim=2)
-    # geo = OCCGeometry(inner, dim=2)
+    if use_PEC is True:
+        geo = OCCGeometry(Glue([inner, outer]), dim=2)
+    else:
+        geo = OCCGeometry(Glue([scatterer, inner, outer]), dim=2)
+
     ngmesh = Mesh(geo.GenerateMesh())
     
     # ngmesh.BoundaryLayers
@@ -273,7 +293,7 @@ def define_PML(d, omega, t, p, updated_PML=True):
     # Draw(dzx, generate_FEM_mesh())
     return dzx, dzy
 
-def FEM_scattering(ngmesh, omega, t, p, box_size=5, order=4, updated_PML=True):
+def FEM_scattering(ngmesh, omega, t, p, box_size=5, order=4, updated_PML=True, use_PEC=True):
     """
 
     Args:
@@ -289,8 +309,14 @@ def FEM_scattering(ngmesh, omega, t, p, box_size=5, order=4, updated_PML=True):
     
     # Defining Neumann BC for plane wave travelling in dim 1:
     # Computing E_in for frequency omega and converting to H_in as NGsolve coefficient functions.
+    
+    # mur = ngmesh.MaterialCF({'scatterer': 10}, default=1)
+    # epsi = 8.8541878128 * 1e-12
+    # mu = 4*3.141592 * mur
+    #if use_PEC is True:
     K = CF((omega / 3e8, 0))
-    K_magnitude = np.sqrt((omega/3e8)**2 + 0**2)
+    K_magnitude = omega / 3e8
+    
     
     phasor = exp(1j * ((K[0] * x) + (K[1] * y)))
     ez = 1 * phasor
@@ -303,7 +329,7 @@ def FEM_scattering(ngmesh, omega, t, p, box_size=5, order=4, updated_PML=True):
     n_cross_curlh_2d = CF((n_cross_curlh[0], n_cross_curlh[1])) # BC n x curl(H_in)
     
     # Defining PML function derivatives.
-    dzx, dzy = define_PML(box_size,  np.sqrt(K_magnitude), t, p, updated_PML=updated_PML)
+    dzx, dzy = define_PML(box_size, K_magnitude, t, p, updated_PML=updated_PML)
     dz_tot = dzx * dzy
 
     
@@ -321,24 +347,13 @@ def FEM_scattering(ngmesh, omega, t, p, box_size=5, order=4, updated_PML=True):
     a += (1/(dzy * dzx)) *curl(u)*curl(v)*dx - K_magnitude**2*(Lambda *u) *v *dx
     a.Assemble()
     
-    b = LinearForm(fes)
-    b += n_cross_curlh_2d * v.Trace() * ds('scabnd')
-    b.Assemble()
-    
-    # Trying cuda implementation:
-    # ngsglobals.msg_level=1
-
-    # # Using direct solve since 2d is quick.
-    # scat = GridFunction(fes) # FEM approx of scattered H field.
-    # scatdev = UnifiedVector(scat.vec)
-    # bdev = UnifiedVector(b.vec)
-    # adev = a.mat.CreateDeviceMatrix()
-    
-    # r = b.vec.CreateVector()
-    # # rdev = UnifiedVector(r)
-    # # rdev = bdev - (adev * scatdev)
-    # r = b.vec - (a.mat * scat.vec)
-    
+    if use_PEC is True:
+        b = LinearForm(fes)
+        b += n_cross_curlh_2d * v.Trace() * ds('scabnd')
+        b.Assemble()
+    else:
+        b = LinearForm(fes)
+        b.Assemble()
         
     # Using direct solve since 2d is quick.
     scat = GridFunction(fes) # FEM approx of scattered H field.
@@ -350,7 +365,7 @@ def FEM_scattering(ngmesh, omega, t, p, box_size=5, order=4, updated_PML=True):
     # scat.vec.data += a.mat.Inverse(free) * rdev    
     return scat, fes.ndof
 
-def compute_FEM_on_meshgrid(xx, yy, scat, mask, ngmesh, plot=False):
+def compute_FEM_on_meshgrid(xx, yy, scat, mask, ngmesh, plot=False, box_size=5, use_PEC=True):
     """Generates Numpy array by evaluating FEM at coords defined by meshgrid.
 
     Args:
@@ -371,16 +386,21 @@ def compute_FEM_on_meshgrid(xx, yy, scat, mask, ngmesh, plot=False):
 
     for indx, xy in enumerate(zip(xx.ravel(), yy.ravel())):
         R = np.sqrt(xy[0]**2 + xy[1]**2)
-        if R >= 1:
+        if use_PEC is True:
+            if R >= 1:
+                scat_numpy_x[indx] = scat(ngmesh(xy[0], xy[1]))[0]
+                scat_numpy_y[indx] = scat(ngmesh(xy[0], xy[1]))[1]
+        else:
             scat_numpy_x[indx] = scat(ngmesh(xy[0], xy[1]))[0]
             scat_numpy_y[indx] = scat(ngmesh(xy[0], xy[1]))[1]
+                
 
     scat_numpy_x = scat_numpy_x.reshape(xx.shape) * mask
     scat_numpy_y = scat_numpy_y.reshape(xx.shape) * mask
     
     if plot is True:
         plt.figure()
-        plt.imshow(scat_numpy_x.real, cmap='jet', extent=[-2.5,2.5,-2.5,2.5])
+        plt.imshow(scat_numpy_x.real, cmap='jet', extent=[-box_size/2,box_size/2,-box_size/2,box_size/2])
         plt.colorbar()
         plt.title('FEM Real dim 1')
 
@@ -408,18 +428,18 @@ def compare_FEM_exact():
         return np.linalg.norm((exact - approx)) / np.linalg.norm(exact)
     
     om = 1e5
-    Exact, mask = generate_exact_solution(100, omega=om, use_exact_H=True, plot=False)
-    x_extent = np.linspace(-5/2, 5/2, 100)
+    Exact, mask = generate_exact_solution(200, omega=om, use_exact_H=True, plot=True, box_size=5)
+    x_extent = np.linspace(-5/2, 5/2, 200)
     y_extent = x_extent
     xx,yy = np.meshgrid(x_extent, y_extent, indexing='ij')
     for h in [0.25]:
         error = []
         ndof = []
-        ngmesh = generate_FEM_mesh(h=h, PML_size=20)
-        for p in [0,1,2,3,4,5]:
+        ngmesh = generate_FEM_mesh(h=h, PML_size=100, box_size=5)
+        for p in [2]:
             print(f'Solving for p={p}')
-            scat, nd = FEM_scattering(ngmesh, om, 0.5, 1, order=p)
-            scat_pml_numpy_x, scat_pml_numpy_y = compute_FEM_on_meshgrid(xx, yy, scat, mask, ngmesh, plot=False)
+            scat, nd = FEM_scattering(ngmesh, om, 0.5, 1, order=p, box_size=5)
+            scat_pml_numpy_x, scat_pml_numpy_y = compute_FEM_on_meshgrid(xx, yy, scat, mask, ngmesh, plot=True, box_size=10)
             scat_pml_numpy = np.asarray([scat_pml_numpy_x, scat_pml_numpy_y])
             scat_pml_numpy_no_nans = scat_pml_numpy[~np.isnan(scat_pml_numpy)]
             exact_no_nans = Exact[~np.isnan(Exact)]
@@ -457,7 +477,7 @@ def compare_diff_omega():
             xx,yy = np.meshgrid(x_extent, y_extent, indexing='ij')
             ngmesh = generate_FEM_mesh(h=h, PML_size=100, hpml=0.3)
             print(f'Solving for p={p}')
-            scat, nd = FEM_scattering(ngmesh, om, 1, 1, order=p, updated_PML=pml_meth)
+            scat, nd = FEM_scattering(ngmesh, om, 0.5, 1, order=p, updated_PML=pml_meth)
             scat_pml_numpy_x, scat_pml_numpy_y = compute_FEM_on_meshgrid(xx, yy, scat, mask, ngmesh, plot=True)
             scat_pml_numpy = np.asarray([scat_pml_numpy_x, scat_pml_numpy_y])
             scat_pml_numpy_no_nans = scat_pml_numpy[~np.isnan(scat_pml_numpy)]
@@ -506,23 +526,24 @@ def compute_error_at_frequency(x):
 
 
 def main():
-    H, mask = generate_exact_solution(50, use_exact_H=True, plot=True)
-    H, mask = generate_exact_solution(50, use_exact_H=False, plot=True)
-    ngmesh = generate_FEM_mesh()
-    scat, nd = FEM_scattering(ngmesh, 2*np.pi)
+    # H, mask = generate_exact_solution(200, use_exact_H=True, plot=True)
+    # H, mask = generate_exact_solution(200, use_exact_H=False, plot=True)
+    ngmesh = generate_FEM_mesh(h=0.25, PML_size=50, box_size=10, use_PEC=False)
+    scat, nd = FEM_scattering(ngmesh, 1e5, 0.5, 1, order=5, box_size=10, use_PEC=False)
     
-    x_extent = np.linspace(-5/2, 5/2, 50)
+    # mask = np.ones((200,200))
+    x_extent = np.linspace(-10/2, 10/2, 200)
     y_extent = x_extent
     xx,yy = np.meshgrid(x_extent, y_extent, indexing='ij')
     
-    compute_FEM_on_meshgrid(xx, yy, scat, mask, ngmesh, plot=False)
+    compute_FEM_on_meshgrid(xx, yy, scat, mask, ngmesh, plot=True, use_PEC=False)
     plt.show()
 
 
 if __name__ == '__main__':
-    #main()
-    #compare_FEM_exact()
-    compare_diff_omega()
+    main()
+    # compare_FEM_exact()
+    #compare_diff_omega()
     
     # e = compute_error_at_frequency([0.5,2.6])
     # print(e)
